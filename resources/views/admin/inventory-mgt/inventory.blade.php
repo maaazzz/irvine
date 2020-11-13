@@ -54,19 +54,7 @@
 
             <div class="">
                 <ul class="pagination pagination-sm justify-content-end">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
-                        </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
-                        </a>
-                    </li>
+                   {{ $inventories->links() }}
                 </ul>
             </div>
         </div>
@@ -89,114 +77,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                     @foreach($inventories as $inventory)
+                     <tr>
+
                     <td class="table-select"><input type="checkbox" class="" /></td>
-                    <td><img class="table-img" src="{{asset('admin-assets/img/product110.jpg')}}" alt="" /></td>
-                    <td>Surface Spray</td>
-                    <td>MISCELLANEOUS</td>
-                    <td>160</td>
-                    <td>ABSORBENT, OOPS VOMIT CONTROL</td>
-                    <td>$2.17</td>
-                    <td>EA</td>
-                    <td>Warehouse 1</td>
-                    <td>10</td>
+                <td><img class="table-img" src="../images/{{ $inventory->image }}" alt="" /></td>
+                    <td>{{ $inventory->product_name }}</td>
+                    <td>{{ $inventory->category->name }}</td>
+                    <td>{{ $inventory->product_id }}</td>
+                    <td>{{ $inventory->description }}</td>
+                    <td>{{ $inventory->price }}</td>
+                    <td>{{ $inventory->umd }}</td>
+                    <td>{{ $inventory->location->loc_name }}</td>
+                    <td>{{ $inventory->quantity_oh }}</td>
+
                 </tr>
-                <tr>
-                    <td class="table-select"><input type="checkbox" class="" /></td>
-                    <td><img class="table-img" src="{{asset('admin-assets/img/product120.jpg')}}" alt="" /></td>
-                    <td>Mr. Clean</td>
-                    <td>SAFETY PRODUCTS</td>
-                    <td>161</td>
-                    <td>ABSORBENT, X-SORB, 13 GAL</td>
-                    <td>$17.70</td>
-                    <td>BG</td>
-                    <td>Warehouse 1</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td class="table-select"><input type="checkbox" class="" /></td>
-                    <td><img class="table-img" src="{{asset('admin-assets/img/product110.jpg')}}" alt="" /></td>
-                    <td>Surface Spray</td>
-                    <td>CLEANING PRODUCTS</td>
-                    <td>146</td>
-                    <td>AIR FRESHENER, DEODORANT SPRAY</td>
-                    <td>$1.98</td>
-                    <td>EA</td>
-                    <td>Warehouse 1</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td class="table-select"><input type="checkbox" class="" /></td>
-                    <td><img class="table-img" src="{{asset('admin-assets/img/product120.jpg')}}" alt="" /></td>
-                    <td>Mr. Clean</td>
-                    <td>GENERAL SUPPLIES</td>
-                    <td>608</td>
-                    <td>BADGE HOLDER, CLEAR SLEEVE</td>
-                    <td>$23.26</td>
-                    <td>PK</td>
-                    <td>Warehouse 1</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td class="table-select"><input type="checkbox" class="" /></td>
-                    <td><img class="table-img" src="{{asset('admin-assets/img/product110.jpg')}}" alt="" /></td>
-                    <td>Surface Spray</td>
-                    <td>SAFETY PRODUCTS</td>
-                    <td>416</td>
-                    <td>BARRICADE, FLASHERS FOR</td>
-                    <td>$31.32</td>
-                    <td>EA</td>
-                    <td>Warehouse 2</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td class="table-select"><input type="checkbox" class="" /></td>
-                    <td><img class="table-img" src="{{asset('admin-assets/img/product120.jpg')}}" alt="" /></td>
-                    <td>Mr. Clean</td>
-                    <td>BATTERIES</td>
-                    <td>704</td>
-                    <td>BATTERY, D , PK 12</td>
-                    <td>$7.23</td>
-                    <td>PK</td>
-                    <td>Warehouse 1</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td class="table-select"><input type="checkbox" class="" /></td>
-                    <td><img class="table-img" src="{{asset('admin-assets/img/product110.jpg')}}" alt="" /></td>
-                    <td>Surface Spray</td>
-                    <td>SAFETY PRODUCTS</td>
-                    <td>275</td>
-                    <td>BLANKET, SAFETY FOR FIRST AID</td>
-                    <td>$2.40</td>
-                    <td>EA</td>
-                    <td>Warehouse 1</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td class="table-select"><input type="checkbox" class="" /></td>
-                    <td><img class="table-img" src="{{asset('admin-assets/img/product120.jpg')}}" alt="" /></td>
-                    <td>Mr. Clean</td>
-                    <td>CLEANING PRODUCTS</td>
-                    <td>150</td>
-                    <td>BLEACH, 1 GALLON CONTAINER</td>
-                    <td>$8.40</td>
-                    <td>GL</td>
-                    <td>Warehouse 1</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td class="table-select"><input type="checkbox" class="" /></td>
-                    <td><img class="table-img" src="{{asset('admin-assets/img/product110.jpg')}}" alt="" /></td>
-                    <td>Surface Spray</td>
-                    <td>CLEANING PRODUCTS</td>
-                    <td>171</td>
-                    <td>BOTTLE, 32OZ. SPRAY BOTTLE</td>
-                    <td>$1.73</td>
-                    <td>EA</td>
-                    <td>Warehouse 1</td>
-                    <td>10</td>
-                </tr>
+                    @endforeach
+
             </tbody>
         </table>
     </div>
@@ -247,68 +144,93 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form method="POST" action="{{ route('inventory.store') }}" enctype="multipart/form-data"> 
+            @csrf
             <div class="modal-body">
                 <div class="modal-form">
                     <div class="form-group">
                         <label>Product Image</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="productImage"
-                                aria-describedby="productImage1" />
+                        <input class="form-control" name="user_id" type="hidden" value="1" required/>
+                            <input type="file" class="custom-file-input" name="images[]" id="productImage"
+                                aria-describedby="productImage1" multiple required/>
                             <label class="custom-file-label" for="productImage">Choose Image</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Product Name</label>
-                        <input class="form-control" type="text" />
+                        <input class="form-control" name="product_name" type="text" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Product ID</label>
+                        <input class="form-control" name="product_id" type="text" required/>
                     </div>
                     <div class="form-group">
                         <label>Select Category</label>
-                        <select class="custom-select">
-                            <option value="">Category 1</option>
-                            <option value="">Category 2</option>
-                            <option value="">Category 3</option>
+                        <select class="custom-select" name="category_id" required>
+                            <option value="" Selected disabled>Choose Category</option>
+                        @foreach($categories as $category)
+                        
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        
+                        @endforeach    
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Product ID</label>
-                        <input class="form-control" type="text" />
-                    </div>
-                    <div class="form-group">
                         <label>Description</label>
-                        <input class="form-control" type="text" />
+                        <input class="form-control" name="description" type="text" required/>
                     </div>
                     <div class="form-group">
                         <label>Price</label>
-                        <input class="form-control" type="text" />
+                        <input class="form-control" name="price" type="text" required/>
                     </div>
                     <div class="form-group">
                         <label>UMO</label>
-                        <select class="custom-select">
-                            <option value="">EA</option>
-                            <option value="">PAC</option>
-                            <option value="">BOX</option>
-                            <option value="">LOT</option>
-                            <option value="">LBS</option>
-                            <option value="">FT</option>
+                        <select class="custom-select" name="umd">
+                            <option value="1">EA</option>
+                            <option value="2">PAC</option>
+                            <option value="3">BOX</option>
+                            <option value="4">LOT</option>
+                            <option value="5">LBS</option>
+                            <option value="6">FT</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Select Location</label>
-                        <select class="custom-select">
-                            <option value="">Warehouse 1</option>
-                            <option value="">Warehouse 2</option>
+                        <select class="custom-select" name="location_id" required>
+
+                        <option value="" Selected disabled>Choose Location</option>
+                        @foreach($locations as $location)
+                        
+                        <option value="{{ $location->id }}">{{ $location->loc_name }}</option>
+                    
+                    @endforeach    
+
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label>QTY OH</label>
-                        <input class="form-control" type="text" />
+                        <input class="form-control" type="text" name="quantity_oh" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Choose Status</label>
+                        <select class="custom-select" name="status">
+
+                                <option value="Submitted">Submitted</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Delivered">Delivered</option>
+
+                        </select>
                     </div>
                 </div>
 
                 <div class="modal-btns d-flex justify-content-end pt-3">
                     <button type="button" class="main-btn gray-btn btn" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Add Inventory</button>
+                    <button type="submit" class="main-btn blue-btn btn ml-2">Add Inventory</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
