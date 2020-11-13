@@ -88,8 +88,12 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if ($request->has) {
+        if ($request->filled('password')) {
+            // return 'ok';
             $user->password = \bcrypt($request->password);
+            $user->update();
+            return back()
+                ->with('success', 'User updated successfully');
         }
         // dd($request->all());
         $user->name = $request->name;

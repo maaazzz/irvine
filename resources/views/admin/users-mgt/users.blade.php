@@ -241,21 +241,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form class="myForm" method="post">
+                    @csrf
+                    @method('put')
                     <div class="modal-form">
                         <div class="form-group">
                             <label>New Password</label>
-                            <input class="form-control" type="password" inputmode="" />
+                            <input class="form-control" type="password" name="password" required />
                         </div>
                         <div class="form-group">
                             <label>Confirm Password</label>
-                            <input class="form-control" type="password" />
+                            <input class="form-control" type="password" required />
                         </div>
                     </div>
 
                     <div class="modal-btns d-flex justify-content-end pt-3">
                         <button type="button" class="main-btn gray-btn btn" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Reset
+                        <button type="submit" class="main-btn blue-btn btn ml-2">Reset
                             Password</button>
                     </div>
                 </form>
@@ -294,7 +296,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post" id="myForm">
+                <form action="" method="post" class="myForm">
                     @csrf
                     @method('put')
                     <div class="modal-form">
@@ -371,7 +373,7 @@
             dataType: 'json',
             method: 'get',
             success:function(data){
-                var url = $('#myForm').attr('action',"/admin/users/"+data.id);
+                var url = $('.myForm').attr('action',"/admin/users/"+data.id);
 
                 $('#user_id').val(data.id)
                 $('#shopper_name').val(data.name);

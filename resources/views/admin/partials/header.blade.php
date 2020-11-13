@@ -11,8 +11,8 @@
                 <ul class="nav-middle navbar-nav flex-md-grow-1">
                     <li class="nav-item {{request()->is('/admin') ? 'active' : ''}}"><a href="{{ url('/admin') }}"
                             class="nav-link">Dashboard</a></li>
-                    <li class="nav-item  {{request()->is('admin/inventroy') ? 'active' : ''}}"><a
-                            href="{{ url('admin/inventroy') }}" class="nav-link">Inventory</a></li>
+                    <li class="nav-item  {{request()->is('admin/inventory') ? 'active' : ''}}"><a
+                            href="{{ url('admin/inventory') }}" class="nav-link">Inventory</a></li>
                     <li class="nav-item {{request()->is('admin/transactions') ? 'active' : ''}}"><a
                             href="{{ url('admin/transactions') }}" class="nav-link">Transactions</a>
                     </li>
