@@ -1,0 +1,490 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+body {
+	font-family: "Poppins", sans-serif;
+	font-size: 14px;
+}
+
+a:hover,
+a:focus {
+	text-decoration: none;
+}
+
+/** **/
+.form-control,
+.custom-select {
+	font-size: 14px;
+}
+.custom-select {
+	padding: 6px 16px 6px 8px;
+	background: #fff url("../img/down-arrow.png") no-repeat right 4px center/8px 8px;
+}
+.btn {
+	box-shadow: none;
+	font-size: 14px;
+	transition: all 0.3s;
+}
+.btn:focus {
+	box-shadow: none;
+}
+.main-btn {
+	min-width: 100px;
+	border-width: 2px;
+}
+.sub-btn {
+	min-width: 100px;
+}
+.gray-btn {
+	border-color: #888;
+	background-color: #888;
+	color: #fff;
+}
+.gray-btn:hover {
+	background-color: transparent;
+	color: #888;
+}
+.orange-btn {
+	border-color: #ee7d00;
+	background-color: #ee7d00;
+	color: #fff;
+}
+.orange-btn:hover {
+	background-color: transparent;
+	color: #ee7d00;
+}
+.blue-btn {
+	border-color: #00acd5;
+	background-color: #00acd5;
+	color: #fff;
+}
+.blue-btn:hover {
+	background-color: transparent;
+	color: #00acd5;
+}
+.green-btn {
+	border-color: #009d57;
+	background-color: #009d57;
+	color: #fff;
+}
+.green-btn:hover {
+	background-color: transparent;
+	color: #009d57;
+}
+
+/** Login Page ************/
+.login-page {
+	width: 100%;
+	min-height: 100vh;
+	background-image: url(../img/bg.jpg);
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.login-page .header {
+	padding: 10px 15px;
+}
+.login-page .brand-logo img {
+	height: 80px;
+	width: auto;
+}
+/**/
+.login-page .login-box {
+	padding: 0 15px;
+}
+.login-page .login-box .login-form {
+	width: 100%;
+	max-width: 400px;
+	margin: 30px auto;
+	padding: 20px;
+	border-radius: 5px;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+.login-page .login-form h2 {
+	margin: 0 0 20px 0;
+	color: #fff;
+	text-align: center;
+}
+.login-page .login-form .form-control {
+	height: 40px;
+}
+.login-page .login-form .input-group .input-group-prepend .input-group-text {
+	background-color: #fff;
+}
+.login-page .login-form .form-check label {
+	font-size: 14px;
+	color: #fff;
+}
+.login-page .login-form .forgot-pass {
+	border-bottom: 1px solid transparent;
+	font-size: 14px;
+	color: #ccc;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+.login-page .login-form .forgot-pass:hover {
+	border-bottom: 1px solid #ccc;
+}
+.login-page .login-form .main-btn {
+	font-size: 16px;
+}
+/**/
+.login-page footer {
+	padding: 20px 0;
+}
+.login-page footer p {
+	margin: 0;
+	text-align: center;
+	color: #fff;
+	text-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
+}
+
+/**********************
+Inner pages
+**********************/
+.main-nav {
+	padding: 10px 0;
+}
+.main-nav .navbar-brand {
+	padding: 0;
+}
+.main-nav .navbar-brand img {
+	height: 80px;
+	width: auto;
+}
+.main-nav .nav-middle {
+	background-color: #f5f5f5;
+	border-radius: 4px;
+}
+.main-nav .navbar-nav .nav-item .nav-link {
+	padding: 10px 15px;
+	font-weight: 500;
+	transition: all 0.3s;
+}
+.main-nav .navbar-nav .active .nav-link,
+.main-nav .navbar-nav .show .dropdown-toggle,
+.main-nav .navbar-nav .dropdown-toggle.active {
+	color: #00acd5;
+}
+.main-nav .navbar-nav .dropdown .dropdown-menu {
+	margin: 0;
+	padding: 4px 0;
+	border: 0;
+	background-color: #f5f5f5;
+}
+.main-nav .navbar-nav .dropdown .dropdown-item {
+	padding: 4px 15px;
+	font-size: 14px;
+	transition: all 0.3s;
+}
+.main-nav .navbar-nav .dropdown .dropdown-item:hover {
+	background-color: transparent;
+	color: #00acd5;
+}
+.main-nav .navbar-nav .nav-item .logout-btn {
+	height: 40px;
+	margin-left: 15px;
+	border: 2px solid #00acd5;
+	background-color: transparent;
+	font-size: 14px;
+	font-weight: 500;
+	color: #00acd5;
+	transition: all 0.3s;
+}
+.main-nav .navbar-nav .nav-item .logout-btn:hover {
+	background-color: #00acd5;
+	color: #fff;
+}
+/**/
+.main {
+	min-height: calc(100vh - 160px);
+	padding: 10px 0 20px 0;
+}
+.page-title h6,
+.page-title h5 {
+	margin: 0 0 10px 0;
+	font-weight: 400;
+	/* color: #6c757d; */
+	line-height: 1.5;
+}
+.page-breadcrumb .breadcrumb {
+	margin: 0 0 5px 0;
+	padding: 0 15px 5px 0;
+	background-color: #fff;
+	font-size: 16px;
+}
+.page-breadcrumb .breadcrumb .breadcrumb-item a {
+	color: #00acd5;
+}
+
+/**/
+.footer {
+	padding: 5px 0;
+	background-color: #1e2742;
+}
+.footer .footer-logo {
+	margin: 5px 0;
+}
+.footer .footer-logo img {
+	height: 40px;
+	width: auto;
+}
+.footer .copyright {
+	margin: 0;
+	padding-left: 15px;
+	color: #fff;
+	font-weight: 300;
+}
+
+/** Inner Page *************************/
+
+.inner-page .filter-box .search-bar {
+	max-width: 250px;
+}
+.inner-page .filter-box .search-bar .btn {
+	background-color: #00acd5;
+}
+.inner-page .filter-box .custom-select {
+	min-width: 100px;
+}
+.inner-page .filter-box .search-bar,
+.inner-page .filter-box .custom-select,
+.inner-page .filter-box .sub-btn {
+	margin: 5px 0;
+}
+/**/
+.inner-page .table-filter {
+	padding: 5px 0;
+}
+.inner-page .table-filter .show-txt {
+	margin: 5px 0;
+}
+.inner-page .table-filter .row-select {
+	margin: 5px 0;
+}
+.inner-page .table-filter .row-select .custom-select {
+	margin: 0 5px;
+	padding: 4px 14px 4px 4px;
+	height: auto;
+	min-width: 60px;
+}
+.inner-page .table-filter .pagination {
+	margin: 5px 0;
+}
+/**/
+.single-table {
+	max-width: 300px;
+}
+.table thead th {
+	font-weight: 600;
+	vertical-align: middle;
+}
+.table tbody td {
+	vertical-align: middle;
+}
+.table .table-select {
+	width: 30px;
+	text-align: center;
+}
+.table .table-link {
+	padding: 0;
+	box-shadow: none;
+	border: 0;
+	background-color: transparent;
+	font-size: 14px;
+	color: #00acd5;
+	transition: all 0.3s;
+}
+.table .table-links .table-link {
+	margin: 0 3px;
+}
+.table .table-link:hover {
+	color: #333;
+}
+.table .table-img {
+	height: 40px;
+	width: 40px;
+	object-fit: contain;
+	object-position: center;
+}
+
+/** Transactions Page ************************/
+/**/
+.filter-status li:first-child span {
+	display: inline-block;
+	margin-bottom: 5px;
+	vertical-align: middle;
+	font-weight: 600;
+}
+.filter-status li a {
+	margin-bottom: 5px;
+	padding: 3px 0px;
+	border: 1px solid transparent;
+	border-radius: 2px;
+	font-size: 13px;
+	color: #666666;
+	transition: all 0.3s;
+}
+.filter-status .stat-dot {
+	margin-right: 3px;
+}
+.stat-dot {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background-color: #000;
+	vertical-align: middle;
+}
+.stat-dot.stat-red {
+	background-color: #ed1c24;
+}
+.stat-dot.stat-orange {
+	background-color: #ff7f27;
+}
+.stat-dot.stat-green {
+	background-color: #22b14c;
+}
+/**/
+.order-modal .order-img {
+	width: 80px;
+	height: 80px;
+}
+.order-modal .order-img img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	object-position: center;
+}
+.order-modal .order-title {
+	font-weight: 600;
+}
+.order-modal .order-details {
+	font-size: 12px;
+	height: 58px;
+	line-height: 1.2;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+}
+.order-modal .qty-input {
+	width: 60px;
+}
+.order-modal .order-review .comment-box {
+	height: 100px;
+}
+/**/
+.modal .main-btn {
+	min-width: 60px;
+	font-size: 14px;
+}
+
+/** Dashboard Page **************************/
+.dashboard-page .dash-box .group-title h5 {
+	font-size: 18px;
+}
+.dash-box .dash-data {
+	padding-bottom: 20px;
+}
+.dash-data .data-title {
+	font-size: 14px;
+	font-weight: 600;
+}
+.dash-data .dash-list li {
+	display: flex;
+	align-items: center;
+}
+.dash-data .dash-list li .color-box {
+	margin-right: 10px;
+	width: 20px;
+	height: 15px;
+}
+.dash-list .color-box.color1 {
+	background-color: #3f9c35;
+}
+.dash-list .color-box.color2 {
+	background-color: #0088ce;
+}
+.dash-list .color-box.color3 {
+	background-color: #cc0000;
+}
+.dash-list .color-box.color4 {
+	background-color: #ec7a07;
+}
+.dash-list .color-box.color5 {
+	background-color: #f4b084;
+}
+.dash-list .color-box.color6 {
+	background-color: #8ea9db;
+}
+.dash-list .color-box.color7 {
+	background-color: #a6a6a6;
+}
+.dash-list .color-box.color8 {
+	background-color: #ffd966;
+}
+.dash-list .color-box.color9 {
+	background-color: #c9c9c9;
+}
+.dash-list .color-box.color10 {
+	background-color: #757171;
+}
+.dash-list .color-box.color11 {
+	background-color: #e05f5f;
+}
+.dash-list .color-box.color12 {
+	background-color: #8de284;
+}
+.dash-list .color-box.color13 {
+	background-color: #fff;
+}
+.dash-list .color-box.color14 {
+	background-color: #fff;
+}
+/**/
+.dash-data .dash-chart {
+	max-width: 260px;
+}
+/**/
+.dash-data.dash-table-box {
+	max-width: 250px;
+	width: 250px;
+}
+.dash-data .dash-table td:first-child {
+	padding-left: 0;
+}
+.dash-data .dash-table td:last-child {
+	width: 120px;
+	text-align: center;
+}
+.dash-data .dash-table td.table-total {
+	border-top: 1px solid #000;
+	font-weight: 500;
+}
+
+/** Settings Page **************************/
+
+/***************
+Media Query
+****************/
+@media screen and (min-width: 1400px) {
+	.container-fluid {
+		max-width: 90%;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 991px) {
+}
+
+@media screen and (max-width: 767px) {
+	.main-nav .navbar-nav {
+		background-color: #f5f5f5;
+	}
+	.main-nav .navbar-nav .dropdown .dropdown-menu {
+		padding: 0 0 4px 15px;
+	}
+	.main-nav .navbar-nav .logout-btn {
+		margin: 10px 0;
+	}
+}
