@@ -64,6 +64,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        // echo "hello";
+        // $user = User::find($user);
+        return response()->json($user);
     }
 
     /**
@@ -86,7 +89,15 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        // dd($request->all());
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = $request->role;
+        $user->status = $request->status;
+
+        $user->save();
+        return back()
+            ->with('success', 'User updated successfully');
     }
 
     /**
@@ -98,5 +109,10 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function userUpdate(Request $request)
+    {
+        dd($request->all());
     }
 }

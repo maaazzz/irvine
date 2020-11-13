@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     // users Routes
     Route::resource('users', 'Admin\UserController');
+    // Route::post('users-update', 'Admin\UserController@userUpdate')->name('user.update');
     // end users routes
 
 
@@ -72,4 +73,3 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/cart', 'FrontendController@cart');
 Route::get('/', 'FrontendController@index');
-

@@ -1,6 +1,9 @@
 @extends('admin.layouts.app')
 
 @section('content')
+@if(Session::has('success'))
+<div class="alert alert-success">{{Session::get('success')}}</div>
+@endif
 <div class="page-title">
     <h5>Users</h5>
 </div>
@@ -126,8 +129,8 @@
                         <a href="#" class="table-link" data-toggle="modal" data-target="#ordersModal">View</a>
                     </td>
                     <td class="table-links">
-                        <a class="table-link edit" href="#" data-toggle="modal" data-target="#editModal"
-                            title="Edit User"><i class="fas fa-pen"></i></a>
+                        <a class="table-link edit-user" data-id={{$user->id}} href="#" data-toggle="modal"
+                            data-target="#editModal" title="Edit User"><i class="fas fa-pen"></i></a>
                         <a class="table-link" href="#" data-toggle="modal" data-target="#resetPasswordModal"
                             title="Reset Password"><i class="fas fa-redo-alt"></i></a>
                     </td>
@@ -200,18 +203,15 @@
                             <label>Account Type</label>
                             <div class="">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" id="selectAccountType1"
-                                        value="1" />
-                                    <label class="form-check-label" for="selectAccountType1">Shopper</label>
+                                    <input class="form-check-input" type="radio" name="role" value="1" />
+                                    <label class="form-check-label" for="">Shopper</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" id="selectAccountType2"
-                                        value="2" />
+                                    <input class="form-check-input" type="radio" name="role" value="2" />
                                     <label class="form-check-label" for="selectAccountType2">Approver</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" id="selectAccountType3"
-                                        value="3" />
+                                    <input class="form-check-input" type="radio" name="role" value="3" />
                                     <label class="form-check-label" for="selectAccountType3">Warehouse Manager</label>
                                 </div>
                             </div>
@@ -220,12 +220,12 @@
                             <label>Account Status</label>
                             <div class="">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" id="status1" value="1" />
-                                    <label class="form-check-label" for="status1">Active</label>
+                                    <input class="form-check-input" type="radio" name="status" value="1" />
+                                    <label class="form-check-label">Active</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" id="status2" value="0" />
-                                    <label class="form-check-label" for="status2">Disabled</label>
+                                    <input class="form-check-input" type="radio" name="status" value="0" />
+                                    <label class="form-check-label">Disabled</label>
                                 </div>
                             </div>
                         </div>
@@ -271,64 +271,57 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="modal-form">
-                    <div class="form-group">
-                        <label>Shopper Name</label>
-                        <input class="form-control" type="text" value="Jeremy Smith" />
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input class="form-control" type="email" value="jsmith7985@gmail.com" />
-                    </div>
-                    <div class="form-group">
-                        <label>Department</label>
-                        <select class="custom-select">
-                            <option value="">Public Safety</option>
-                            <option value="">Department 2</option>
-                            <option value="">Department 3</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Account Type</label>
-                        <div class="">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountTypeRadio"
-                                    id="accountTypeRadio1" value="" checked />
-                                <label class="form-check-label" for="accountTypeRadio1">Shopper</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountTypeRadio"
-                                    id="accountTypeRadio2" value="" />
-                                <label class="form-check-label" for="accountTypeRadio2">Approver</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountTypeRadio"
-                                    id="accountTypeRadio3" value="" />
-                                <label class="form-check-label" for="accountTypeRadio3">Warehouse Manager</label>
-                            </div>
+                <form action="" method="post" id="myForm">
+                    @csrf
+                    @method('put')
+                    <div class="modal-form">
+                        <input type="hidden" id="user_id">
+                        <div class="form-group">
+                            <label>Shopper Name</label>
+                            <input class="form-control" type="text" name="name" id="shopper_name" />
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Account Status</label>
-                        <div class="">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountStatusRadio"
-                                    id="accountStatusRadio1" value="" checked />
-                                <label class="form-check-label" for="accountStatusRadio1">Active</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountStatusRadio"
-                                    id="accountStatusRadio2" value="" />
-                                <label class="form-check-label" for="accountStatusRadio2">Disabled</label>
-                            </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" type="email" name="email" id="email" />
                         </div>
-                    </div>
-                </div>
 
-                <div class="modal-btns d-flex justify-content-end pt-3">
-                    <button type="button" class="main-btn gray-btn btn" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Save</button>
-                </div>
+                        <div class="form-group">
+                            <label>Account Type</label>
+                            <div class="">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" value="1" />
+                                    <label class="form-check-label type" for="selectAccountType3">Warehouse
+                                        Manager</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" value="2" />
+                                    <label class="form-check-label type" for="selectAccountType2">Approver</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" value="3" checked />
+                                    <label class="form-check-label type" for="">Shopper</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Account Status</label>
+                                <div class="">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" checked name="status" value="1" />
+                                        <label class="form-check-label" for="status1">Active</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" value="0" />
+                                        <label class="form-check-label">Disabled</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-btns d-flex justify-content-end pt-3">
+                            <button type="button" class="main-btn gray-btn btn" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="main-btn blue-btn btn ml-2">Save</button>
+                        </div>
+                </form>
             </div>
         </div>
     </div>
@@ -368,4 +361,30 @@
 </div>
 
 
+@endsection
+
+
+@section('scripts')
+<script>
+    var user_id;
+    $(document).on('click','.edit-user',function(){
+        user_id = $(this).attr('data-id');
+
+        $.ajax({
+            url: '/admin/users/'+user_id,
+            dataType: 'json',
+            method: 'get',
+            success:function(data){
+                var url = $('#myForm').attr('action',"/admin/users/"+data.id);
+
+                $('#user_id').val(data.id)
+                $('#shopper_name').val(data.name);
+                $('#email').val(data.email);
+                $('.type').val(data.role);
+                $('.status').val(data.status);
+            }
+        });
+
+});
+</script>
 @endsection
