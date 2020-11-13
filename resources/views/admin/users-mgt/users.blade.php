@@ -74,19 +74,7 @@
 
             <div class="">
                 <ul class="pagination pagination-sm justify-content-end">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
-                        </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
-                        </a>
-                    </li>
+                    {{$users->links()}}
                 </ul>
             </div>
         </div>
@@ -131,8 +119,10 @@
                     <td class="table-links">
                         <a class="table-link edit-user" data-id={{$user->id}} href="#" data-toggle="modal"
                             data-target="#editModal" title="Edit User"><i class="fas fa-pen"></i></a>
+
                         <a class="table-link" href="#" data-toggle="modal" data-target="#resetPasswordModal"
-                            title="Reset Password"><i class="fas fa-redo-alt"></i></a>
+                            title="Reset Password">
+                            <i class="fas fa-redo-alt"></i></a>
                     </td>
                 </tr>
                 @empty
@@ -193,25 +183,25 @@
                     <div class="modal-form">
                         <div class="form-group">
                             <label>Shopper Name</label>
-                            <input class="form-control" type="text" name="name" />
+                            <input class="form-control" type="text" name="name" required />
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input class="form-control" type="email" name="email" />
+                            <input class="form-control" type="email" name="email" required />
                         </div>
                         <div class="form-group">
                             <label>Account Type</label>
                             <div class="">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" value="1" />
+                                    <input class="form-check-input" type="radio" name="role" value="1" required />
                                     <label class="form-check-label" for="">Shopper</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" value="2" />
+                                    <input class="form-check-input" type="radio" name="role" value="2" required />
                                     <label class="form-check-label" for="selectAccountType2">Approver</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" value="3" />
+                                    <input class="form-check-input" type="radio" name="role" value="3" required />
                                     <label class="form-check-label" for="selectAccountType3">Warehouse Manager</label>
                                 </div>
                             </div>
@@ -220,11 +210,11 @@
                             <label>Account Status</label>
                             <div class="">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" value="1" />
+                                    <input class="form-check-input" type="radio" name="status" value="1" required />
                                     <label class="form-check-label">Active</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" value="0" />
+                                    <input class="form-check-input" type="radio" name="status" value="0" required />
                                     <label class="form-check-label">Disabled</label>
                                 </div>
                             </div>
@@ -278,27 +268,28 @@
                         <input type="hidden" id="user_id">
                         <div class="form-group">
                             <label>Shopper Name</label>
-                            <input class="form-control" type="text" name="name" id="shopper_name" />
+                            <input class="form-control" type="text" name="name" id="shopper_name" required />
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input class="form-control" type="email" name="email" id="email" />
+                            <input class="form-control" type="email" name="email" id="email" required />
                         </div>
 
                         <div class="form-group">
                             <label>Account Type</label>
                             <div class="">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" value="1" />
+                                    <input class="form-check-input" type="radio" name="role" value="1" required />
                                     <label class="form-check-label type" for="selectAccountType3">Warehouse
                                         Manager</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" value="2" />
+                                    <input class="form-check-input" type="radio" name="role" value="2" required />
                                     <label class="form-check-label type" for="selectAccountType2">Approver</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" value="3" checked />
+                                    <input class="form-check-input" type="radio" name="role" value="3" required
+                                        checked />
                                     <label class="form-check-label type" for="">Shopper</label>
                                 </div>
                             </div>
@@ -306,11 +297,12 @@
                                 <label>Account Status</label>
                                 <div class="">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" checked name="status" value="1" />
+                                        <input class="form-check-input" type="radio" checked name="status" required
+                                            value="1" />
                                         <label class="form-check-label" for="status1">Active</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="status" value="0" />
+                                        <input class="form-check-input" type="radio" name="status" required value="0" />
                                         <label class="form-check-label">Disabled</label>
                                     </div>
                                 </div>
@@ -328,7 +320,7 @@
 </div>
 
 <!-- Reset Password Modal -->
-<div class="reset-password-modal modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="reset-password-modal modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModal"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -355,6 +347,26 @@
                     <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Reset
                         Password</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="a" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

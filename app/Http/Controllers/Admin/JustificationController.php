@@ -15,7 +15,8 @@ class JustificationController extends Controller
      */
     public function index()
     {
-        //
+        $justifications = Justification::all();
+        return view('admin.justification-mgt.justifications', compact('justifications'));
     }
 
     /**
@@ -36,7 +37,16 @@ class JustificationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'justification' => 'required',
+        ]);
+
+        Justification::create([
+            'justification' => $request->justification,
+        ]);
+
+        return back()
+            ->with('success', 'Justification created successfully');
     }
 
     /**

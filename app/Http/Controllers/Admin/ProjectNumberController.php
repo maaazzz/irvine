@@ -15,7 +15,8 @@ class ProjectNumberController extends Controller
      */
     public function index()
     {
-        //
+        $projectNumbers = ProjectNumber::all();
+        return view('admin.project-number-mgt.project-number', compact('projectNumbers'));
     }
 
     /**
@@ -36,7 +37,17 @@ class ProjectNumberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $this->validate($request, [
+            'project_number' => 'required',
+        ]);
+
+        ProjectNumber::create([
+            'project_number' => $request->project_number,
+        ]);
+
+        return back()
+            ->with('success', 'Project Number created successfully');
     }
 
     /**

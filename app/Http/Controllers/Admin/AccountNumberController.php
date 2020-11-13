@@ -15,7 +15,8 @@ class AccountNumberController extends Controller
      */
     public function index()
     {
-        //
+        $account_numbers = AccountNumber::all();
+        return view('admin.account-number-mgt.account-numbers', compact('account_numbers'));
     }
 
     /**
@@ -25,7 +26,6 @@ class AccountNumberController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -36,7 +36,18 @@ class AccountNumberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $this->validate($request, [
+            'account_no' => 'required',
+        ]);
+
+        AccountNumber::create(
+            [
+                'account_no' => $request->account_no,
+            ]
+        );
+        return back()
+            ->with('success', 'Account number created successfully');
     }
 
     /**

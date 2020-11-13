@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 
-
+@if(Session::has('success'))
+<div class="alert alert-success">{{Session::get('success')}}</div>
+@endif
 @section('content')
 <div class="page-title">
     <h5>Justifications</h5>
@@ -31,9 +33,14 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($justifications as $justification)
                 <tr>
-                    <td>Justification 01</td>
+                    <td>{{ $justification->justification }}</td>
                 </tr>
+
+                @empty
+                <p>Data not found</p>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -51,16 +58,19 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="modal-form">
-                    <div class="form-group">
-                        <label>Justification</label>
-                        <input class="form-control" type="text" />
+                <form action="{{ route('justifications.store') }}" method="post">
+                    @csrf
+                    <div class="modal-form">
+                        <div class="form-group">
+                            <label>Justification</label>
+                            <input class="form-control" type="text" name="justification" required />
+                        </div>
                     </div>
-                </div>
 
-                <div class="modal-btns d-flex justify-content-end pt-3">
-                    <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Save</button>
-                </div>
+                    <div class="modal-btns d-flex justify-content-end pt-3">
+                        <button type="submit" class="main-btn blue-btn btn ml-2">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

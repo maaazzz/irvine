@@ -71,23 +71,23 @@
                     <div class="modal-form">
                         <div class="form-group">
                             <label>Location Name</label>
-                            <input class="form-control" type="text" name="loc_name" />
+                            <input class="form-control" type="text" name="loc_name" required />
                         </div>
                         <div class="form-group">
                             <label>Contact Person</label>
-                            <input class="form-control" type="text" name="contact_person" />
+                            <input class="form-control" type="text" name="contact_person" required />
                         </div>
                         <div class="form-group">
                             <label>Contact Telephone</label>
-                            <input class="form-control" type="tel" name="telephone" />
+                            <input class="form-control" type="tel" name="telephone" required />
                         </div>
                         <div class="form-group">
                             <label>Contact Email</label>
-                            <input class="form-control" type="email" name="email" />
+                            <input class="form-control" type="email" name="email" required />
                         </div>
                         <div class="form-group">
                             <label>Contact Details</label>
-                            <input class="form-control" type="text" name="contact_details" />
+                            <input class="form-control" type="text" name="contact_details" required />
                         </div>
                     </div>
 
