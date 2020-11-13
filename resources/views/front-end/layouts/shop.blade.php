@@ -8,23 +8,29 @@
 		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 		<link rel="shortcut icon" href="favicon.ico" sizes="32x32" />
 
-		<title>Irvine - Online Store</title>
+		<title>Irvine - Cart</title>
+
+
+        @include('front-end.partials.style')
+        @yield('styles')
 		
-		<!-- Style -->
-		@include('front-end.partials.style')
-		@yield('styles')
 	</head>
 	<body>
-		<div class="store-page wrapper">
+		<div class="cart-page wrapper">
 			<!-- Header -->
-			@include('front-end.partials.header')
+            @include('front-end.partials.header')
+
+
+
+
+			<!-- Main -->
 
 			@yield('content')
-
+			
 
 			<!-- Footer -->
-			@include('front-end.partials.footer')
-
+            @include('front-end.partials.footer')
+		
 		</div>
 
 		<!-- JavaScript -->
