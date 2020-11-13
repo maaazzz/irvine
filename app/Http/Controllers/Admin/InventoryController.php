@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Inventory;
 use Illuminate\Http\Request;
+use App\Model\Category;
+use App\Model\Location;
+
 
 class InventoryController extends Controller
 {
@@ -16,6 +19,10 @@ class InventoryController extends Controller
     public function index()
     {
         //
+        $categories = Category::all();
+        $locations = Location::all();
+        $inventories = Inventory::with('category', 'location')->paginate(1);
+        return view('admin.inventory-mgt.inventory', compact('categories', 'locations', 'inventories'));
     }
 
     /**
@@ -36,7 +43,33 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+        
+        $images=array();
+        
+        if($files=$request->file('images')){
+        
+            foreach($files as $file){
+            
+                $name = time() . $file->getClientOriginalName();
+
+                $file->move('images', $name);
+                
+                $images[]=$name;
+        }
+    }
+        // dd($images);
+         $input['images'] = implode(',',$images); 
+            
+        //  dd(implode(',',$images));
+
+        Inventory::create($input);
+        return back()->with('success', 'Inventory added Succesfully');
+
+
+
+
+
     }
 
     /**

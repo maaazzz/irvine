@@ -24,7 +24,7 @@ class CreateInventoriesTable extends Migration
             $table->string('umd');
             $table->string('quantity_oh');
             $table->string('images');
-            $table->boolean('status');
+            $table->string('status');
             $table->timestamps();
         });
     }

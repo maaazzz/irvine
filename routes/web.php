@@ -22,9 +22,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', function () {
         return view('admin.dashboard-mgt.dashboard');
     });
-    Route::get('inventroy', function () {
-        return view('admin.inventory-mgt.inventory');
-    });
 
     Route::get('transactions', function () {
         return view('admin.transaction-mgt.transactions');
@@ -39,6 +36,8 @@ Route::group(['prefix' => 'admin'], function () {
     // categories Routes
     Route::resource('categories', 'Admin\CategoryController');
 
+    // Inventory Routes
+    Route::resource('inventory', 'Admin\InventoryController');
 
     Route::get('locations', function () {
         return view('admin.location-mgt.locations');
