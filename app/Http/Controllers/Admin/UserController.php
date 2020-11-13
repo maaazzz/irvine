@@ -88,6 +88,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if ($request->has) {
+            $user->password = \bcrypt($request->password);
+        }
         // dd($request->all());
         $user->name = $request->name;
         $user->email = $request->email;
@@ -108,10 +111,5 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
-    }
-
-    public function userUpdate(Request $request)
-    {
-        dd($request->all());
     }
 }

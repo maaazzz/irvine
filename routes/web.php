@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin'], function () {
     // end users routes
 
 
+
     Route::get('account-setting', function () {
         return view('admin.account-setting-mgt.account-setting');
     });

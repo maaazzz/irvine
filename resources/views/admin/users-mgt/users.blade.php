@@ -120,8 +120,8 @@
                         <a class="table-link edit-user" data-id={{$user->id}} href="#" data-toggle="modal"
                             data-target="#editModal" title="Edit User"><i class="fas fa-pen"></i></a>
 
-                        <a class="table-link" href="#" data-toggle="modal" data-target="#resetPasswordModal"
-                            title="Reset Password">
+                        <a class="table-link edit-user" href="#" data-id={{$user->id}} data-toggle="modal"
+                            data-target="#resetPasswordModal" title="Reset Password">
                             <i class="fas fa-redo-alt"></i></a>
                     </td>
                 </tr>
@@ -229,7 +229,40 @@
         </div>
     </div>
 </div>
+<!-- Reset Password Modal -->
+<div class="reset-password-modal modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModal"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+                <button type="button" name="password" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="modal-form">
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input class="form-control" type="password" inputmode="" />
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input class="form-control" type="password" />
+                        </div>
+                    </div>
 
+                    <div class="modal-btns d-flex justify-content-end pt-3">
+                        <button type="button" class="main-btn gray-btn btn" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Reset
+                            Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Orders Modal -->
 <div class="orders-modal modal fade" id="ordersModal" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -319,58 +352,9 @@
     </div>
 </div>
 
-<!-- Reset Password Modal -->
-<div class="reset-password-modal modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModal"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-form">
-                    <div class="form-group">
-                        <label>New Password</label>
-                        <input class="form-control" type="password" inputmode="" />
-                    </div>
-                    <div class="form-group">
-                        <label>Confirm Password</label>
-                        <input class="form-control" type="password" />
-                    </div>
-                </div>
 
-                <div class="modal-btns d-flex justify-content-end pt-3">
-                    <button type="button" class="main-btn gray-btn btn" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Reset
-                        Password</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="modal fade" id="a" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 @endsection
@@ -397,6 +381,11 @@
             }
         });
 
+
+
 });
+
+
 </script>
+
 @endsection
