@@ -15,7 +15,7 @@
     <div class="mr-2">
         <div class="search-bar input-group">
             <input type="text" class="form-control" placeholder="Search" aria-label="Search"
-                aria-describedby="search-input" />
+                aria-describedby="search-input" required />
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button" id="search-input"><i
                         class="icon fas fa-search"></i></button>

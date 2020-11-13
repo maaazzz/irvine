@@ -2,6 +2,11 @@
 
 
 @section('content')
+
+@if(Session::has('success'))
+<div class="alert alert-success">{{Session::get('success')}}</div>
+@endif
+
 <div class="page-title">
     <h5>Locations</h5>
 </div>
@@ -35,13 +40,17 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($locations as $location)
                 <tr>
-                    <td>Central Warehouse</td>
-                    <td>James Smith</td>
-                    <td>656-565-6566</td>
-                    <td>jsmith@gmail.com</td>
-                    <td>Hours: 9am - 5pm</td>
+                    <td>{{ $location->loc_name }}</td>
+                    <td>{{ $location->contact_person }}</td>
+                    <td>{{ $location->telephone }}</td>
+                    <td>{{ $location->email }}</td>
+                    <td>{{ $location->contact_details }}</td>
                 </tr>
+                @empty
+                <p>categories not found</p>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -57,32 +66,35 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="modal-form">
-                    <div class="form-group">
-                        <label>Location Name</label>
-                        <input class="form-control" type="text" />
+                <form action="{{ route('locations.store') }}" method="post">
+                    @csrf
+                    <div class="modal-form">
+                        <div class="form-group">
+                            <label>Location Name</label>
+                            <input class="form-control" type="text" name="loc_name" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Person</label>
+                            <input class="form-control" type="text" name="contact_person" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Telephone</label>
+                            <input class="form-control" type="tel" name="telephone" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Email</label>
+                            <input class="form-control" type="email" name="email" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Details</label>
+                            <input class="form-control" type="text" name="contact_details" required />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Contact Person</label>
-                        <input class="form-control" type="text" />
-                    </div>
-                    <div class="form-group">
-                        <label>Contact Telephone</label>
-                        <input class="form-control" type="tel" />
-                    </div>
-                    <div class="form-group">
-                        <label>Contact Email</label>
-                        <input class="form-control" type="email" />
-                    </div>
-                    <div class="form-group">
-                        <label>Contact Details</label>
-                        <input class="form-control" type="text" />
-                    </div>
-                </div>
 
-                <div class="modal-btns d-flex justify-content-end pt-3">
-                    <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Save</button>
-                </div>
+                    <div class="modal-btns d-flex justify-content-end pt-3">
+                        <button type="submit" class="main-btn blue-btn btn ml-2">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

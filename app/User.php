@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'status', 'role',
     ];
 
     /**
@@ -39,6 +39,8 @@ class User extends Authenticatable
 
     
     public function inventories(){
+
         return $this->hasMany('App\Model\Inventory');
+    
     }
 }

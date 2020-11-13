@@ -2,6 +2,9 @@
 
 
 @section('content')
+@if(Session::has('success'))
+<div class="alert alert-success">{{Session::get('success')}}</div>
+@endif
 <div class="page-title">
     <h5>Account Number</h5>
 </div>
@@ -31,9 +34,14 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($account_numbers as $acc_no)
+
                 <tr>
-                    <td>Account Number 01</td>
+                    <td>{{ $acc_no->account_no }}</td>
                 </tr>
+                @empty
+                <p> data not found</p>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -50,16 +58,19 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="modal-form">
-                    <div class="form-group">
-                        <label>Account Number</label>
-                        <input class="form-control" type="text" />
+                <form action="{{ route('account-number.store') }}" method="post">
+                    @csrf
+                    <div class="modal-form">
+                        <div class="form-group">
+                            <label>Account Number</label>
+                            <input class="form-control" type="text" name="account_no" required />
+                        </div>
                     </div>
-                </div>
 
-                <div class="modal-btns d-flex justify-content-end pt-3">
-                    <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Save</button>
-                </div>
+                    <div class="modal-btns d-flex justify-content-end pt-3">
+                        <button type="submit" class="main-btn blue-btn btn ml-2">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

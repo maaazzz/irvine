@@ -15,7 +15,8 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        $locations = Location::all();
+        return view('admin.location-mgt.locations', compact('locations'));
     }
 
     /**
@@ -36,7 +37,24 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $this->validate($request, [
+            'loc_name' => 'required',
+            'contact_person' => 'required',
+            'telephone' => 'required',
+            'email' => 'required|unique:locations,email',
+            'contact_details' => 'required',
+        ]);
+
+        Location::create([
+            'loc_name' => $request->loc_name,
+            'contact_person' => $request->contact_person,
+            'telephone' => $request->telephone,
+            'email' => $request->email,
+            'contact_details' => $request->contact_details,
+        ]);
+        return back()
+            ->with('success', 'Loaction added successfully');
     }
 
     /**

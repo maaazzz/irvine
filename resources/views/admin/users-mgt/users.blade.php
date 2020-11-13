@@ -1,6 +1,9 @@
 @extends('admin.layouts.app')
 
 @section('content')
+@if(Session::has('success'))
+<div class="alert alert-success">{{Session::get('success')}}</div>
+@endif
 <div class="page-title">
     <h5>Users</h5>
 </div>
@@ -71,19 +74,7 @@
 
             <div class="">
                 <ul class="pagination pagination-sm justify-content-end">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
-                        </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
-                        </a>
-                    </li>
+                    {{$users->links()}}
                 </ul>
             </div>
         </div>
@@ -103,22 +94,40 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($users as $user)
                 <tr>
                     <td class="table-select"><input type="checkbox" class="" /></td>
-                    <td>Jeremy Smith</td>
-                    <td>jsmith7985@gmail.com</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+
+                    @if ($user->role == 1)
+                    <td>Warehouse</td>
+                    @endif
+
+                    @if ($user->role == 2)
+                    <td>Approver</td>
+                    @endif
+
+                    @if ($user->role == 3)
                     <td>Shopper</td>
-                    <td>Active</td>
+                    @endif
+
+                    <td>{{ $user->status == 1 ? 'Active' : 'Inactive' }}</td>
                     <td class="">
                         <a href="#" class="table-link" data-toggle="modal" data-target="#ordersModal">View</a>
                     </td>
                     <td class="table-links">
-                        <a class="table-link" href="#" data-toggle="modal" data-target="#editModal" title="Edit User"><i
-                                class="fas fa-pen"></i></a>
+                        <a class="table-link edit-user" data-id={{$user->id}} href="#" data-toggle="modal"
+                            data-target="#editModal" title="Edit User"><i class="fas fa-pen"></i></a>
+
                         <a class="table-link" href="#" data-toggle="modal" data-target="#resetPasswordModal"
-                            title="Reset Password"><i class="fas fa-redo-alt"></i></a>
+                            title="Reset Password">
+                            <i class="fas fa-redo-alt"></i></a>
                     </td>
                 </tr>
+                @empty
+                <p>Users not found </p>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -169,56 +178,53 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="modal-form">
-                    <div class="form-group">
-                        <label>Shopper Name</label>
-                        <input class="form-control" type="text" />
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input class="form-control" type="email" />
-                    </div>
-                    <div class="form-group">
-                        <label>Account Type</label>
-                        <div class="">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="selectAccountType"
-                                    id="selectAccountType1" value="" />
-                                <label class="form-check-label" for="selectAccountType1">Shopper</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="selectAccountType"
-                                    id="selectAccountType2" value="" />
-                                <label class="form-check-label" for="selectAccountType2">Approver</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="selectAccountType"
-                                    id="selectAccountType3" value="" />
-                                <label class="form-check-label" for="selectAccountType3">Warehouse Manager</label>
+                <form action="{{ route('users.store') }}" method="post">
+                    @csrf
+                    <div class="modal-form">
+                        <div class="form-group">
+                            <label>Shopper Name</label>
+                            <input class="form-control" type="text" name="name" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" type="email" name="email" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Account Type</label>
+                            <div class="">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" value="1" required />
+                                    <label class="form-check-label" for="">Shopper</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" value="2" required />
+                                    <label class="form-check-label" for="selectAccountType2">Approver</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" value="3" required />
+                                    <label class="form-check-label" for="selectAccountType3">Warehouse Manager</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Account Status</label>
-                        <div class="">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountStatusRadio"
-                                    id="accountStatusRadio1" value="" />
-                                <label class="form-check-label" for="accountStatusRadio1">Active</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountStatusRadio"
-                                    id="accountStatusRadio2" value="" />
-                                <label class="form-check-label" for="accountStatusRadio2">Disabled</label>
+                        <div class="form-group">
+                            <label>Account Status</label>
+                            <div class="">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" value="1" required />
+                                    <label class="form-check-label">Active</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" value="0" required />
+                                    <label class="form-check-label">Disabled</label>
+                                </div>
                             </div>
                         </div>
+                        <button type="submit" class="main-btn blue-btn btn ml-2">Add User</button>
                     </div>
-                </div>
-
-                <div class="modal-btns d-flex justify-content-end pt-3">
-                    <button type="button" class="main-btn gray-btn btn" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Add User</button>
-                </div>
+                </form>
+                {{-- <div class="modal-btns d-flex justify-content-end pt-3">
+                        <button type="button" class="main-btn gray-btn btn" data-dismiss="modal">Cancel</button>
+                    </div> --}}
             </div>
         </div>
     </div>
@@ -255,71 +261,66 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="modal-form">
-                    <div class="form-group">
-                        <label>Shopper Name</label>
-                        <input class="form-control" type="text" value="Jeremy Smith" />
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input class="form-control" type="email" value="jsmith7985@gmail.com" />
-                    </div>
-                    <div class="form-group">
-                        <label>Department</label>
-                        <select class="custom-select">
-                            <option value="">Public Safety</option>
-                            <option value="">Department 2</option>
-                            <option value="">Department 3</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Account Type</label>
-                        <div class="">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountTypeRadio"
-                                    id="accountTypeRadio1" value="" checked />
-                                <label class="form-check-label" for="accountTypeRadio1">Shopper</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountTypeRadio"
-                                    id="accountTypeRadio2" value="" />
-                                <label class="form-check-label" for="accountTypeRadio2">Approver</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountTypeRadio"
-                                    id="accountTypeRadio3" value="" />
-                                <label class="form-check-label" for="accountTypeRadio3">Warehouse Manager</label>
-                            </div>
+                <form action="" method="post" id="myForm">
+                    @csrf
+                    @method('put')
+                    <div class="modal-form">
+                        <input type="hidden" id="user_id">
+                        <div class="form-group">
+                            <label>Shopper Name</label>
+                            <input class="form-control" type="text" name="name" id="shopper_name" required />
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Account Status</label>
-                        <div class="">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountStatusRadio"
-                                    id="accountStatusRadio1" value="" checked />
-                                <label class="form-check-label" for="accountStatusRadio1">Active</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountStatusRadio"
-                                    id="accountStatusRadio2" value="" />
-                                <label class="form-check-label" for="accountStatusRadio2">Disabled</label>
-                            </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" type="email" name="email" id="email" required />
                         </div>
-                    </div>
-                </div>
 
-                <div class="modal-btns d-flex justify-content-end pt-3">
-                    <button type="button" class="main-btn gray-btn btn" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Save</button>
-                </div>
+                        <div class="form-group">
+                            <label>Account Type</label>
+                            <div class="">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" value="1" required />
+                                    <label class="form-check-label type" for="selectAccountType3">Warehouse
+                                        Manager</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" value="2" required />
+                                    <label class="form-check-label type" for="selectAccountType2">Approver</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" value="3" required
+                                        checked />
+                                    <label class="form-check-label type" for="">Shopper</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Account Status</label>
+                                <div class="">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" checked name="status" required
+                                            value="1" />
+                                        <label class="form-check-label" for="status1">Active</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" required value="0" />
+                                        <label class="form-check-label">Disabled</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-btns d-flex justify-content-end pt-3">
+                            <button type="button" class="main-btn gray-btn btn" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="main-btn blue-btn btn ml-2">Save</button>
+                        </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Reset Password Modal -->
-<div class="reset-password-modal modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="reset-password-modal modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModal"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -351,5 +352,51 @@
     </div>
 </div>
 
+<div class="modal fade" id="a" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+@endsection
+
+
+@section('scripts')
+<script>
+    var user_id;
+    $(document).on('click','.edit-user',function(){
+        user_id = $(this).attr('data-id');
+
+        $.ajax({
+            url: '/admin/users/'+user_id,
+            dataType: 'json',
+            method: 'get',
+            success:function(data){
+                var url = $('#myForm').attr('action',"/admin/users/"+data.id);
+
+                $('#user_id').val(data.id)
+                $('#shopper_name').val(data.name);
+                $('#email').val(data.email);
+                $('.type').val(data.role);
+                $('.status').val(data.status);
+            }
+        });
+
+});
+</script>
 @endsection

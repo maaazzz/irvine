@@ -26,9 +26,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('transactions', function () {
         return view('admin.transaction-mgt.transactions');
     });
-    Route::get('users', function () {
-        return view('admin.users-mgt.users');
-    });
+
+
+    // users Routes
+    Route::resource('users', 'Admin\UserController');
+    // end users routes
+
+
     Route::get('account-setting', function () {
         return view('admin.account-setting-mgt.account-setting');
     });
@@ -38,25 +42,27 @@ Route::group(['prefix' => 'admin'], function () {
 
     // Inventory Routes
     Route::resource('inventory', 'Admin\InventoryController');
+    // locations Routes
+    Route::resource('locations', 'Admin\LocationController');
+    // end of location route
 
-    Route::get('locations', function () {
-        return view('admin.location-mgt.locations');
-    });
 
-    Route::get('account-number', function () {
-        return view('admin.account-number-mgt.account-numbers');
-    });
+    // Account number Routes
+    Route::resource('account-number', 'Admin\AccountNumberController');
+    // End Account number Routes
 
-    Route::get('project-number', function () {
-        return view('admin.project-number-mgt.project-number');
-    });
-    Route::get('justifications', function () {
-        return view('admin.categories-mgt.categories');
-    });
 
-    Route::get('justifications', function () {
-        return view('admin.justification-mgt.justifications');
-    });
+    // Account number Routes
+    Route::resource('project-number', 'Admin\ProjectNumberController');
+    // End Account number Routes
+
+
+    // Account number Routes
+    Route::resource('justifications', 'Admin\JustificationController');
+    // End Account number Routes
+
+
+
 });
 
 
@@ -68,4 +74,3 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/cart', 'FrontendController@cart');
 Route::get('/', 'FrontendController@index');
-
