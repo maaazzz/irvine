@@ -29,9 +29,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('transactions', function () {
         return view('admin.transaction-mgt.transactions');
     });
-    Route::get('users', function () {
-        return view('admin.users-mgt.users');
-    });
+
+
+    // users Routes
+    Route::resource('users', 'Admin\UserController');
+    // end users routes
+
+
     Route::get('account-setting', function () {
         return view('admin.account-setting-mgt.account-setting');
     });
@@ -39,10 +43,9 @@ Route::group(['prefix' => 'admin'], function () {
     // categories Routes
     Route::resource('categories', 'Admin\CategoryController');
 
-
-    Route::get('locations', function () {
-        return view('admin.location-mgt.locations');
-    });
+    // locations Routes
+    Route::resource('locations', 'Admin\LocationController');
+    // end of location route
 
     Route::get('account-number', function () {
         return view('admin.account-number-mgt.account-numbers');

@@ -103,22 +103,38 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($users as $user)
                 <tr>
                     <td class="table-select"><input type="checkbox" class="" /></td>
-                    <td>Jeremy Smith</td>
-                    <td>jsmith7985@gmail.com</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+
+                    @if ($user->role == 1)
+                    <td>Warehouse</td>
+                    @endif
+
+                    @if ($user->role == 2)
+                    <td>Approver</td>
+                    @endif
+
+                    @if ($user->role == 3)
                     <td>Shopper</td>
-                    <td>Active</td>
+                    @endif
+
+                    <td>{{ $user->status == 1 ? 'Active' : 'Inactive' }}</td>
                     <td class="">
                         <a href="#" class="table-link" data-toggle="modal" data-target="#ordersModal">View</a>
                     </td>
                     <td class="table-links">
-                        <a class="table-link" href="#" data-toggle="modal" data-target="#editModal" title="Edit User"><i
-                                class="fas fa-pen"></i></a>
+                        <a class="table-link edit" href="#" data-toggle="modal" data-target="#editModal"
+                            title="Edit User"><i class="fas fa-pen"></i></a>
                         <a class="table-link" href="#" data-toggle="modal" data-target="#resetPasswordModal"
                             title="Reset Password"><i class="fas fa-redo-alt"></i></a>
                     </td>
                 </tr>
+                @empty
+                <p>Users not found </p>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -169,56 +185,56 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="modal-form">
-                    <div class="form-group">
-                        <label>Shopper Name</label>
-                        <input class="form-control" type="text" />
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input class="form-control" type="email" />
-                    </div>
-                    <div class="form-group">
-                        <label>Account Type</label>
-                        <div class="">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="selectAccountType"
-                                    id="selectAccountType1" value="" />
-                                <label class="form-check-label" for="selectAccountType1">Shopper</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="selectAccountType"
-                                    id="selectAccountType2" value="" />
-                                <label class="form-check-label" for="selectAccountType2">Approver</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="selectAccountType"
-                                    id="selectAccountType3" value="" />
-                                <label class="form-check-label" for="selectAccountType3">Warehouse Manager</label>
+                <form action="{{ route('users.store') }}" method="post">
+                    @csrf
+                    <div class="modal-form">
+                        <div class="form-group">
+                            <label>Shopper Name</label>
+                            <input class="form-control" type="text" name="name" />
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" type="email" name="email" />
+                        </div>
+                        <div class="form-group">
+                            <label>Account Type</label>
+                            <div class="">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" id="selectAccountType1"
+                                        value="1" />
+                                    <label class="form-check-label" for="selectAccountType1">Shopper</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" id="selectAccountType2"
+                                        value="2" />
+                                    <label class="form-check-label" for="selectAccountType2">Approver</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" id="selectAccountType3"
+                                        value="3" />
+                                    <label class="form-check-label" for="selectAccountType3">Warehouse Manager</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Account Status</label>
-                        <div class="">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountStatusRadio"
-                                    id="accountStatusRadio1" value="" />
-                                <label class="form-check-label" for="accountStatusRadio1">Active</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="accountStatusRadio"
-                                    id="accountStatusRadio2" value="" />
-                                <label class="form-check-label" for="accountStatusRadio2">Disabled</label>
+                        <div class="form-group">
+                            <label>Account Status</label>
+                            <div class="">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" id="status1" value="1" />
+                                    <label class="form-check-label" for="status1">Active</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" id="status2" value="0" />
+                                    <label class="form-check-label" for="status2">Disabled</label>
+                                </div>
                             </div>
                         </div>
+                        <button type="submit" class="main-btn blue-btn btn ml-2">Add User</button>
                     </div>
-                </div>
-
-                <div class="modal-btns d-flex justify-content-end pt-3">
-                    <button type="button" class="main-btn gray-btn btn" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Add User</button>
-                </div>
+                </form>
+                {{-- <div class="modal-btns d-flex justify-content-end pt-3">
+                        <button type="button" class="main-btn gray-btn btn" data-dismiss="modal">Cancel</button>
+                    </div> --}}
             </div>
         </div>
     </div>

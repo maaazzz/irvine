@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Model\Location;
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
-class LocationController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::all();
-        return view('admin.location-mgt.locations', compact('locations'));
+        $users = User::all();
+        return view('admin.users-mgt.users', compact('users'));
     }
 
     /**
@@ -38,43 +39,40 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        // return $request->role;
         $this->validate($request, [
-            'loc_name' => 'required',
-            'contact_person' => 'required',
-            'telephone' => 'required',
-            'email' => 'required|unique:locations,email',
-            'contact_details' => 'required',
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
         ]);
 
-        Location::create([
-            'loc_name' => $request->loc_name,
-            'contact_person' => $request->contact_person,
-            'telephone' => $request->telephone,
+        User::create([
+            'name' => $request->name,
             'email' => $request->email,
-            'contact_details' => $request->contact_details,
+            'role' => $request->role,
+            'password' => \Hash::make('trustech'),
+            'status' => $request->status,
         ]);
         return back()
-            ->with('success', 'Loaction added successfully');
+            ->with('success', 'User created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Location  $location
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show(User $user)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Location  $location
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Location $location)
+    public function edit(User $user)
     {
         //
     }
@@ -83,10 +81,10 @@ class LocationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Location  $location
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -94,10 +92,10 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Location  $location
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy(User $user)
     {
         //
     }
