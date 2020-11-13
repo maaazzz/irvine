@@ -2,6 +2,11 @@
 
 
 @section('content')
+@if(Session::has('success'))
+<div class="alert alert-success">{{Session::get('success')}}</div>
+@endif
+
+
 <div class="page-title">
     <h5>Categories</h5>
 </div>
@@ -31,9 +36,11 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($categories as $category)
                 <tr>
-                    <td>Category 01</td>
+                    <td>{{ $category->name }}</td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -53,18 +60,24 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="modal-form">
-                    <div class="form-group">
-                        <label>Category Name</label>
-                        <input class="form-control" type="text" />
-                    </div>
-                </div>
 
-                <div class="modal-btns d-flex justify-content-end pt-3">
-                    <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Save</button>
-                </div>
+            <div class="modal-body">
+                <form action="{{ route('categories.store') }}" method="post">
+                    @csrf
+                    <div class="modal-form">
+                        <div class="form-group">
+                            <label>Category Name</label>
+                            <input class="form-control" type="text" name="category_name" />
+                        </div>
+
+                    </div>
+
+                    <div class=" modal-btns d-flex justify-content-end pt-3">
+                        <button type="submit" class="main-btn blue-btn btn ml-2">Save</button>
+                    </div>
+                </form>
             </div>
+
         </div>
     </div>
 </div>
