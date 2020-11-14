@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Cart;
 use App\Model\Inventory;
-
 class CartController extends Controller
 {
     //
@@ -24,6 +23,7 @@ class CartController extends Controller
                         'description'=> $product->description,
                         'available_quantity'=> $product->quantity_oh,
 			            'img'=> $product->image,
+                        
 			            
             ]
         ]);
@@ -49,6 +49,7 @@ class CartController extends Controller
     	Cart::update($id, array(
   			'quantity' => +1, 
 		));
+        
 		return redirect('/cart');
 
     }
