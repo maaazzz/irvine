@@ -55,27 +55,26 @@
     <div class="mr-2">
         <select class="custom-select" id="account-type">
             <option selected hidden>Filter by Account Type</option>
-            <option value="Account Type 1">Account Type 1</option>
-            <option value="Account Type 2">Account Type 2</option>
-            <option value="Account Type 3">Account Type 3</option>
+            <option value="Warehouse">Warehouse</option>
+            <option value="Approver">Approver</option>
+            <option value="Shopper">Shopper</option>
         </select>
     </div>
     <div class="mr-2">
         <select class="custom-select" id="account-status">
             <option selected hidden>Filter by Account Status</option>
-            <option value="Account Status 1">Account Status 1</option>
-            <option value="Account Status 2">Account Status 2</option>
-            <option value="Account Status 3">Account Status 3</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
         </select>
     </div>
-    <div class="mr-2">
+    {{-- <div class="mr-2">
         <select class="custom-select" id="filter-project">
             <option selected hidden>Filter by Project</option>
             <option value="Project 1">Project 1</option>
             <option value="Project 2">Project 2</option>
             <option value="Project 3">Project 3</option>
         </select>
-    </div>
+    </div> --}}
 
     <button class="sub-btn blue-btn btn mr-2" type="button" data-toggle="modal" data-target="#emailModal">Email
         Selected</button>

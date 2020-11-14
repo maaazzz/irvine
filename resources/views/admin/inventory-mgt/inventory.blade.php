@@ -49,7 +49,7 @@
     <div class="col-sm-3 float-right">
         <div class="form-group">
             <select class="form-control" id="category-filter">
-                <option value="" selected>Filter by Category</option>
+                <option value="" selected hidden>Filter by Category</option>
                 @foreach ($categories as $category)
                 <option value="{{ $category->name }}">{{ $category->name }}</option>
                 @endforeach
@@ -59,7 +59,7 @@
     <div class="col-sm-3 float-right">
         <div class="form-group">
             <select class="form-control" id="location-filter">
-                <option value="" selected>Filter by Location</option>
+                <option value="" selected hidden>Filter by Location</option>
                 @foreach ($locations as $location)
                 <option value="{{ $location->loc_name }}">{{ $location->loc_name }}</option>
                 @endforeach
