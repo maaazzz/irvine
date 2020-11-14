@@ -2,6 +2,10 @@
 
 
 @section('content')
+@if (Session::has('success'))
+<div class="alert alert-success">{{ Session::get('success') }}</div>
+@endif
+
 <h5 class="page-title">Approvals</h5>
 
 <div class="filter-box d-flex flex-wrap align-items-center">
@@ -141,8 +145,9 @@
                     <th>Project</th>
                     <th>Shopper</th>
                     <th>Justification</th>
-                    <th>Approved</th>
+
                     <th>Delivered</th>
+                    <th>Approved</th>
                     <th>View Order</th>
                     <th>Action</th>
                 </tr>
@@ -159,6 +164,18 @@
                     <td>{{$approval->approver->name}}</td>
                     <td>{{ $approval->justification->justification }}</td>
                     <td>{{ $approval->delivery_type }}</td>
+
+                    <td>
+                        <form action="{{ route('approval.approved',$approval->id) }}" method="post">
+                            @csrf
+                            @method('PUT')
+                            @if ($approval->status == 0)
+                            <input type="submit" class="btn btn-sm btn-info" value="approve">
+                            @else
+                            approved
+                            @endif
+                        </form>
+                    </td>
                     <td class="table-links">
                         <a href="#" class="table-link note-btn" data-toggle="modal" data-target="#notesModal"><i
                                 class="far fa-file-alt"></i></a>

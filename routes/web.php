@@ -65,7 +65,10 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
     Route::resource('justifications', 'Admin\JustificationController');
     // End Account number Routes
 
+    // approval routes
     Route::get('approvals', 'Admin\ApprovalController@index')->name('approvals');
+    Route::put('approvals/approved/{id}', 'Admin\ApprovalController@approved')->name('approval.approved');
+    // end of approval routes
 });
 
 
