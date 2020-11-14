@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Cart;
 use App\User;
+use App\Model\Category;
 use App\Model\Location;
+
 use App\Model\Inventory;
-use App\model\Category;
 use App\Model\AccountNumber;
 use App\Model\Justification;
 use App\Model\ProjectNumber;
@@ -38,6 +39,7 @@ class FrontendController extends Controller
     }
     public function get_categories_products($id)
     {
+
         if ($id == 'all') {
             $products = Inventory::all();
         } else {
@@ -55,5 +57,20 @@ class FrontendController extends Controller
         }
 
         return view('front-end.filters-products.get-location-products', compact('products'));
+    }
+
+
+    public function product($id)
+    {
+
+        $quantity = 0;
+        $product = Inventory::find($id);
+        $cartItem = Cart::get($product->id);
+        if ($cartItem != null) {
+            $quantity = $cartItem->quantity;
+        }
+
+
+        return view('front-end.filters-products.get-products-by-cat', compact('products'));
     }
 }
