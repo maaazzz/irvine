@@ -9,17 +9,31 @@
 
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="nav-middle navbar-nav flex-md-grow-1">
+
+                    {{-- dashboard --}}
+                    @if(auth()->user()->role == 1)
                     <li class="nav-item {{request()->is('/admin') ? 'active' : ''}}"><a href="{{ url('/admin') }}"
                             class="nav-link">Dashboard</a></li>
+
+                    {{-- inventory --}}
                     <li class="nav-item  {{request()->is('admin/inventory') ? 'active' : ''}}"><a
                             href="{{ url('admin/inventory') }}" class="nav-link">Inventory</a></li>
+                    @endif
                     {{-- approvals --}}
+                    @if (auth()->user()->role == 2)
                     <li class="nav-item {{request()->is('admin/approvals') ? 'active' : ''}}"><a
                             href="{{ url('admin/approvals') }}" class="nav-link">Approvals</a></li>
-                    {{-- approvals --}}
+                    @endif
+                    {{--end  approvals --}}
+
+
+                    @if(auth()->user()->role == 1)
+
+                    {{-- transactions --}}
                     <li class="nav-item {{request()->is('admin/transactions') ? 'active' : ''}}"><a
                             href="{{ url('admin/transactions') }}" class="nav-link">Transactions</a>
                     </li>
+
                     <li class="nav-item {{request()->is('admin/users') ? 'active' : ''}}"><a
                             href="{{ url('admin/users') }}" class="nav-link">Users</a></li>
                     <li class="nav-item dropdown">
@@ -36,6 +50,7 @@
                     <li class="nav-item {{request()->is('admin/account-setting') ? 'active' : ''}}"><a
                             href="{{ url('admin/account-setting') }}" class="nav-link">Account
                             Settings</a></li>
+                    @endif
                 </ul>
 
                 <ul class="navbar-nav">

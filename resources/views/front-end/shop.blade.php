@@ -5,8 +5,8 @@
 <main class="main">
     <div class="container-fluid">
         @if(Session::has('success'))
-<div class="alert alert-success">{{ Session::get('success') }}</div>
-@endif
+    <div class="alert alert-success">{{ Session::get('success') }}</div>
+    @endif
         <div class="all-products d-md-flex position-relative">
             <div class="product-filter">
                 <div class="filter-part">

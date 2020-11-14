@@ -23,9 +23,10 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
         return view('admin.dashboard-mgt.dashboard');
     });
 
-    Route::get('transactions', function () {
-        return view('admin.transaction-mgt.transactions');
-    });
+    // transaction
+    Route::resource('transactions', 'Admin\TransactionController');
+    Route::get('transaction-destroy/{order}', 'Admin\TransactionController@destroy')->name('transaction.destroy');
+    // end of transactions
 
 
     // users Routes
@@ -57,7 +58,7 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
 
     // Account number Routes
     Route::resource('project-number', 'Admin\ProjectNumberController');
-    // End Account number Routes
+    // End Account numb er Routes
 
 
     // Account number Routes
@@ -65,7 +66,10 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
     // End Account number Routes
   
 
+    // approval routes
     Route::get('approvals', 'Admin\ApprovalController@index')->name('approvals');
+    Route::put('approvals/approved/{id}', 'Admin\ApprovalController@approved')->name('approval.approved');
+    // end of approval routes
 });
 
 

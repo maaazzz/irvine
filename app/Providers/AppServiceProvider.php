@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Providers;
-use Cart;
 
+use Cart;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -25,9 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('*',function($view){
+        view()->composer('*', function ($view) {
             $cart = Cart::getContent();
-            $view->with('cart',$cart);
+            $view->with('cart', $cart);
         });
         Schema::defaultStringLength(191);
     }
