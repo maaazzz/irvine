@@ -155,6 +155,7 @@
             <tbody>
                 @foreach ($approvals as $approval)
                 <tr>
+                    {{-- {{dd($approvals)}} --}}
                     <td><span class="stat-dot stat-green"></span></td>
                     <td>{{ date('Y-m-d', strtotime($approval->created_at))}}</td>
                     <td>{{ $approval->date_needed }}</td>
@@ -170,6 +171,8 @@
                             @csrf
                             @method('PUT')
                             @if ($approval->status == 0)
+                            <input type="hidden" value="{{$approval->shopper_id}}" name="shopper_id">
+                            <input type="hidden" value="{{$approval->location_id}}" name="location_id">
                             <input type="submit" class="btn btn-sm btn-info" value="approve">
                             @else
                             approved
