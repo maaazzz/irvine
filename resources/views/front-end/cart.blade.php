@@ -14,7 +14,8 @@
             </div>
 
             <div class="step-box">
-                <form action="">
+                <form action="{{route('order.store')}}" method="post">
+                    @csrf
                     <div class="">
                         <fieldset class="step-card">
                             <h6 class="step-title">Shopping Cart</h6>
@@ -139,7 +140,7 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label for="">Date Needed</label>
-                                        <input class="form-control" type="text" name="date_needed" />
+                                        <input class="form-control" type="date" name="date_needed" value="{{date('Y-m-d')}}" />
                                     </div>
                                     <div class="form-group">
                                         <div class="form-check form-check-inline">
@@ -155,7 +156,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Delivery Location</label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="location_id">
                                             <option selected disabled hidden>Select Delivery Location</option>
                                             @forelse ($locations as $location)
                                             <option value="{{ $location->id }}">{{ $location->loc_name }}</option>
@@ -189,7 +190,7 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label for="">Account Number</label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="account_number_id">
                                             <option selected disabled hidden>--Select--</option>
                                             @forelse ($acc_numbers as $acc_number)
                                             <option value="{{ $acc_number->id }}">{{ $acc_number->account_no }}
@@ -203,7 +204,7 @@
 
                                     <div class="form-group">
                                         <label for="">Project Number</label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="project_number_id">
                                             <option selected disabled hidden>--Select--</option>
                                             @forelse ($project_numbers as $project_number)
                                             <option value="{{ $project_number->id }}">
@@ -236,10 +237,10 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label for="">Select Approver</label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="approver_id">
                                             <option selected disabled hidden>--Select--</option>
                                             @forelse ($approvers as $approver)
-                                            <option value="">{{$approver->name}} </option>
+                                            <option value="{{$approver->id}}">{{$approver->name}} </option>
                                             @empty
                                             <option value="">not found</option>
                                             @endforelse
@@ -247,7 +248,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Select Justification</label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="justification_id">
                                             <option selected disabled hidden>--Select--</option>
                                             @forelse ($justifications as $justification)
                                             <option value="{{ $justification->id}}">{{$justification->justification}}
