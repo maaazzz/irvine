@@ -6,9 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    //
-    protected $gaurded = [];
-    public function inventories(){
+
+    protected $guarded = [];
+    public function inventories()
+    {
         return $this->hasMany('App\Model\Inventory');
+    }
+
+
+    public function orders()
+    {
+        return $this->hasMany('App\Model\Order');
     }
 }

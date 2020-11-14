@@ -17,15 +17,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcom');
 // });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], function () {
 
     Route::get('/', function () {
         return view('admin.dashboard-mgt.dashboard');
     });
 
-    Route::get('transactions', function () {
-        return view('admin.transaction-mgt.transactions');
-    });
+    // transaction
+    Route::resource('transactions', 'Admin\TransactionController');
+    Route::get('transaction-destroy/{order}', 'Admin\TransactionController@destroy')->name('transaction.destroy');
+    // end of transactions
 
 
     // users Routes
@@ -33,10 +34,12 @@ Route::group(['prefix' => 'admin'], function () {
     // end users routes
 
 
-
+    // account setting
     Route::get('account-setting', function () {
         return view('admin.account-setting-mgt.account-setting');
     });
+    Route::post('password-reset', 'Admin\UserController@passwordReset')->name('password-reset');
+    // end of account setting
 
     // categories Routes
     Route::resource('categories', 'Admin\CategoryController');
@@ -62,16 +65,27 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('justifications', 'Admin\JustificationController');
     // End Account number Routes
 
-
-
+    Route::get('approvals', 'Admin\ApprovalController@index')->name('approvals');
 });
+
+
+
 
 
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/cart', 'FrontendController@cart');
-Route::get('/', 'FrontendController@index');
+Route::get('/home', 'HomeController@index')->name('home');
+// front end routes
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', 'FrontendController@index');
+    Route::get('/cart', 'FrontendController@cart');
+
+    Route::get('/cart/add/{id}', 'CartController@addToCart')->name('cart.add');
+    Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
+    Route::get('/cart/clear', 'CartController@clearCart')->name('cart.clear');
+    Route::get('/cart/increase/{id}', 'CartController@inc')->name('cart.inc');
+    Route::get('/cart/decrease/{id}', 'CartController@dec')->name('cart.dec');
+});
