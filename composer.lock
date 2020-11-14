@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "3b5b487c78defbb7ec78f1e632805560",
+=======
+    "content-hash": "72e1b8e202522035ec26f4dd5a6d217b",
+>>>>>>> 0b128b14cb19db4db1ed20867853def8441a2c49
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -105,6 +109,68 @@
             "time": "2020-08-18T23:57:15+00:00"
         },
         {
+<<<<<<< HEAD
+=======
+            "name": "darryldecode/cart",
+            "version": "4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/darryldecode/laravelshoppingcart.git",
+                "reference": "7dcaddea121bf7724834ff3448b0d052a458d207"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/darryldecode/laravelshoppingcart/zipball/7dcaddea121bf7724834ff3448b0d052a458d207",
+                "reference": "7dcaddea121bf7724834ff3448b0d052a458d207",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0",
+                "illuminate/translation": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0",
+                "illuminate/validation": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4.2",
+                "phpunit/phpunit": "^9.0",
+                "symfony/var-dumper": "5.1.5.*@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Darryldecode\\Cart\\CartServiceProvider"
+                    ],
+                    "aliases": {
+                        "Cart": "Darryldecode\\Cart\\Facades\\CartFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Darryldecode\\": "src/Darryldecode"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Darryl Fernandez",
+                    "email": "engrdarrylfernandez@gmail.com"
+                }
+            ],
+            "description": "Laravel 5 Shopping cart",
+            "keywords": [
+                "cart",
+                "laravel",
+                "shopping cart"
+            ],
+            "time": "2020-09-12T12:23:59+00:00"
+        },
+        {
+>>>>>>> 0b128b14cb19db4db1ed20867853def8441a2c49
             "name": "dnoegel/php-xdg-base-dir",
             "version": "v0.1.1",
             "source": {
@@ -4081,6 +4147,7 @@
         },
         {
             "name": "facade/ignition",
+<<<<<<< HEAD
             "version": "2.5.1",
             "source": {
                 "type": "git",
@@ -4091,6 +4158,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/facade/ignition/zipball/3b3403f18bbdc0aeadf1ffaddf11a1588b12ec7a",
                 "reference": "3b3403f18bbdc0aeadf1ffaddf11a1588b12ec7a",
+=======
+            "version": "2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facade/ignition.git",
+                "reference": "81698c5e32837c74abf9bb764ff0c1b3e001afb3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/81698c5e32837c74abf9bb764ff0c1b3e001afb3",
+                "reference": "81698c5e32837c74abf9bb764ff0c1b3e001afb3",
+>>>>>>> 0b128b14cb19db4db1ed20867853def8441a2c49
                 "shasum": ""
             },
             "require": {
@@ -4148,7 +4227,11 @@
                 "laravel",
                 "page"
             ],
+<<<<<<< HEAD
             "time": "2020-11-13T13:36:24+00:00"
+=======
+            "time": "2020-10-27T13:02:22+00:00"
+>>>>>>> 0b128b14cb19db4db1ed20867853def8441a2c49
         },
         {
             "name": "facade/ignition-contracts",
@@ -4424,6 +4507,7 @@
         },
         {
             "name": "myclabs/deep-copy",
+<<<<<<< HEAD
             "version": "1.10.2",
             "source": {
                 "type": "git",
@@ -4434,6 +4518,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/776f831124e9c62e1a2c601ecc52e776d8bb7220",
                 "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220",
+=======
+            "version": "1.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/myclabs/DeepCopy.git",
+                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
+                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
+>>>>>>> 0b128b14cb19db4db1ed20867853def8441a2c49
                 "shasum": ""
             },
             "require": {
@@ -4468,7 +4564,11 @@
                 "object",
                 "object graph"
             ],
+<<<<<<< HEAD
             "time": "2020-11-13T09:40:50+00:00"
+=======
+            "time": "2020-06-29T13:22:24+00:00"
+>>>>>>> 0b128b14cb19db4db1ed20867853def8441a2c49
         },
         {
             "name": "nunomaduro/collision",
