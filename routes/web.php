@@ -83,3 +83,5 @@ Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
 Route::get('/cart/clear', 'CartController@clearCart')->name('cart.clear');
 Route::get('/cart/increase/{id}', 'CartController@inc')->name('cart.inc');
 Route::get('/cart/decrease/{id}', 'CartController@dec')->name('cart.dec');
+Route::get('get-categories-products/{id}', 'FrontendController@get_categories_products')->name('get-categories-products');
+Route::get('get-location-products/{id}', 'FrontendController@get_location_products')->name('get-location-products');
