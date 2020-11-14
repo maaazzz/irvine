@@ -19,14 +19,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], function () {
 
-
     Route::get('/', function () {
         return view('admin.dashboard-mgt.dashboard');
     });
 
-    Route::get('transactions', function () {
-        return view('admin.transaction-mgt.transactions');
-    });
+    // transaction
+    Route::resource('transactions', 'Admin\TransactionController');
+    Route::get('transaction-destroy/{order}', 'Admin\TransactionController@destroy')->name('transaction.destroy');
+    // end of transactions
 
 
     // users Routes

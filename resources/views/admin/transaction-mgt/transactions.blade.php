@@ -2,6 +2,11 @@
 
 
 @section('content')
+
+@if (Session('danger'))
+<div class="alert alert-danger">{{ Session::get('danger') }}</div>
+@endif
+
 <div class="page-title">
     <h5>Transactions</h5>
 </div>
@@ -136,24 +141,24 @@
                     <th>Project</th>
                     <th>Approver</th>
                     <th>Justification</th>
-                    <th>Approved</th>
                     <th>Delivered</th>
                     <th>View Order</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
+                @forelse ($transactions as $transaction)
                 <tr>
                     <td><span class="stat-dot stat-green"></span></td>
-                    <td>04/19/2019</td>
-                    <td>04/20/2019</td>
-                    <td>New York</td>
-                    <td>98876-0012</td>
-                    <td>100001-0099</td>
-                    <td>John Smith</td>
-                    <td></td>
-                    <td>04/19/2019</td>
-                    <td>04/20/2019</td>
+                    <td>{{ date('Y-m-d', strtotime($transaction->created_at))}}</td>
+                    <td>{{ $transaction->date_needed }}</td>
+                    <td>{{ $transaction->location->loc_name }}</td>
+                    <td>{{ $transaction->accountNumber->account_no }}</td>
+                    <td>{{ $transaction->projectNumber->project_number }}</td>
+                    <td>{{$transaction->approver->name}}</td>
+                    <td>{{ $transaction->justification->justification }}</td>
+                    <td>{{ $transaction->delivery_type }}</td>
+
                     <td class="table-links">
                         <a href="#" class="table-link view-btn" data-toggle="modal" data-target="#orderModal"><i
                                 class="fas fa-shopping-cart"></i></a>
@@ -161,54 +166,16 @@
                                 class="far fa-file-alt"></i></a>
                     </td>
                     <td class="table-links">
-                        <a href="#" class="table-link note-btn"><i class="fas fa-pen"></i></a>
-                        <a href="#" class="table-link note-btn"><i class="far fa-trash-alt"></i></a>
+                        <a href="" class="table-link note-btn"><i class="fas fa-pen"></i></a>
+                        <a href="{{ route('transaction.destroy',$transaction->id) }}" class="table-link note-btn"><i
+                                class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
-                <tr>
-                    <td><span class="stat-dot stat-orange"></span></td>
-                    <td>04/19/2019</td>
-                    <td>04/20/2019</td>
-                    <td>New York</td>
-                    <td>98876-0012</td>
-                    <td>100001-0099</td>
-                    <td>John Smith</td>
-                    <td></td>
-                    <td>04/19/2019</td>
-                    <td></td>
-                    <td class="table-links">
-                        <a href="#" class="table-link view-btn" data-toggle="modal" data-target="#orderModal"><i
-                                class="fas fa-shopping-cart"></i></a>
-                        <a href="#" class="table-link note-btn" data-toggle="modal" data-target="#notesModal"><i
-                                class="far fa-file-alt"></i></a>
-                    </td>
-                    <td class="table-links">
-                        <a href="#" class="table-link note-btn"><i class="fas fa-pen"></i></a>
-                        <a href="#" class="table-link note-btn"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="stat-dot stat-red"></span></td>
-                    <td>04/19/2019</td>
-                    <td>04/20/2019</td>
-                    <td>New York</td>
-                    <td>98876-0012</td>
-                    <td>100001-0099</td>
-                    <td>John Smith</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="table-links">
-                        <a href="#" class="table-link view-btn" data-toggle="modal" data-target="#orderModal"><i
-                                class="fas fa-shopping-cart"></i></a>
-                        <a href="#" class="table-link note-btn" data-toggle="modal" data-target="#notesModal"><i
-                                class="far fa-file-alt"></i></a>
-                    </td>
-                    <td class="table-links">
-                        <a href="#" class="table-link note-btn"><i class="fas fa-pen"></i></a>
-                        <a href="#" class="table-link note-btn"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
+
+                @empty
+                <p>data not found</p>
+                @endforelse
+
             </tbody>
         </table>
     </div>

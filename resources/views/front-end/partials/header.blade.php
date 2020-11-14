@@ -3,7 +3,7 @@
         <nav class="main-nav navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="#"><img src="{{ asset('./shop-assets/img/irvine-logo.svg') }}" alt="" /></a>
 
-            <a class="cart-btn order-lg-6" href="cart.html">
+            <a class="cart-btn order-lg-6" href="{{ url('/cart') }}">
                 <img src="{{ asset('./shop-assets/img/shopping-cart.svg') }}" alt="Cart" />
                 {{-- <span class="number-dot">{{ count($cart) }}</span> --}}
             </a>
