@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-<<<<<<< HEAD
-    protected $guarded =[];
-}
-=======
     protected $guarded = [];
 
 
@@ -54,4 +50,3 @@ class Order extends Model
         return $this->belongsTo('App\User', 'approver_id');
     }
 }
->>>>>>> bfc48677bd3cc9ef6890666604f7fde4f9701e3d

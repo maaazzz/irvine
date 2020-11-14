@@ -100,22 +100,11 @@
                         </div>
                     </div>
 
-                    <p class="show-txt">Showing 5 of 5 Items</p>
 
                     <ul class="pagination pagination-sm justify-content-end">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
-                            </a>
-                        </li>
+                      
+                       {{ $products->links() }}
+                      
                     </ul>
                 </div>
 
@@ -129,7 +118,7 @@
                                     <img src="./images/{{$product->image}}" alt="" />
 									</a>
 								<div class="text-center"><a class="product-title" href="product.html">{{ $product->product_name }}</a></div>
-									<p class="product-details">{{ $product->description }}</p>
+									<p class="product-details text-center">{{ $product->description }}</p>
 									<div class="text-center">
 										<p class="product-cost product-info">Cost: {{ $product->price }}</p>
 										<p class="product-qty product-info">Available Qty: {{ $product->quantity_oh }}</p>

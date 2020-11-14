@@ -17,9 +17,8 @@ class FrontendController extends Controller
 
     public function index()
     {
-        $cart = Cart::getContent();
-        $products = Inventory::all();
-        return view('front-end.shop', compact('cart', 'products'));
+        $products = Inventory::paginate(20);
+        return view('front-end.shop', compact('products'));
     }
 
 

@@ -64,9 +64,6 @@ class OrderController extends Controller
 
     Cart::clear();
     return redirect('/')->with('success', 'Order Place Successfully');
- 
-
-
        
     }
 
