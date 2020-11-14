@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
 
     // Account number Routes
     Route::resource('project-number', 'Admin\ProjectNumberController');
-    // End Account number Routes
+    // End Account numb er Routes
 
 
     // Account number Routes

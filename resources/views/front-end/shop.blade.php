@@ -118,60 +118,69 @@
                     </ul>
                 </div>
 
-							<div class="d-flex flex-wrap">
-								@foreach($products as $product)
-								<div class="product-card">
-									<div class="badge-bar">
-										<p class="badge badge-new m-0">New!</p>
-									</div>
-									<a class="product-img" href="product.html">
-										<img src="{{ asset('./shop-assets/img/product110.jpg') }}" alt="" />
-									</a>
-								<div class="text-center"><a class="product-title" href="product.html">{{ $product->product_name }}</a></div>
-									<p class="product-details">{{ $product->description }}</p>
-									<div class="text-center">
-										<p class="product-cost product-info">Cost: {{ $product->price }}</p>
-										<p class="product-qty product-info">Available Qty: {{ $product->quantity_oh }}</p>
+                <div class="d-flex flex-wrap">
+                    @foreach($products as $product)
+                    <div class="product-card">
+                        @if ($product->is_featured == 0)
+                        <div class="badge-bar">
+                            <p class="badge badge-new m-0">New!</p>
+                        </div>
+                        @endif
 
-									<a class="add-product btn" href="{{ route('cart.add', $product->id) }}">Add to Cart</a>
-									</div>
-								</div>
-								@endforeach
+                        @if ($product->is_featured == 1)
+                        <div class="badge-bar">
+                            <p class="badge badge-featured m-0">Featured</p>
+                        </div>
+                        @endif
+                        <a class="product-img" href="product.html">
+                            <img src="{{ asset('./shop-assets/img/product110.jpg') }}" alt="" />
+                        </a>
+                        <div class="text-center"><a class="product-title"
+                                href="product.html">{{ $product->product_name }}</a></div>
+                        <p class="product-details">{{ $product->description }}</p>
+                        <div class="text-center">
+                            <p class="product-cost product-info">Cost: {{ $product->price }}</p>
+                            <p class="product-qty product-info">Available Qty: {{ $product->quantity_oh }}</p>
 
-								{{-- <div class="product-card">
+                            <a class="add-product btn" href="{{ route('cart.add', $product->id) }}">Add to Cart</a>
+                        </div>
+                    </div>
+                    @endforeach
+
+                    {{-- <div class="product-card">
 									<div class="badge-bar">
 										<p class="badge badge-featured m-0">Featured</p>
 									</div>
 									<a class="product-img" href="#">
 										<img src="{{ asset('./shop-assets/img/product120.jpg') }}" alt="" />
-									</a>
-									<div class="text-center"><a class="product-title" href="product.html">Magic Eraser</a></div>
-									<p class="product-details">Mr. Clean Magic Eraser Multi-Surface Cleaning Sheets, 16 ct</p>
-									<div class="text-center">
-										<p class="product-cost product-info">Cost: $13.50</p>
-										<p class="product-qty product-info">Available Qty: 13</p>
-										<button class="add-product btn" type="button">Add to Cart</button>
-									</div>
-								</div>
+                    </a>
+                    <div class="text-center"><a class="product-title" href="product.html">Magic Eraser</a></div>
+                    <p class="product-details">Mr. Clean Magic Eraser Multi-Surface Cleaning Sheets, 16 ct</p>
+                    <div class="text-center">
+                        <p class="product-cost product-info">Cost: $13.50</p>
+                        <p class="product-qty product-info">Available Qty: 13</p>
+                        <button class="add-product btn" type="button">Add to Cart</button>
+                    </div>
+                </div>
 
-								<div class="product-card">
-									<div class="badge-bar"></div>
-									<a class="product-img" href="#">
-										<img src="{{ asset('./shop-assets/img/product130.jpg') }}" alt="" />
-									</a>
-									<div class="text-center"><a class="product-title" href="product.html">All-Purpose Cleaner</a></div>
-									<p class="product-details">Simple Green All-Purpose Cleaner, 32 fl oz</p>
-									<div class="text-center">
-										<p class="product-cost product-info">Cost: $13.50</p>
-										<p class="product-qty product-info">Available Qty: 13</p>
-										<button class="add-product btn" type="button">Add to Cart</button>
-									</div>
-								</div> --}}
+                <div class="product-card">
+                    <div class="badge-bar"></div>
+                    <a class="product-img" href="#">
+                        <img src="{{ asset('./shop-assets/img/product130.jpg') }}" alt="" />
+                    </a>
+                    <div class="text-center"><a class="product-title" href="product.html">All-Purpose Cleaner</a></div>
+                    <p class="product-details">Simple Green All-Purpose Cleaner, 32 fl oz</p>
+                    <div class="text-center">
+                        <p class="product-cost product-info">Cost: $13.50</p>
+                        <p class="product-qty product-info">Available Qty: 13</p>
+                        <button class="add-product btn" type="button">Add to Cart</button>
+                    </div>
+                </div> --}}
 
-							</div>
-						</div>
-					</div>
-				</div>
-			</main>
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
 
 @endsection

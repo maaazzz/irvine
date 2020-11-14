@@ -43,33 +43,28 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        $input=$request->all();
-        
-        $images=array();
-        
-        if($files=$request->file('images')){
-        
-            foreach($files as $file){
-            
+        $input = $request->all();
+        // dd($input);
+        $images = array();
+
+        if ($files = $request->file('images')) {
+
+            foreach ($files as $file) {
+
                 $name = time() . $file->getClientOriginalName();
 
                 $file->move('images', $name);
-                
-                $images[]=$name;
+
+                $images[] = $name;
+            }
         }
-    }
         // dd($images);
-         $input['images'] = implode(',',$images); 
-            
+        $input['images'] = implode(',', $images);
+
         //  dd(implode(',',$images));
 
         Inventory::create($input);
         return back()->with('success', 'Inventory added Succesfully');
-
-
-
-
-
     }
 
     /**
