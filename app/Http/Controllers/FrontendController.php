@@ -23,6 +23,8 @@ class FrontendController extends Controller
     public function cart()
     {
         $cart = Cart::getContent();
+
+        // dd($cart);
         return view('front-end.cart', compact('cart'));
     }
 }

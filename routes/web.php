@@ -17,12 +17,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcom');
 // });
 
-<<<<<<< HEAD
-
-Route::group(['prefix' => 'admin'], function () {
-=======
 Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], function () {
->>>>>>> 59c77f3507c44a4184aba8b16674d96c16e24d5b
 
     Route::get('/', function () {
         return view('admin.dashboard-mgt.dashboard');
