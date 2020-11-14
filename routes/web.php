@@ -64,22 +64,27 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
     Route::resource('justifications', 'Admin\JustificationController');
     // End Account number Routes
 
-
-
+    Route::get('approvals', 'Admin\ApprovalController@index')->name('approvals');
 });
+
+
+
 
 
 
 
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
+// front end routes
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', 'FrontendController@index');
+    Route::get('/cart', 'FrontendController@cart');
 
-Route::get('/cart', 'FrontendController@cart');
-Route::get('/', 'FrontendController@index');
-
-Route::get('/cart/add/{id}', 'CartController@addToCart')->name('cart.add');
-Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
-Route::get('/cart/clear', 'CartController@clearCart')->name('cart.clear');
-Route::get('/cart/increase/{id}', 'CartController@inc')->name('cart.inc');
-Route::get('/cart/decrease/{id}', 'CartController@dec')->name('cart.dec');
+    Route::get('/cart/add/{id}', 'CartController@addToCart')->name('cart.add');
+    Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
+    Route::get('/cart/clear', 'CartController@clearCart')->name('cart.clear');
+    Route::get('/cart/increase/{id}', 'CartController@inc')->name('cart.inc');
+    Route::get('/cart/decrease/{id}', 'CartController@dec')->name('cart.dec');
+});

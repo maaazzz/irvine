@@ -251,7 +251,11 @@
                         </div>
                         <div class="form-group">
                             <label>Confirm Password</label>
+<<<<<<< HEAD
+                            <input class="form-control" type="password" required />
+=======
                             <input class="form-control" type="password" name="password_confirmation" required />
+>>>>>>> 0b128b14cb19db4db1ed20867853def8441a2c49
                         </div>
                     </div>
 

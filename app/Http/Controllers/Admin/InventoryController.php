@@ -21,7 +21,7 @@ class InventoryController extends Controller
         //
         $categories = Category::all();
         $locations = Location::all();
-        $inventories = Inventory::with('category', 'location')->paginate(1);
+        $inventories = Inventory::with('category', 'location')->get();
         return view('admin.inventory-mgt.inventory', compact('categories', 'locations', 'inventories'));
     }
 
