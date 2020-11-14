@@ -2,14 +2,11 @@
 
 
 @section('content')
-
-@if (Session('danger'))
-<div class="alert alert-danger">{{ Session::get('danger') }}</div>
+@if (Session::has('success'))
+<div class="alert alert-success">{{ Session::get('success') }}</div>
 @endif
 
-<div class="page-title">
-    <h5>Transactions</h5>
-</div>
+<h5 class="page-title">Approvals</h5>
 
 <div class="filter-box d-flex flex-wrap align-items-center">
     <div class="mr-2">
@@ -35,6 +32,13 @@
             <option selected hidden>Filter by Shopper Name</option>
             <option value="">Shopper Name 1</option>
             <option value="">Shopper Name 2</option>
+        </select>
+    </div>
+    <div class="mr-2">
+        <select class="custom-select">
+            <option selected hidden>Filter by Department</option>
+            <option value="">Department 1</option>
+            <option value="">Department 2</option>
         </select>
     </div>
     <div class="mr-2">
@@ -69,10 +73,10 @@
             <option value="">Delivery 3</option>
         </select>
     </div>
-    <button class="sub-btn blue-btn btn mr-2" type="button" data-toggle="modal" data-target="#sortDateModal">Sort by
-        Date</button>
-    <button class="sub-btn blue-btn btn mr-2" type="button">Export Page</button>
-    <button class="sub-btn blue-btn btn mr-2" type="button">Export All</button>
+    <button class="main-btn sub-btn blue-btn btn mr-2" type="button" data-toggle="modal"
+        data-target="#sortDateModal">Sort by Date</button>
+    <button class="main-btn sub-btn blue-btn btn mr-2" type="button">Export Page</button>
+    <button class="main-btn sub-btn blue-btn btn mr-2" type="button">Export All</button>
 </div>
 
 <div class="">
@@ -139,42 +143,53 @@
                     <th>Location</th>
                     <th>Account #</th>
                     <th>Project</th>
-                    <th>Approver</th>
+                    <th>Shopper</th>
                     <th>Justification</th>
+
                     <th>Delivered</th>
+                    <th>Approved</th>
                     <th>View Order</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($transactions as $transaction)
+                @foreach ($approvals as $approval)
                 <tr>
+                    {{-- {{dd($approvals)}} --}}
                     <td><span class="stat-dot stat-green"></span></td>
-                    <td>{{ date('Y-m-d', strtotime($transaction->created_at))}}</td>
-                    <td>{{ $transaction->date_needed }}</td>
-                    <td>{{ $transaction->location->loc_name }}</td>
-                    <td>{{ $transaction->accountNumber->account_no }}</td>
-                    <td>{{ $transaction->projectNumber->project_number }}</td>
-                    <td>{{$transaction->approver->name}}</td>
-                    <td>{{ $transaction->justification->justification }}</td>
-                    <td>{{ $transaction->delivery_type }}</td>
+                    <td>{{ date('Y-m-d', strtotime($approval->created_at))}}</td>
+                    <td>{{ $approval->date_needed }}</td>
+                    <td>{{ $approval->location->loc_name }}</td>
+                    <td>{{ $approval->accountNumber->account_no }}</td>
+                    <td>{{ $approval->projectNumber->project_number }}</td>
+                    <td>{{$approval->approver->name}}</td>
+                    <td>{{ $approval->justification->justification }}</td>
+                    <td>{{ $approval->delivery_type }}</td>
 
+                    <td>
+                        <form action="{{ route('approval.approved',$approval->id) }}" method="post">
+                            @csrf
+                            @method('PUT')
+                            @if ($approval->status == 0)
+                            <input type="hidden" value="{{$approval->shopper_id}}" name="shopper_id">
+                            <input type="hidden" value="{{$approval->location_id}}" name="location_id">
+                            <input type="submit" class="btn btn-sm btn-info" value="approve">
+                            @else
+                            approved
+                            @endif
+                        </form>
+                    </td>
                     <td class="table-links">
-                        <a href="#" class="table-link view-btn" data-toggle="modal" data-target="#orderModal"><i
-                                class="fas fa-shopping-cart"></i></a>
                         <a href="#" class="table-link note-btn" data-toggle="modal" data-target="#notesModal"><i
                                 class="far fa-file-alt"></i></a>
                     </td>
                     <td class="table-links">
-                        <a href="" class="table-link note-btn"><i class="fas fa-pen"></i></a>
-                        <a href="{{ route('transaction.destroy',$transaction->id) }}" class="table-link note-btn"><i
-                                class="far fa-trash-alt"></i></a>
+                        <a href="#" class="table-link note-btn"><i class="fas fa-pen"></i></a>
+                        <a href="#" class="table-link note-btn"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
+                @endforeach
 
-                @empty
-                <p>data not found</p>
-                @endforelse
 
             </tbody>
         </table>

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class WarehouseMiddleware
 {
@@ -15,12 +16,11 @@ class WarehouseMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->role == 1) {
+        if (Auth::user()->role == 1 || Auth::user()->role == 2) {
             return $next($request);
         } else {
             return redirect('/')
                 ->with('status', 'you are not allowed to admin area');
         }
-        return $next($request);
     }
 }

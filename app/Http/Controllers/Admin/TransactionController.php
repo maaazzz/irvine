@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Order;
 use Illuminate\Http\Request;
-use Auth;
-use Cart;
-class OrderController extends Controller
+
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Order::all();
+
+        // dd($transactions);
+        return view('admin.transaction-mgt.transactions', compact('transactions'));
     }
 
     /**
@@ -37,37 +39,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-
-       foreach (Cart::getContent() as $order) {
-                
-        $input = [
-                'inventory_id' => $order->id,
-                'location_id' => $request->location_id,
-                'account_number_id' => $request->account_number_id,
-                'project_number_id' => $request->project_number_id,
-                'shopper_id' => Auth::user()->id,
-                'approver_id' => $request->approver_id,
-                'justification_id' => $request->justification_id,
-                'purchase_qty' => $order->quantity,
-                'purchase_total' => Cart::get($order->id)->getPriceSum(),
-                'date_needed' => $request->date_needed,
-                'delivery_type' => $request->delivery_type,
-                'pickup_notes' => $request->pickup_notes,
-                'status' => 0,
-                'approver_notes' =>""
-                
-    ];
-    
-       $order = Order::create($input);
-}
-
-    Cart::clear();
-    return redirect('/')->with('success', 'Order Place Successfully');
- 
-
-
-       
+        //
     }
 
     /**
@@ -112,6 +84,8 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        // dd($order);
+        $order->delete();
+        return back()->with('danger', 'Order deleted successfully');
     }
 }

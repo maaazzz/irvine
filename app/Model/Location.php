@@ -11,4 +11,10 @@ class Location extends Model
     {
         return $this->hasMany('App\Model\Inventory');
     }
+
+
+    public function orders()
+    {
+        return $this->hasMany('App\Model\Order');
+    }
 }
