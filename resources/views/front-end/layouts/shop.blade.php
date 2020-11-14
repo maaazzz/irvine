@@ -10,7 +10,6 @@
 
 		<title>Irvine - Cart</title>
 
-
         @include('front-end.partials.style')
         @yield('styles')
 		
@@ -24,7 +23,6 @@
 
 
 			<!-- Main -->
-
 			@yield('content')
 			
 
