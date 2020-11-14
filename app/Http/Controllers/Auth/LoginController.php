@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -41,5 +41,19 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('front-end.partials.login');
+    }
+    public function redirectTo(){
+        if(auth()->user()->role==1){
+            return redirect('/');
+        }
+        elseif(auth()->user()->role==2){
+            return route('approvals');
+        }
+        elseif(auth()->user()->role==3){
+            return redirect('/');
+        }
+        else{
+            return route('admin.index');
+        }
     }
 }

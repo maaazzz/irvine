@@ -11,7 +11,7 @@
                 <ul class="nav-middle navbar-nav flex-md-grow-1">
 
                     {{-- dashboard --}}
-                    @if(auth()->user()->role == 1)
+                    @if(auth()->user()->role == 1 || auth()->user()->role == 4)
                     <li class="nav-item {{request()->is('/admin') ? 'active' : ''}}"><a href="{{ url('/admin') }}"
                             class="nav-link">Dashboard</a></li>
 
@@ -20,14 +20,14 @@
                             href="{{ url('admin/inventory') }}" class="nav-link">Inventory</a></li>
                     @endif
                     {{-- approvals --}}
-                    @if (auth()->user()->role == 2)
+                    @if (auth()->user()->role == 2 || auth()->user()->role == 4)
                     <li class="nav-item {{request()->is('admin/approvals') ? 'active' : ''}}"><a
                             href="{{ url('admin/approvals') }}" class="nav-link">Approvals</a></li>
                     @endif
                     {{--end  approvals --}}
 
 
-                    @if(auth()->user()->role == 1)
+                    @if(auth()->user()->role == 1|| auth()->user()->role == 4)
 
                     {{-- transactions --}}
                     <li class="nav-item {{request()->is('admin/transactions') ? 'active' : ''}}"><a

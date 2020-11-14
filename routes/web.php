@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcom');
 // });
 
-Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     Route::get('/', function () {
         return view('admin.dashboard-mgt.dashboard');
-    });
+    })->name('admin.index');
 
     // transaction
     Route::resource('transactions', 'Admin\TransactionController');
