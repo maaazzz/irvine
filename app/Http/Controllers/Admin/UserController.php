@@ -116,4 +116,20 @@ class UserController extends Controller
     {
         //
     }
+
+    //admin password reset
+    public function passwordReset(Request $request)
+    {
+        $this->validate($request, [
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+        // dd($request->all());
+        $user = auth()->user()->id;
+        $findUser = User::find($user);
+        // dd($findUser);
+        $findUser->password = $request->password;
+        $findUser->update();
+        return back()
+            ->with('success', 'User updated successfully');
+    }
 }

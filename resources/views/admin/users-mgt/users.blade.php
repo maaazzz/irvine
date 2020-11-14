@@ -251,7 +251,7 @@
                         </div>
                         <div class="form-group">
                             <label>Confirm Password</label>
-                            <input class="form-control" type="password" required />
+                            <input class="form-control" type="password" name="password_confirmation" required />
                         </div>
                     </div>
 

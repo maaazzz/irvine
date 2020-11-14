@@ -8,9 +8,8 @@ class Category extends Model
 {
     protected $guarded = [];
 
-
-
-    public function inventories(){
+    public function inventories()
+    {
         return $this->hasMany('App\Model\Inventory');
     }
 }
