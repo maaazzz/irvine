@@ -64,7 +64,7 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
     // Account number Routes
     Route::resource('justifications', 'Admin\JustificationController');
     // End Account number Routes
-  
+
 
     // approval routes
     Route::get('approvals', 'Admin\ApprovalController@index')->name('approvals');
@@ -81,6 +81,13 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
 Auth::routes();
 
 
+Route::get('/cart/add/{id}', 'CartController@addToCart')->name('cart.add');
+Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
+Route::get('/cart/clear', 'CartController@clearCart')->name('cart.clear');
+Route::get('/cart/increase/{id}', 'CartController@inc')->name('cart.inc');
+Route::get('/cart/decrease/{id}', 'CartController@dec')->name('cart.dec');
+Route::get('get-categories-products/{id}', 'FrontendController@get_categories_products')->name('get-categories-products');
+Route::get('get-location-products/{id}', 'FrontendController@get_location_products')->name('get-location-products');
 Route::get('/home', 'HomeController@index')->name('home');
 // front end routes
 Route::group(['middleware' => ['auth']], function () {
@@ -96,5 +103,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // locations Routes
     Route::resource('order', 'Admin\OrderController');
-  // end of location route
+    // end of location route
 });
+e('order', 'Admin\OrderController');
+  // end of location route

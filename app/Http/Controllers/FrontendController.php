@@ -6,6 +6,7 @@ use Cart;
 use App\User;
 use App\Model\Location;
 use App\Model\Inventory;
+use App\model\Category;
 use App\Model\AccountNumber;
 use App\Model\Justification;
 use App\Model\ProjectNumber;
@@ -18,13 +19,11 @@ class FrontendController extends Controller
     public function index()
     {
         $cart = Cart::getContent();
-        $products = Inventory::all();
-        return view('front-end.shop', compact('cart', 'products'));
+        $products = Inventory::paginate(10);
+        $categories = Category::all();
+        $locations = Location::all();
+        return view('front-end.shop', compact('cart', 'products', 'categories', 'locations'));
     }
-
-
-
-
     public function cart()
     {
         $locations = Location::all();
@@ -37,21 +36,24 @@ class FrontendController extends Controller
         $cart = Cart::getContent()->sort();
         return view('front-end.cart', compact('cart', 'locations', 'acc_numbers', 'project_numbers', 'approvers', 'justifications'));
     }
-
-
-
-    public function product($id)
+    public function get_categories_products($id)
     {
-        
-        $quantity=0;
-        $product = Inventory::find($id);
-        $cartItem = Cart::get($product->id);
-        if($cartItem != null){
-            $quantity = $cartItem->quantity;
+        if ($id == 'all') {
+            $products = Inventory::all();
+        } else {
+            $products =  Inventory::where('category_id', $id)->get();
         }
-       
 
-        return view('front-end.product', compact('product', 'quantity'));
+        return view('front-end.filters-products.get-products-by-cat', compact('products'));
     }
+    public function get_location_products($id)
+    {
+        if ($id == 'all') {
+            $products = Inventory::all();
+        } else {
+            $products =  Inventory::where('location_id', $id)->get();
+        }
 
+        return view('front-end.filters-products.get-location-products', compact('products'));
+    }
 }
