@@ -1,11 +1,12 @@
 @extends('front-end.layouts.app')
-@if(Session::has('success'))
-<div class="alert alert-success">{{ Session::get('success') }}</div>
-@endif
+
 @section('content')
 <!-- Main -->
 <main class="main">
     <div class="container-fluid">
+        @if(Session::has('success'))
+<div class="alert alert-success">{{ Session::get('success') }}</div>
+@endif
         <div class="all-products d-md-flex position-relative">
             <div class="product-filter">
                 <div class="filter-part">
@@ -124,8 +125,8 @@
 									<div class="badge-bar">
 										<p class="badge badge-new m-0">New!</p>
 									</div>
-									<a class="product-img" href="product.html">
-										<img src="{{ asset('./shop-assets/img/product110.jpg') }}" alt="" />
+                                <a class="product-img" href="{{ url('/product/'.$product->id) }}">
+                                    <img src="./images/{{$product->image}}" alt="" />
 									</a>
 								<div class="text-center"><a class="product-title" href="product.html">{{ $product->product_name }}</a></div>
 									<p class="product-details">{{ $product->description }}</p>

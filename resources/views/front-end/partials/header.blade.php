@@ -5,7 +5,7 @@
 
         <a class="cart-btn order-lg-6" href="{{ url('/cart') }}">
                 <img src="{{ asset('./shop-assets/img/shopping-cart.svg') }}" alt="Cart" />
-            <span class="number-dot">{{ count($cart) }}</span>
+            <span class="number-dot">{{ count(Cart::getContent()) }}</span>
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav"
