@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Model\Order;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ApprovalController extends Controller
 {
     public function index()
     {
-        return view('admin.approvals-mgt.approvals');
+        $approvals = Order::where('approver_id', auth()->user()->id)
+            ->get();
+        return view('admin.approvals-mgt.approvals', compact('approvals'));
     }
 }

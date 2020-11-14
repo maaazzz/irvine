@@ -148,17 +148,17 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($approvals as $approval)
                 <tr>
                     <td><span class="stat-dot stat-green"></span></td>
-                    <td>04/19/2019</td>
-                    <td>04/20/2019</td>
-                    <td>New York</td>
-                    <td>98876-0012</td>
-                    <td>100001-0099</td>
-                    <td>John Smith</td>
-                    <td></td>
-                    <td>04/19/2019</td>
-                    <td>04/20/2019</td>
+                    <td>{{ date('Y-m-d', strtotime($approval->created_at))}}</td>
+                    <td>{{ $approval->date_needed }}</td>
+                    <td>{{ $approval->location->loc_name }}</td>
+                    <td>{{ $approval->accountNumber->account_no }}</td>
+                    <td>{{ $approval->projectNumber->project_number }}</td>
+                    <td>{{$approval->approver->name}}</td>
+                    <td>{{ $approval->justification->justification }}</td>
+                    <td>{{ $approval->delivery_type }}</td>
                     <td class="table-links">
                         <a href="#" class="table-link note-btn" data-toggle="modal" data-target="#notesModal"><i
                                 class="far fa-file-alt"></i></a>
@@ -168,48 +168,9 @@
                         <a href="#" class="table-link note-btn"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
-                <tr>
-                    <td><span class="stat-dot stat-orange"></span></td>
-                    <td>04/19/2019</td>
-                    <td>04/20/2019</td>
-                    <td>New York</td>
-                    <td>98876-0012</td>
-                    <td>100001-0099</td>
-                    <td>John Smith</td>
-                    <td></td>
-                    <td>04/19/2019</td>
-                    <td></td>
-                    <td class="table-links">
-                        <a href="#" class="table-link note-btn" data-toggle="modal" data-target="#notesModal"><i
-                                class="far fa-file-alt"></i></a>
-                    </td>
-                    <td class="table-links">
-                        <a href="#" class="table-link note-btn"><i class="fas fa-pen"></i></a>
-                        <a href="#" class="table-link note-btn"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="stat-dot stat-red"></span></td>
-                    <td>04/19/2019</td>
-                    <td>04/20/2019</td>
-                    <td>New York</td>
-                    <td>98876-0012</td>
-                    <td>100001-0099</td>
-                    <td>John Smith</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="table-links">
-                        <a href="#" class="table-link review-btn btn" data-toggle="modal"
-                            data-target="#orderModal">Review</a>
-                        <a href="#" class="table-link note-btn" data-toggle="modal" data-target="#notesModal"><i
-                                class="far fa-file-alt"></i></a>
-                    </td>
-                    <td class="table-links">
-                        <a href="#" class="table-link note-btn"><i class="fas fa-pen"></i></a>
-                        <a href="#" class="table-link note-btn"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
+                @endforeach
+
+
             </tbody>
         </table>
     </div>

@@ -15,9 +15,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $approver_id = auth()->user()->id;
+        // $approver_id = auth()->user()->id;
 
-        $transactions = Order::where('approver_id', $approver_id)->get();
+        $transactions = Order::all();
 
         // dd($transactions);
         return view('admin.transaction-mgt.transactions', compact('transactions'));

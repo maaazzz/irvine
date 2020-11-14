@@ -8,7 +8,10 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.dataTables.min.css">
 
 <style>
-    button.dt-button, div.dt-button, a.dt-button, input.dt-button {
+    button.dt-button,
+    div.dt-button,
+    a.dt-button,
+    input.dt-button {
         border-color: #00acd5 !important;
         background-color: #00acd5 !important;
         color: #fff !important;
@@ -178,9 +181,7 @@
                             <select class="custom-select" name="category_id" required>
                                 <option value="" Selected disabled>Choose Category</option>
                                 @foreach($categories as $category)
-
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
-
                                 @endforeach
                             </select>
                         </div>
@@ -192,6 +193,7 @@
                             <label>Price</label>
                             <input class="form-control" name="price" type="text" required />
                         </div>
+
                         <div class="form-group">
                             <label>UMO</label>
                             <select class="custom-select" name="umd">
@@ -230,6 +232,11 @@
                                 <option value="Delivered">Delivered</option>
 
                             </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Featured</label>
+                            <input class="" name="is_featured" type="checkbox" required value="1" />
                         </div>
                     </div>
 
@@ -282,13 +289,14 @@
             .appendTo($('div.eight.column:eq(0)', table.table().container()));
 
         $('#category-filter').on('change', function(){
-            table.search(this.value).draw(); 
+            table.search(this.value).draw();
         });
 
         $('#location-filter').on('change', function(){
-            table.search(this.value).draw();   
+            table.search(this.value).draw();
         });
     });
 </script>
 
 @endsection
+
