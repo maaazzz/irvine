@@ -45,7 +45,7 @@
     <h5>Inventory</h5>
 </div>
 
-<div class="row mb-5 mt-4">
+<div class="row mb-5 mt-3">
     <div class="col-sm-3 float-right">
         <div class="form-group">
             <select class="form-control" id="category-filter">
