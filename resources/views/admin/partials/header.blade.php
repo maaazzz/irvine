@@ -35,9 +35,6 @@
                 </ul>
 
                 <ul class="navbar-nav">
-<<<<<<< HEAD
-                    <li class="nav-item"><a href="index.html" class="logout-btn btn">Logout</a></li>
-=======
                     @auth
                     <li class="nav-item"><a href="{{ route('logout') }}" class="logout-btn btn" onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">Logout</a></li>
@@ -45,7 +42,6 @@
                         @csrf
                     </form>
                     @endauth
->>>>>>> 0b128b14cb19db4db1ed20867853def8441a2c49
                 </ul>
             </div>
         </nav>

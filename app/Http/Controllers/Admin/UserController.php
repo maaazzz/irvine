@@ -116,8 +116,6 @@ class UserController extends Controller
     {
         //
     }
-<<<<<<< HEAD
-=======
 
     //admin password reset
     public function passwordReset(Request $request)
@@ -134,5 +132,4 @@ class UserController extends Controller
         return back()
             ->with('success', 'User updated successfully');
     }
->>>>>>> 0b128b14cb19db4db1ed20867853def8441a2c49
 }
