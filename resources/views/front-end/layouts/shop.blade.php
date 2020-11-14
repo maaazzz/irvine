@@ -20,8 +20,6 @@
             @include('front-end.partials.header')
 
 
-
-
 			<!-- Main -->
 			@yield('content')
 			

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Cart;
 use App\Model\Inventory;
-
 class CartController extends Controller
 {
     //
@@ -24,24 +23,25 @@ class CartController extends Controller
                         'description'=> $product->description,
                         'available_quantity'=> $product->quantity_oh,
 			            'img'=> $product->image,
+                        
 			            
             ]
         ]);
-        
-        return redirect('/');
+
+        return back()->with('success', "Item Added Into Cart");
 
     }
 
     public function clearCart()
     {
-    	Cart::clear();
-    	return redirect('/');
+        Cart::clear();
+        return back()->with('success', "Cart Cleared");
     }
 
     public function remove($id)
     {
-    	Cart::remove($id);
-    	return redirect('/cart');
+        Cart::remove($id);
+        return back()->with('success', "Item Removed From Cart");
     }
 
     public function inc($id)
@@ -49,8 +49,7 @@ class CartController extends Controller
     	Cart::update($id, array(
   			'quantity' => +1, 
 		));
-		return redirect('/cart');
-
+		return back()->with('success', "Item Quantity Updated");
     }
 
 	public function dec($id)
@@ -58,7 +57,7 @@ class CartController extends Controller
     	Cart::update($id, array(
   			'quantity' => -1, 
 		));
-		return redirect('/cart');
+		return back()->with('success', "Item Quantity Updated");
     }
 
 }

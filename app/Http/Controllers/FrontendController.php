@@ -34,7 +34,24 @@ class FrontendController extends Controller
         $approvers = User::where('role', 2)
             ->get();
         $justifications = Justification::all();
-        $cart = Cart::getContent();
+        $cart = Cart::getContent()->sort();
         return view('front-end.cart', compact('cart', 'locations', 'acc_numbers', 'project_numbers', 'approvers', 'justifications'));
     }
+
+
+
+    public function product($id)
+    {
+        
+        $quantity=0;
+        $product = Inventory::find($id);
+        $cartItem = Cart::get($product->id);
+        if($cartItem != null){
+            $quantity = $cartItem->quantity;
+        }
+       
+
+        return view('front-end.product', compact('product', 'quantity'));
+    }
+
 }
