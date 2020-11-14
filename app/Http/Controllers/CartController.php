@@ -27,21 +27,21 @@ class CartController extends Controller
 			            
             ]
         ]);
-        
-        return redirect('/');
+
+        return back()->with('success', "Item Added Into Cart");
 
     }
 
     public function clearCart()
     {
-    	Cart::clear();
-    	return redirect('/');
+        Cart::clear();
+        return back()->with('success', "Cart Cleared");
     }
 
     public function remove($id)
     {
-    	Cart::remove($id);
-    	return redirect('/cart');
+        Cart::remove($id);
+        return back()->with('success', "Item Removed From Cart");
     }
 
     public function inc($id)
@@ -49,9 +49,7 @@ class CartController extends Controller
     	Cart::update($id, array(
   			'quantity' => +1, 
 		));
-        
-		return redirect('/cart');
-
+		return back()->with('success', "Item Quantity Updated");
     }
 
 	public function dec($id)
@@ -59,7 +57,7 @@ class CartController extends Controller
     	Cart::update($id, array(
   			'quantity' => -1, 
 		));
-		return redirect('/cart');
+		return back()->with('success', "Item Quantity Updated");
     }
 
 }
