@@ -12,7 +12,7 @@ class CartController extends Controller
 
     public function addToCart($id)
     {
-<<<<<<< HEAD
+
         $product = Inventory::find($id);
 
         $add = Cart::add([
@@ -62,8 +62,6 @@ class CartController extends Controller
     }
 
 }
-=======
-        return $product = Inventory::find($id);
-    }
-}
->>>>>>> df009040ec415f386736b0a46ca2bd38ce00a883
+
+
+

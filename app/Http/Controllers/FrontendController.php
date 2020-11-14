@@ -35,12 +35,6 @@ class FrontendController extends Controller
             ->get();
         $justifications = Justification::all();
         $cart = Cart::getContent();
-<<<<<<< HEAD
-
-        // dd($cart);
-        return view('front-end.cart', compact('cart'));
-=======
         return view('front-end.cart', compact('cart', 'locations', 'acc_numbers', 'project_numbers', 'approvers', 'justifications'));
->>>>>>> df009040ec415f386736b0a46ca2bd38ce00a883
     }
 }
