@@ -15,8 +15,6 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        // $approver_id = auth()->user()->id;
-
         $transactions = Order::all();
 
         // dd($transactions);

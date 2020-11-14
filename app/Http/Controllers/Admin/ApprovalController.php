@@ -14,4 +14,13 @@ class ApprovalController extends Controller
             ->get();
         return view('admin.approvals-mgt.approvals', compact('approvals'));
     }
+
+    public function approved(Request $request, $id)
+    {
+        $order = Order::where('id', $id)->first();
+        $order->status = 1;
+        // dd($order);
+        $order->update();
+        return back()->with('success', 'Approved successfully');
+    }
 }
