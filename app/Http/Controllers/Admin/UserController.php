@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('role','!=','4')->get();
         return view('admin.users-mgt.users', compact('users'));
     }
 
@@ -48,7 +48,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'role' => $request->role,
-            'password' => \Hash::make('trustech'),
+            'password' => \Hash::make('irvine'),
             'status' => $request->status,
         ]);
         return back()
