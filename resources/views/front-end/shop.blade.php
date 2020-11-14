@@ -118,52 +118,8 @@
                     </ul>
                 </div>
 
-<<<<<<< HEAD
-							<div class="d-flex flex-wrap">
-								@foreach($products as $product)
-								<div class="product-card">
-									<div class="badge-bar">
-										<p class="badge badge-new m-0">New!</p>
-									</div>
-									<a class="product-img" href="product.html">
-										<img src="{{ asset('./shop-assets/img/product110.jpg') }}" alt="" />
-									</a>
-								<div class="text-center"><a class="product-title" href="product.html">{{ $product->product_name }}</a></div>
-									<p class="product-details">{{ $product->description }}</p>
-									<div class="text-center">
-										<p class="product-cost product-info">Cost: {{ $product->price }}</p>
-										<p class="product-qty product-info">Available Qty: {{ $product->quantity_oh }}</p>
-
-									<a class="add-product btn" href="{{ route('cart.add', $product->id) }}">Add to Cart</a>
-									</div>
-								</div>
-								@endforeach
-
-								{{-- <div class="product-card">
-									<div class="badge-bar">
-										<p class="badge badge-featured m-0">Featured</p>
-									</div>
-									<a class="product-img" href="#">
-										<img src="{{ asset('./shop-assets/img/product120.jpg') }}" alt="" />
-									</a>
-									<div class="text-center"><a class="product-title" href="product.html">Magic Eraser</a></div>
-									<p class="product-details">Mr. Clean Magic Eraser Multi-Surface Cleaning Sheets, 16 ct</p>
-									<div class="text-center">
-										<p class="product-cost product-info">Cost: $13.50</p>
-										<p class="product-qty product-info">Available Qty: 13</p>
-										<button class="add-product btn" type="button">Add to Cart</button>
-									</div>
-								</div>
-
-								<div class="product-card">
-									<div class="badge-bar"></div>
-									<a class="product-img" href="#">
-										<img src="{{ asset('./shop-assets/img/product130.jpg') }}" alt="" />
-									</a>
-									<div class="text-center"><a class="product-title" href="product.html">All-Purpose Cleaner</a></div>
-									<p class="product-details">Simple Green All-Purpose Cleaner, 32 fl oz</p>
-=======
                 <div class="d-flex flex-wrap">
+                    @foreach($products as $product)
                     <div class="product-card">
                         <div class="badge-bar">
                             <p class="badge badge-new m-0">New!</p>
@@ -171,89 +127,39 @@
                         <a class="product-img" href="product.html">
                             <img src="{{ asset('./shop-assets/img/product110.jpg') }}" alt="" />
                         </a>
-                        <div class="text-center"><a class="product-title" href="product.html">Multipurpose Cleaner</a>
-                        </div>
-                        <p class="product-details">Mr. Clean Multipurpose Cleaning Solution, Meadows & Rain, 128 Oz</p>
+                        <div class="text-center"><a class="product-title"
+                                href="product.html">{{ $product->product_name }}</a></div>
+                        <p class="product-details">{{ $product->description }}</p>
                         <div class="text-center">
-                            <p class="product-cost product-info">Cost: $13.50</p>
-                            <p class="product-qty product-info">Available Qty: 13</p>
-                            <button class="add-product btn" type="button">Add to Cart</button>
-                        </div>
-                    </div>
+                            <p class="product-cost product-info">Cost: {{ $product->price }}</p>
+                            <p class="product-qty product-info">Available Qty: {{ $product->quantity_oh }}</p>
 
-                    <div class="product-card">
-                        <div class="badge-bar">
-                            <p class="badge badge-featured m-0">Featured</p>
-                        </div>
-                        <a class="product-img" href="#">
-                            <img src="{{ asset('./shop-assets/img/product120.jpg') }}" alt="" />
-                        </a>
-                        <div class="text-center"><a class="product-title" href="product.html">Magic Eraser</a></div>
-                        <p class="product-details">Mr. Clean Magic Eraser Multi-Surface Cleaning Sheets, 16 ct</p>
-                        <div class="text-center">
-                            <p class="product-cost product-info">Cost: $13.50</p>
-                            <p class="product-qty product-info">Available Qty: 13</p>
-                            <button class="add-product btn" type="button">Add to Cart</button>
+                            <a class="add-product btn" href="{{ route('cart.add', $product->id) }}">Add to Cart</a>
                         </div>
                     </div>
+                    @endforeach
 
-                    <div class="product-card">
-                        <div class="badge-bar"></div>
-                        <a class="product-img" href="#">
-                            <img src="{{ asset('./shop-assets/img/product130.jpg') }}" alt="" />
-                        </a>
-                        <div class="text-center"><a class="product-title" href="product.html">All-Purpose Cleaner</a>
-                        </div>
-                        <p class="product-details">Simple Green All-Purpose Cleaner, 32 fl oz</p>
-                        <div class="text-center">
-                            <p class="product-cost product-info">Cost: $13.50</p>
-                            <p class="product-qty product-info">Available Qty: 13</p>
-                            <button class="add-product btn" type="button">Add to Cart</button>
-                        </div>
-                    </div>
-                    <!--
-								<div class="product-card">
-									<div class="badge-bar"></div>
-									<a class="product-img" href="#">
-										<img src="img/product140.jpg" alt="" />
-									</a>
-									<div class="text-center"><a class="product-title" href="product.html">Surface Spray</a></div>
-									<p class="product-details">Mr. Clean Clean Freak Multi-Surface Spray Starter Kit, Lemon Zest</p>
->>>>>>> 59c77f3507c44a4184aba8b16674d96c16e24d5b
-									<div class="text-center">
-										<p class="product-cost product-info">Cost: $13.50</p>
-										<p class="product-qty product-info">Available Qty: 13</p>
-										<button class="add-product btn" type="button">Add to Cart</button>
+                    {{-- <div class="product-card">
+									<div class="badge-bar">
+										<p class="badge badge-featured m-0">Featured</p>
 									</div>
-<<<<<<< HEAD
-								</div> --}}
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</main>
-=======
-								</div> -->
-                    <!--
-								<div class="product-card">
-									<div class="badge-bar"></div>
 									<a class="product-img" href="#">
-										<img src="img/product150.jpg" alt="" />
-									</a>
-									<div class="text-center"><a class="product-title" href="product.html">Everyday Cleaner</a></div>
-									<p class="product-details">Mrs. Meyer's Clean Day Multi-Surface Everyday Cleaner Bottle, Basil Scent, 16 fl oz</p>
-									<div class="text-center">
-										<p class="product-cost product-info">Cost: $13.50</p>
-										<p class="product-qty product-info">Available Qty: 13</p>
-										<button class="add-product btn" type="button">Add to Cart</button>
-									</div>
-								</div> -->
+										<img src="{{ asset('./shop-assets/img/product120.jpg') }}" alt="" />
+                    </a>
+                    <div class="text-center"><a class="product-title" href="product.html">Magic Eraser</a></div>
+                    <p class="product-details">Mr. Clean Magic Eraser Multi-Surface Cleaning Sheets, 16 ct</p>
+                    <div class="text-center">
+                        <p class="product-cost product-info">Cost: $13.50</p>
+                        <p class="product-qty product-info">Available Qty: 13</p>
+                        <button class="add-product btn" type="button">Add to Cart</button>
+                    </div>
                 </div>
+                --}}
+
             </div>
         </div>
     </div>
+    </div>
 </main>
->>>>>>> 59c77f3507c44a4184aba8b16674d96c16e24d5b
 
 @endsection

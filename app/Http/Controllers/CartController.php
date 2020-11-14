@@ -12,7 +12,6 @@ class CartController extends Controller
 
     public function addToCart($id)
     {
-        return $product = Inventory::find($Id);
-
+        return $product = Inventory::find($id);
     }
 }
