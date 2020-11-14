@@ -64,8 +64,7 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
     Route::resource('justifications', 'Admin\JustificationController');
     // End Account number Routes
 
-
-
+    Route::get('approvals', 'Admin\ApprovalController@index')->name('approvals');
 });
 
 
@@ -74,6 +73,6 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+// front end routes
 Route::get('/cart', 'FrontendController@cart');
 Route::get('/', 'FrontendController@index');

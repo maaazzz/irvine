@@ -13,6 +13,8 @@
                             class="nav-link">Dashboard</a></li>
                     <li class="nav-item  {{request()->is('admin/inventory') ? 'active' : ''}}"><a
                             href="{{ url('admin/inventory') }}" class="nav-link">Inventory</a></li>
+                    <li class="nav-item {{request()->is('admin/approvals') ? 'active' : ''}}"><a
+                            href="{{ url('admin/approvals') }}" class="nav-link">Approvals</a></li>
                     <li class="nav-item {{request()->is('admin/transactions') ? 'active' : ''}}"><a
                             href="{{ url('admin/transactions') }}" class="nav-link">Transactions</a>
                     </li>
