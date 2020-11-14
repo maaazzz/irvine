@@ -17,65 +17,59 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcom');
 // });
 
-<<<<<<< HEAD
 Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], function () {
-=======
-    Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], function () {
-
-        Route::get('/', function () {
-            return view('admin.dashboard-mgt.dashboard');
-        });
->>>>>>> 6c6f878cdce88bb5fbdfb0d25ed0da5b9e6bcf6b
-
-        Route::get('transactions', function () {
-            return view('admin.transaction-mgt.transactions');
-        });
 
 
-        // users Routes
-        Route::resource('users', 'Admin\UserController');
-        // end users routes
+    Route::get('/', function () {
+        return view('admin.dashboard-mgt.dashboard');
+    });
+
+    Route::get('transactions', function () {
+        return view('admin.transaction-mgt.transactions');
+    });
 
 
-        // account setting
-        Route::get('account-setting', function () {
-            return view('admin.account-setting-mgt.account-setting');
-        });
-        Route::post('password-reset', 'Admin\UserController@passwordReset')->name('password-reset');
-        // end of account setting
-
-        // categories Routes
-        Route::resource('categories', 'Admin\CategoryController');
-
-        // Inventory Routes
-        Route::resource('inventory', 'Admin\InventoryController');
-        // locations Routes
-        Route::resource('locations', 'Admin\LocationController');
-        // end of location route
+    // users Routes
+    Route::resource('users', 'Admin\UserController');
+    // end users routes
 
 
-        // Account number Routes
-        Route::resource('account-number', 'Admin\AccountNumberController');
-        // End Account number Routes
+    // account setting
+    Route::get('account-setting', function () {
+        return view('admin.account-setting-mgt.account-setting');
+    });
+    Route::post('password-reset', 'Admin\UserController@passwordReset')->name('password-reset');
+    // end of account setting
+
+    // categories Routes
+    Route::resource('categories', 'Admin\CategoryController');
+
+    // Inventory Routes
+    Route::resource('inventory', 'Admin\InventoryController');
+    // locations Routes
+    Route::resource('locations', 'Admin\LocationController');
+    // end of location route
 
 
-        // Account number Routes
-        Route::resource('project-number', 'Admin\ProjectNumberController');
-        // End Account number Routes
+    // Account number Routes
+    Route::resource('account-number', 'Admin\AccountNumberController');
+    // End Account number Routes
 
 
-        // Account number Routes
-        Route::resource('justifications', 'Admin\JustificationController');
-        // End Account number Routes
+    // Account number Routes
+    Route::resource('project-number', 'Admin\ProjectNumberController');
+    // End Account number Routes
 
 
-<<<<<<< HEAD
+    // Account number Routes
+    Route::resource('justifications', 'Admin\JustificationController');
+    // End Account number Routes
+
     Route::get('approvals', 'Admin\ApprovalController@index')->name('approvals');
 });
-=======
 
-    });
->>>>>>> 6c6f878cdce88bb5fbdfb0d25ed0da5b9e6bcf6b
+
+
 
 
 
@@ -83,7 +77,6 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
 Auth::routes();
 
 
-<<<<<<< HEAD
 Route::get('/home', 'HomeController@index')->name('home');
 // front end routes
 Route::group(['middleware' => ['auth']], function () {
@@ -96,10 +89,3 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/cart/increase/{id}', 'CartController@inc')->name('cart.inc');
     Route::get('/cart/decrease/{id}', 'CartController@dec')->name('cart.dec');
 });
-=======
-Route::get('/cart/add/{id}', 'CartController@addToCart')->name('cart.add');
-Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
-Route::get('/cart/clear', 'CartController@clearCart')->name('cart.clear');
-Route::get('/cart/increase/{id}', 'CartController@inc')->name('cart.inc');
-Route::get('/cart/decrease/{id}', 'CartController@dec')->name('cart.dec');
->>>>>>> 6c6f878cdce88bb5fbdfb0d25ed0da5b9e6bcf6b
