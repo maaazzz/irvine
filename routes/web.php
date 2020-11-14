@@ -17,8 +17,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcom');
 // });
 
+<<<<<<< HEAD
 
 Route::group(['prefix' => 'admin'], function () {
+=======
+Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], function () {
+>>>>>>> 59c77f3507c44a4184aba8b16674d96c16e24d5b
 
     Route::get('/', function () {
         return view('admin.dashboard-mgt.dashboard');
@@ -34,10 +38,12 @@ Route::group(['prefix' => 'admin'], function () {
     // end users routes
 
 
-
+    // account setting
     Route::get('account-setting', function () {
         return view('admin.account-setting-mgt.account-setting');
     });
+    Route::post('password-reset', 'Admin\UserController@passwordReset')->name('password-reset');
+    // end of account setting
 
     // categories Routes
     Route::resource('categories', 'Admin\CategoryController');
