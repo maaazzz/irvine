@@ -71,6 +71,6 @@ class FrontendController extends Controller
         }
 
 
-        return view('front-end.filters-products.get-products-by-cat', compact('products'));
+        return view('front-end.product', compact('product', 'quantity'));
     }
 }
