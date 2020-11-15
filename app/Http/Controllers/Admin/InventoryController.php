@@ -43,7 +43,6 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $input = $request->all();
         // dd($input);
         $images = array();

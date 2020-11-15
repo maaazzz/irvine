@@ -64,6 +64,9 @@ class OrderController extends Controller
 
     Cart::clear();
     return redirect('/')->with('success', 'Order Place Successfully');
+ 
+
+
        
     }
 
@@ -73,10 +76,9 @@ class OrderController extends Controller
      * @param  \App\Model\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Order $order)
     {
-         $order = Order::with('inventory')->find($id);
-         return response()->json($order);
+        //
     }
 
     /**
@@ -112,13 +114,4 @@ class OrderController extends Controller
     {
         //
     }
-
-    public function getNotes($id)
-    {
-        // echo $id;
-        // // echo "it works";
-        $notes = Order::find($id);
-         return response()->json($notes);
-    }
-    
 }
