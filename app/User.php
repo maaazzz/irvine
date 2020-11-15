@@ -37,10 +37,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
-    public function inventories(){
+
+    public function inventories()
+    {
 
         return $this->hasMany('App\Model\Inventory');
-    
+    }
+
+    // relation with favourite
+    public function favourites()
+    {
+        return $this->hasMany('App\Model\Favourite');
     }
 }
