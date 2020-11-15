@@ -18,7 +18,7 @@
                     <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">Online Store</a></li>
                     <li class="nav-item"><a href="{{url('/order-history')}}" class="nav-link">Order History</a></li>
                     <li class="nav-item"><a href="favorite.html" class="nav-link">Favorite Items</a></li>
-                    <li class="nav-item"><a href="settings.html" class="nav-link">Account Settings</a></li>
+                    <li class="nav-item"><a href="{{url('/account-setting')}}" class="nav-link">Account Settings</a></li>
 
 
                     @guest
