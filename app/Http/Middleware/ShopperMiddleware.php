@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class WarehouseMiddleware
+class ShopperMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,7 +15,7 @@ class WarehouseMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->role == 1) {
+        if (auth()->user()->role == 3) {
             return $next($request);
         } else {
             return back()

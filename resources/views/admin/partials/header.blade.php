@@ -11,14 +11,23 @@
                 <ul class="nav-middle navbar-nav flex-md-grow-1">
 
                     {{-- dashboard --}}
-                    @if(auth()->user()->role == 1 || auth()->user()->role == 4)
+                    @if(auth()->user()->role == 4)
                     <li class="nav-item {{request()->is('/admin') ? 'active' : ''}}"><a href="{{ url('/admin') }}"
                             class="nav-link">Dashboard</a></li>
-
                     {{-- inventory --}}
                     <li class="nav-item  {{request()->is('admin/inventory') ? 'active' : ''}}"><a
                             href="{{ url('admin/inventory') }}" class="nav-link">Inventory</a></li>
                     @endif
+
+
+                    @if (auth()->user()->role == 1)
+                    {{-- Orders for warehouse --}}
+                    <li class="nav-item {{request()->is('admin/all-orders') ? 'active' : ''}}"><a
+                            href="{{ url('admin/all-orders') }}" class="nav-link">Orders</a>
+                    </li>
+                    @endif
+
+
                     {{-- approvals --}}
                     @if (auth()->user()->role == 2 || auth()->user()->role == 4)
                     <li class="nav-item {{request()->is('admin/approvals') ? 'active' : ''}}"><a
@@ -27,7 +36,7 @@
                     {{--end  approvals --}}
 
 
-                    @if(auth()->user()->role == 1|| auth()->user()->role == 4)
+                    @if(auth()->user()->role == 4)
 
                     {{-- transactions --}}
                     <li class="nav-item {{request()->is('admin/transactions') ? 'active' : ''}}"><a
@@ -51,6 +60,10 @@
                             href="{{ url('admin/account-setting') }}" class="nav-link">Account
                             Settings</a></li>
                     @endif
+
+                    <li class="nav-item {{request()->is('admin/account-setting') ? 'active' : ''}}"><a
+                            href="{{ url('admin/account-setting') }}" class="nav-link">Account
+                            Settings</a></li>
                 </ul>
 
                 <ul class="navbar-nav">

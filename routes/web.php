@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\Order;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,17 +22,17 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     Route::get('/', function () {
         return view('admin.dashboard-mgt.dashboard');
-    })->name('admin.index');
+    })->name('admin.index')->middleware('admin');
 
     // transaction
-    Route::resource('transactions', 'Admin\TransactionController');
-    Route::get('transaction-destroy/{order}', 'Admin\TransactionController@destroy')->name('transaction.destroy');
+    Route::resource('transactions', 'Admin\TransactionController')->middleware('admin');
+    Route::get('transaction-destroy/{order}', 'Admin\TransactionController@destroy')->name('transaction.destroy')->middleware('admin');
     // end of transactions
 
 
 
     // users Routes
-    Route::resource('users', 'Admin\UserController');
+    Route::resource('users', 'Admin\UserController')->middleware('admin');
     // end users routes
 
 
@@ -43,34 +44,41 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     // end of account setting
 
     // categories Routes
-    Route::resource('categories', 'Admin\CategoryController');
+    Route::resource('categories', 'Admin\CategoryController')->middleware('admin');
 
     // Inventory Routes
-    Route::resource('inventory', 'Admin\InventoryController');
+    Route::resource('inventory', 'Admin\InventoryController')->middleware('admin');
     // locations Routes
-    Route::resource('locations', 'Admin\LocationController');
+    Route::resource('locations', 'Admin\LocationController')->middleware('admin');
     // end of location route
 
 
     // Account number Routes
-    Route::resource('account-number', 'Admin\AccountNumberController');
+    Route::resource('account-number', 'Admin\AccountNumberController')->middleware('admin');
     // End Account number Routes
 
 
     // Account number Routes
-    Route::resource('project-number', 'Admin\ProjectNumberController');
+    Route::resource('project-number', 'Admin\ProjectNumberController')->middleware('admin');
     // End Account numb er Routes
 
 
     // Account number Routes
-    Route::resource('justifications', 'Admin\JustificationController');
+    Route::resource('justifications', 'Admin\JustificationController')->middleware('admin');
     // End Account number Routes
 
 
     // approval routes
-    Route::get('approvals', 'Admin\ApprovalController@index')->name('approvals');
-    Route::put('approvals/approved/{id}', 'Admin\ApprovalController@approved')->name('approval.approved');
+    Route::get('approvals', 'Admin\ApprovalController@index')->name('approvals')->middleware('approver');
+    Route::put('approvals/approved/{id}', 'Admin\ApprovalController@approved')->name('approval.approved')->middleware('approver');
     // end of approval routes
+
+    //all orders
+    Route::get('all-orders', function () {
+        $orders = Order::all();
+        return view('admin.warehouse-order-mgt.order', compact('orders'));
+    })->middleware('warehouse');
+    //end all orders
 
 
 });
@@ -80,7 +88,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 // front end routes
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'shopper', 'admin']], function () {
     // account setting
     Route::get('account-setting', function () {
         return view('front-end.account-setting');

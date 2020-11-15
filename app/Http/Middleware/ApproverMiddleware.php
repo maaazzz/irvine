@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class WarehouseMiddleware
+class ApproverMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +15,11 @@ class WarehouseMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->role == 1) {
+        if (auth()->user()->role == 2) {
             return $next($request);
         } else {
             return back()
-                ->with('danger', 'You are not authorized');
+                ->with('danger', ' You are not authorized');
         }
     }
 }

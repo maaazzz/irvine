@@ -21,7 +21,6 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -96,8 +95,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-         $order = Order::with('inventory')->find($id);
-         return response()->json($order);
+        $order = Order::with('inventory')->find($id);
+        return response()->json($order);
     }
 
     /**
@@ -139,7 +138,6 @@ class OrderController extends Controller
         // echo $id;
         // // echo "it works";
         $notes = Order::find($id);
-         return response()->json($notes);
+        return response()->json($notes);
     }
-    
 }
