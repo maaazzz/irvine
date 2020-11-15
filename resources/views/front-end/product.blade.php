@@ -92,7 +92,7 @@
 							
 									@if($check)
 											  
-									  <button class="blue-btn main-btn btn my-2 mr-2" disabled="disabled">Added to Favorite</button>
+									  <button class="blue-btn main-btn btn my-2 mr-2" disabled="disabled">Added to Favorites</button>
 										  
 									  @else
 											  

@@ -1,29 +1,25 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\Orders;
 
 use App\Model\Order;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class WarehouseMailMail extends Mailable
+class OrderMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $user;
     public $order;
-    public $url;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user, Order $order, $url)
+    public function __construct(Order $order)
     {
-        $this->user = $user;
         $this->order = $order;
-        $this->url = $url;
     }
 
     /**
@@ -33,6 +29,6 @@ class WarehouseMailMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.orders.warehouse')->with('order', $this->order, 'url', $this->url);
+        return $this->markdown('emails/orders/OrderMail')->with('order', $this->order);
     }
 }
