@@ -4,7 +4,10 @@
 @if(Session::has('success'))
 <div class="alert alert-success">{{Session::get('success')}}</div>
 @endif
-
+@section('damger')
+@if(Session::has('success'))
+<div class="alert alert-success">{{Session::get('success')}}</div>
+@endif
 
 <div class="page-title">
     <h5>Orders</h5>

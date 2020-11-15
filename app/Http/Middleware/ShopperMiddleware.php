@@ -18,7 +18,7 @@ class ShopperMiddleware
         if (auth()->user()->role == 3) {
             return $next($request);
         } else {
-            return back()
+            return redirect('/')
                 ->with('danger', 'You are not authorized');
         }
     }

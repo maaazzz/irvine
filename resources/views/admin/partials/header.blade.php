@@ -29,7 +29,7 @@
 
 
                     {{-- approvals --}}
-                    @if (auth()->user()->role == 2 || auth()->user()->role == 4)
+                    @if (auth()->user()->role == 2)
                     <li class="nav-item {{request()->is('admin/approvals') ? 'active' : ''}}"><a
                             href="{{ url('admin/approvals') }}" class="nav-link">Approvals</a></li>
                     @endif

@@ -44,6 +44,9 @@
 @endsection
 
 @section('content')
+@if(Session::has('danger'))
+<div class="alert alert-danger">{{Session::get('danger')}}</div>
+@endif
 <div class="page-title">
     <h5>Inventory</h5>
 </div>

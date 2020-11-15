@@ -18,8 +18,8 @@ class ApproverMiddleware
         if (auth()->user()->role == 2) {
             return $next($request);
         } else {
-            return back()
-                ->with('danger', ' You are not authorized');
+            return redirect('/')
+                ->with('danger', 'You are not authorized');
         }
     }
 }

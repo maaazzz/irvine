@@ -50,7 +50,9 @@
 @if (Session('danger'))
 <div class="alert alert-danger">{{ Session::get('danger') }}</div>
 @endif
-
+@if(Session::has('danger'))
+<div class="alert alert-danger">{{Session::get('danger')}}</div>
+@endif
 <div class="page-title">
     <h5>Transactions</h5>
 </div>
@@ -131,83 +133,84 @@
     </div>
 </div>
 
-    <table class="table table-bordered table-striped table-sm text-center" id="example">
-        <thead class="thead-dark">
-            <tr>
-                <th>Status</th>
-                <th>Submitted</th>
-                <th>Needed</th>
-                <th>Location</th>
-                <th>Account #</th>
-                <th>Project</th>
-                <th>Approver</th>
-                <th>Shopper</th>
-                <th>Justification</th>
-                <th>Delivered</th>
-                <th>View Order</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($transactions as $transaction)
-            <tr>
-                @if($transaction->status == 0)
-                    <td>
-                        <span class="stat-dot stat-red"></span>
-                        Submitted
-                    </td>
-                @elseif($transaction->status == 1)
-                    <td>
-                        <span class="stat-dot stat-orange"></span>
-                        Approved
-                    </td>
-                @else
-                    <td>
-                        <span class="stat-dot stat-green"></span>
-                        Deliverd
-                    </td>
-                @endif
-                    <td>{{ date('Y/m/d', strtotime($transaction->created_at))}}</td>
-                    <td>{{ date('Y/m/d', strtotime($transaction->date_needed)) }}</td>
-                    <td>{{ $transaction->location->loc_name }}</td>
-                    <td>{{ $transaction->accountNumber->account_no }}</td>
-                    <td>{{ $transaction->projectNumber->project_number }}</td>
-                    <td>{{$transaction->approver->name}}</td>
-                    <td>{{$transaction->shopper->name}}</td>
-                    <td>{{ $transaction->justification->justification }}</td>
-                @if ($transaction->delivery_type == 0)
-                    <td>
-                        Warehouse Pickup
-                    </td>
-                @else
-                    <td>
-                        Deliver to Me
-                    </td>
-                @endif
-                <td class="table-links">
-                    <a href="#" class="table-link view-btn" data-toggle="modal" data-target="#orderModal"><i
-                            class="fas fa-shopping-cart"></i></a>
-                    <a href="#" class="table-link note-btn" data-toggle="modal" data-target="#notesModal"><i
-                            class="far fa-file-alt"></i></a>
-                </td>
-                <td class="table-links">
-                    <a href="" class="table-link note-btn"><i class="fas fa-pen"></i></a>
-                    <a href="{{ route('transaction.destroy',$transaction->id) }}" class="table-link note-btn"><i
-                            class="far fa-trash-alt"></i></a>
-                </td>
-            </tr>
+<table class="table table-bordered table-striped table-sm text-center" id="example">
+    <thead class="thead-dark">
+        <tr>
+            <th>Status</th>
+            <th>Submitted</th>
+            <th>Needed</th>
+            <th>Location</th>
+            <th>Account #</th>
+            <th>Project</th>
+            <th>Approver</th>
+            <th>Shopper</th>
+            <th>Justification</th>
+            <th>Delivered</th>
+            <th>View Order</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @forelse ($transactions as $transaction)
+        <tr>
+            @if($transaction->status == 0)
+            <td>
+                <span class="stat-dot stat-red"></span>
+                Submitted
+            </td>
+            @elseif($transaction->status == 1)
+            <td>
+                <span class="stat-dot stat-orange"></span>
+                Approved
+            </td>
+            @else
+            <td>
+                <span class="stat-dot stat-green"></span>
+                Deliverd
+            </td>
+            @endif
+            <td>{{ date('Y/m/d', strtotime($transaction->created_at))}}</td>
+            <td>{{ date('Y/m/d', strtotime($transaction->date_needed)) }}</td>
+            <td>{{ $transaction->location->loc_name }}</td>
+            <td>{{ $transaction->accountNumber->account_no }}</td>
+            <td>{{ $transaction->projectNumber->project_number }}</td>
+            <td>{{$transaction->approver->name}}</td>
+            <td>{{$transaction->shopper->name}}</td>
+            <td>{{ $transaction->justification->justification }}</td>
+            @if ($transaction->delivery_type == 0)
+            <td>
+                Warehouse Pickup
+            </td>
+            @else
+            <td>
+                Deliver to Me
+            </td>
+            @endif
+            <td class="table-links">
+                <a href="#" class="table-link view-btn" data-toggle="modal" data-target="#orderModal"><i
+                        class="fas fa-shopping-cart"></i></a>
+                <a href="#" class="table-link note-btn" data-toggle="modal" data-target="#notesModal"><i
+                        class="far fa-file-alt"></i></a>
+            </td>
+            <td class="table-links">
+                <a href="" class="table-link note-btn"><i class="fas fa-pen"></i></a>
+                <a href="{{ route('transaction.destroy',$transaction->id) }}" class="table-link note-btn"><i
+                        class="far fa-trash-alt"></i></a>
+            </td>
+        </tr>
 
-            @empty
-            <p>data not found</p>
-            @endforelse
+        @empty
+        <p>data not found</p>
+        @endforelse
 
-        </tbody>
-    </table>
+    </tbody>
+</table>
 </div>
 
 
 <!-- Sort by Date Modal -->
-<div class="sort-date-modal modal fade" id="sortDateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="sort-date-modal modal fade" id="sortDateModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -312,7 +315,7 @@
         }
         );
 
-       
+
             $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
             $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
             var table = $('#example').DataTable();

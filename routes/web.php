@@ -87,13 +87,13 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'FrontendController@index')->middleware('auth');
 // front end routes
-Route::group(['middleware' => ['auth', 'shopper', 'admin']], function () {
+Route::group(['middleware' => ['auth']], function () {
     // account setting
     Route::get('account-setting', function () {
         return view('front-end.account-setting');
     });
-    Route::get('/', 'FrontendController@index');
     Route::get('/cart', 'FrontendController@cart');
     Route::get('/product/{id}', 'FrontendController@product')->name('single.product');
     Route::get('/order-history', 'FrontendController@orders');

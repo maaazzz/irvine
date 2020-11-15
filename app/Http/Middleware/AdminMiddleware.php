@@ -16,10 +16,10 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->role == 1) {
+        if (Auth::user()->role == 4) {
             return $next($request);
         } else {
-            return back()
+            return redirect('/')
                 ->with('danger', 'You are not authorized');
         }
     }

@@ -49,7 +49,9 @@
 @if (Session::has('success'))
 <div class="alert alert-success">{{ Session::get('success') }}</div>
 @endif
-
+@if(Session::has('danger'))
+<div class="alert alert-danger">{{Session::get('danger')}}</div>
+@endif
 <h5 class="page-title">Approvals</h5>
 
 <div class="filter-box d-flex flex-wrap align-items-center mb-4">
