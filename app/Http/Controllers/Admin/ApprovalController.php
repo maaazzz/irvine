@@ -15,8 +15,11 @@ class ApprovalController extends Controller
 {
     public function index()
     {
-        $approvals = Order::where('approver_id', auth()->user()->id)
-            ->get();
+        $approver_id = auth()->user()->id;
+        // dd($approver_id);
+        $approvals = Order::where('approver_id', $approver_id)
+            ->paginate(10);
+        // dd($approvals);
         return view('admin.approvals-mgt.approvals', compact('approvals'));
     }
 
@@ -32,7 +35,7 @@ class ApprovalController extends Controller
         $warehouse = Location::where('id', $warehouse_id)->first();
 
         // find emails of approval and
-        $approval_email = $shopper->email;
+        $shopper_email = $shopper->email;
         $warehouse_email = $warehouse->email;
 
 
@@ -44,14 +47,14 @@ class ApprovalController extends Controller
         $order->update();
 
         // mail to shopper
-        Mail::to($approval_email)
+        Mail::to($shopper_email)
             ->send(new
                 ApprovalMail($user));
 
         // mail to warehouse
         Mail::to($warehouse_email)
             ->send(new
-                WarehouseMailMail($user));
+                WarehouseMailMail($user, $order));
 
         return back()->with('success', 'Approved successfully');
     }

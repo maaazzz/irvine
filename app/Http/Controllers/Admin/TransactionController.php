@@ -15,7 +15,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Order::all();
+        $transactions = Order::paginate(10);
 
         // dd($transactions);
         return view('admin.transaction-mgt.transactions', compact('transactions'));

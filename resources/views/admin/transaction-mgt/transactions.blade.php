@@ -98,32 +98,10 @@
 <div class="">
     <div class="table-filter">
         <div class="d-flex flex-wrap justify-content-between align-items-center">
-            <p class="show-txt">Showing 0 to 0 of 0 entries</p>
-            <div class="row-select d-flex align-items-center">
-                <span>Show </span>
-                <select class="custom-select">
-                    <option value="1">10</option>
-                    <option value="2">50</option>
-                    <option value="3">100</option>
-                </select>
-                <span> entries</span>
-            </div>
 
             <div class="">
                 <ul class="pagination pagination-sm justify-content-end">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
-                        </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
-                        </a>
-                    </li>
+                    {{$transactions->links()}}
                 </ul>
             </div>
         </div>
@@ -150,7 +128,18 @@
             <tbody>
                 @forelse ($transactions as $transaction)
                 <tr>
-                    <td><span class="stat-dot stat-green"></span></td>
+
+                    <td>
+                        @if ($transaction->status == 0)
+                        <span class="stat-dot stat-red"></span>
+                        @endif
+                        @if ($transaction->status == 1)
+                        <span class="stat-dot stat-green"></span>
+                        @endif
+                        @if ($transaction->status == 2)
+                        <span class="stat-dot stat-green"></span>
+                        @endif
+                    </td>
                     <td>{{ date('Y-m-d', strtotime($transaction->created_at))}}</td>
                     <td>{{ $transaction->date_needed }}</td>
                     <td>{{ $transaction->location->loc_name }}</td>

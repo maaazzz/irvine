@@ -108,6 +108,11 @@
                             <p class="product-qty product-info">Available Qty: {{ $product->quantity_oh }}</p>
 
                             <a class="add-product btn" href="{{ route('cart.add', $product->id) }}">Add to Cart</a>
+                            <form class="fvrt">
+                                {{-- <input type="hidden" value="{{ $product->id}}"> --}}
+                                <button type="button" class="btn btn-link like">Add to
+                                    Favorite</button>
+                            </form>
                         </div>
                     </div>
                     @endforeach
@@ -185,7 +190,10 @@
 			});
 			request.fail(function(jqXHR, textStatus) {
 				alert( "Request failed: " + textStatus );
-			});
+            });
+
+
+
 	});
 </script>
 

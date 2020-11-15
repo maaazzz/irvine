@@ -66,8 +66,8 @@
                                                                 <a class="btn-link btn"
                                                                     href="{{ route('cart.remove', $item->id) }}"><i
                                                                         class="fa fa-trash"></i></a>
-                                                                <button class="btn-link btn" type="button">Add to
-                                                                    Favorite</button>
+
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -140,7 +140,8 @@
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label for="">Date Needed</label>
-                                        <input class="form-control" type="date" name="date_needed" value="{{date('Y-m-d')}}" />
+                                        <input class="form-control" type="date" name="date_needed"
+                                            value="{{date('Y-m-d')}}" />
                                     </div>
                                     <div class="form-group">
                                         <div class="form-check form-check-inline">

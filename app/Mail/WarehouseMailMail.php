@@ -11,6 +11,7 @@ class WarehouseMailMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $user;
+    public $order;
     /**
      * Create a new message instance.
      *
