@@ -18,12 +18,13 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Order::all();
+        $transactions = Order::paginate(10);
+
         $users = User::all();
         $acc_numbers = AccountNumber::all();
         $project_nums = ProjectNumber::all();
         // dd($transactions);
-        return view('admin.transaction-mgt.transactions', compact('transactions','users','acc_numbers','project_nums'));
+        return view('admin.transaction-mgt.transactions', compact('transactions', 'users', 'acc_numbers', 'project_nums'));
     }
 
     /**

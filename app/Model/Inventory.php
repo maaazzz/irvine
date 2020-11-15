@@ -19,6 +19,11 @@ class Inventory extends Model
         return $this->belongsTo('App\Model\Category');
     }
 
+    public function favorite()
+    {
+        return $this->hasMany('App\Favorite');
+    }
+
     public function location()
     {
         return $this->belongsTo('App\Model\Location');

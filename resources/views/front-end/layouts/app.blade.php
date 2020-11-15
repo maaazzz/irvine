@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <link rel="shortcut icon" href="favicon.ico" sizes="32x32" />
+    <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png" /> -->
+    <!-- <link rel="shortcut icon" href="favicon.ico" sizes="32x32" /> -->
 
     <title>Irvine - Online Store</title>
 
