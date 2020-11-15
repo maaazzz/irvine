@@ -86,6 +86,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', 'FrontendController@index');
     Route::get('/cart', 'FrontendController@cart');
+    Route::get('/order-history', 'FrontendController@orders');
     Route::get('/product/{id}', 'FrontendController@product');
     Route::get('/cart/add/{id}', 'CartController@addToCart')->name('cart.add');
     Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');

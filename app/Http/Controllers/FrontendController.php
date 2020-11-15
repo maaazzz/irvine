@@ -9,6 +9,8 @@ use App\Model\Inventory;
 use App\Model\AccountNumber;
 use App\Model\Justification;
 use App\Model\ProjectNumber;
+use App\Model\Order;
+
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -51,6 +53,15 @@ class FrontendController extends Controller
        
 
         return view('front-end.product', compact('product', 'quantity'));
+    }
+
+
+    
+    public function orders()
+    {
+        $shopperId =  auth()->user()->id;
+       $orders = Order::where('shopper_id', $shopperId)->with('location', 'projectNumber', 'accountNumber', 'approver', 'justification')->get();
+        return view('front-end.orderHistory', compact('orders'));
     }
 
 }

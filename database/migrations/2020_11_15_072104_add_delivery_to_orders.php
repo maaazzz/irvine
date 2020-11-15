@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStatusToOrders extends Migration
+class AddDeliveryToOrders extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddStatusToOrders extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->integer('status')->default(0)->after('pickup_notes');
+            $table->string('approve_date')->nullable()->after('pickup_notes');
+            $table->string('delivery_date')->nullable()->after('approver_notes');
+            $table->text('delivery_notes')->nullable()->after('delivery_date');
         });
     }
 
@@ -26,7 +28,7 @@ class AddStatusToOrders extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            //
+            $this->dropColumn('approve_date', 'delivery_date', 'delivery_notes');
         });
     }
 }
