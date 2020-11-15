@@ -86,7 +86,7 @@
 </div>
 
 <div class="filter-box d-flex flex-wrap align-items-center">
-    
+
 </div>
 
 
@@ -98,7 +98,6 @@
             <th>Email</th>
             <th>Account Type</th>
             <th>Account Status</th>
-            <th>Orders</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -122,9 +121,7 @@
             @endif
 
             <td>{{ $user->status == 1 ? 'Active' : 'Inactive' }}</td>
-            <td class="">
-                <a href="#" class="table-link" data-toggle="modal" data-target="#ordersModal">View</a>
-            </td>
+
             <td class="table-links">
                 <a class="table-link edit-user" data-id={{$user->id}} href="#" data-toggle="modal"
                     data-target="#editModal" title="Edit User"><i class="fas fa-pen"></i></a>
@@ -201,7 +198,7 @@
                             <div class="">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="role" value="1" required />
-                                    <label class="form-check-label" for="">Shopper</label>
+                                    <label class="form-check-label" for="">Warehouse Manager</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="role" value="2" required />
@@ -209,7 +206,7 @@
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="role" value="3" required />
-                                    <label class="form-check-label" for="selectAccountType3">Warehouse Manager</label>
+                                    <label class="form-check-label" for="selectAccountType3">Shopper</label>
                                 </div>
                             </div>
                         </div>
@@ -403,14 +400,14 @@
             .appendTo($('div.eight.column:eq(0)', table.table().container()));
 
         $('#account-type').on('change', function(){
-            table.search(this.value).draw(); 
+            table.search(this.value).draw();
         });
 
         $('#account-status').on('change', function(){
-            table.search(this.value).draw();   
+            table.search(this.value).draw();
         });
         $('#filter-project').on('change', function(){
-            table.search(this.value).draw();   
+            table.search(this.value).draw();
         });
     });
 </script>

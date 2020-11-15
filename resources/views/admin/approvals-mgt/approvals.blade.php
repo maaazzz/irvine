@@ -133,8 +133,19 @@
             <tbody>
                 @foreach ($approvals as $approval)
                 <tr>
+
                     {{-- {{dd($approvals)}} --}}
-                    <td><span class="stat-dot stat-green"></span></td>
+                    <td>
+                        @if ($approval->status == 0)
+                        <span class="stat-dot stat-red"></span>
+                        @endif
+                        @if ($approval->status == 1)
+                        <span class="stat-dot stat-orange"></span>
+                        @endif
+                        @if ($approval->status == 2)
+                        <span class="stat-dot stat-green"></span>
+                        @endif
+                    </td>
                     <td>{{ date('Y-m-d', strtotime($approval->created_at))}}</td>
                     <td>{{ $approval->date_needed }}</td>
                     <td>{{ $approval->location->loc_name }}</td>
@@ -142,7 +153,7 @@
                     <td>{{ $approval->projectNumber->project_number }}</td>
                     <td>{{$approval->approver->name}}</td>
                     <td>{{ $approval->justification->justification }}</td>
-                    <td>{{ $approval->delivery_type }}</td>
+                    <td>{{ $approval->delivery_type == 0 ? "wahrehouse" : 'deliver to me' }}</td>
 
                     <td>
                         <form action="{{ route('approval.approved',$approval->id) }}" method="post">
