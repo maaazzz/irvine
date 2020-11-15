@@ -102,6 +102,8 @@
                         </a>
                         <div class="text-center"><a class="product-title"
                                 href="{{route('single.product',$product->id)}}">{{ $product->product_name }}</a></div>
+
+
                         <p class="product-details text-center">{{ $product->description }}</p>
                         <div class="text-center">
                             <p class="product-cost product-info">Cost: {{ $product->price }}</p>

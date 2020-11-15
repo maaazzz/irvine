@@ -1,7 +1,7 @@
 @component('mail::message')
 # Introduction
 
-This is test from {{auth()->user()->name}}
+{{auth()->user()->name}}
 
 @component('mail::button', ['url' => ''])
 Button Text

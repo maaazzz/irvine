@@ -69,8 +69,6 @@ class FrontendController extends Controller
         if ($cartItem != null) {
             $quantity = $cartItem->quantity;
         }
-
-
         return view('front-end.product', compact('product', 'quantity'));
     }
 }

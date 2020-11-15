@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\AccountNumber;
 use App\Model\Order;
+use App\Model\ProjectNumber;
+use App\User;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -17,8 +20,11 @@ class TransactionController extends Controller
     {
         $transactions = Order::paginate(10);
 
+        $users = User::all();
+        $acc_numbers = AccountNumber::all();
+        $project_nums = ProjectNumber::all();
         // dd($transactions);
-        return view('admin.transaction-mgt.transactions', compact('transactions'));
+        return view('admin.transaction-mgt.transactions', compact('transactions', 'users', 'acc_numbers', 'project_nums'));
     }
 
     /**

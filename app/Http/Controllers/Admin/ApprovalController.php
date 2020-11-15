@@ -25,7 +25,7 @@ class ApprovalController extends Controller
 
     public function approved(Request $request, $id)
     {
-
+        $url = request()->url();
         // get id of shopper and warehouse
         $shoper_id = $request->shopper_id;
         $warehouse_id = $request->location_id;
@@ -40,21 +40,22 @@ class ApprovalController extends Controller
 
 
         $order = Order::where('id', $id)->first();
+
         $user = $order->approver_id;
 
         // update status
         $order->status = 1;
         $order->update();
 
-        // mail to shopper
-        Mail::to($shopper_email)
-            ->send(new
-                ApprovalMail($user));
+        // // mail to shopper
+        // Mail::to($shopper_email)
+        //     ->send(new
+        //         ApprovalMail($user));
 
         // mail to warehouse
         Mail::to($warehouse_email)
             ->send(new
-                WarehouseMailMail($user, $order));
+                WarehouseMailMail($user, $order, $url));
 
         return back()->with('success', 'Approved successfully');
     }
