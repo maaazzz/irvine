@@ -88,6 +88,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/cart', 'FrontendController@cart');
     Route::get('/order-history', 'FrontendController@orders');
     Route::get('/product/{id}', 'FrontendController@product');
+    Route::get('/product/{id}/fev', 'FrontendController@addToFev');
     Route::get('/cart/add/{id}', 'CartController@addToCart')->name('cart.add');
     Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
     Route::get('/cart/clear', 'CartController@clearCart')->name('cart.clear');
@@ -97,5 +98,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     // locations Routes
     Route::resource('order', 'Admin\OrderController');
+    Route::get('/order/{id}/notes', 'Admin\OrderController@getNotes');
   // end of location route
 });

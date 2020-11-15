@@ -39,8 +39,12 @@ class User extends Authenticatable
 
     
     public function inventories(){
-
         return $this->hasMany('App\Model\Inventory');
-    
     }
+
+    public function myFavorites(){
+        return $this->hasMany('App\Favorite');
+    }
+
+
 }

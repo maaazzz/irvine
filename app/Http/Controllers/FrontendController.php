@@ -10,6 +10,7 @@ use App\Model\AccountNumber;
 use App\Model\Justification;
 use App\Model\ProjectNumber;
 use App\Model\Order;
+use App\Favorite;
 
 use Illuminate\Http\Request;
 
@@ -47,6 +48,7 @@ class FrontendController extends Controller
         $quantity=0;
         $product = Inventory::find($id);
         $cartItem = Cart::get($product->id);
+        
         if($cartItem != null){
             $quantity = $cartItem->quantity;
         }
@@ -63,5 +65,18 @@ class FrontendController extends Controller
        $orders = Order::where('shopper_id', $shopperId)->with('location', 'projectNumber', 'accountNumber', 'approver', 'justification')->get();
         return view('front-end.orderHistory', compact('orders'));
     }
+
+    public function addToFev($id)
+    {
+        Favorite::create([
+            'inventory_id'=>$id,
+            'user_id' => auth()->user()->id
+        ]);
+
+        return response()->json('Product Is Into Fevorites');
+
+    }
+
+
 
 }

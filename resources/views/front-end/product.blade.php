@@ -55,7 +55,7 @@
 
 							<div class="product-data">
 							<p class="product-cost">Cost: {{ $product->price }}</p>
-								<p class="product-qty">Available Qty: {{ $product->price }} </p>
+								<p class="product-qty">Available Qty: {{ $product->quantity_oh }} </p>
 							</div>
 
 							<div class="product-info">
@@ -78,14 +78,29 @@
 									<a class="btn-link btn" href="{{ route('cart.remove', $product->id) }}"><i class="fa fa-trash"></i></a>
 								
 									@endif
-								
-									<br>
-									<div class="">
+									
+
+
+									
+			
+								<br>
+								<div class="">
 										
 									<a class="yellow-btn main-btn btn my-2 mr-2" href="{{ route('cart.add', $product->id) }}">Add to cart</a>
 									<a class="gray-btn main-btn btn my-2 mr-2" href="{{ url('/') }}" type="button">Continue Shopping</a>
-										{{-- <button class="blue-btn main-btn btn my-2 mr-2" type="button">Add to Favorites</button> --}}
-									</div>
+									@php $check = $product->favorite()->where('user_id',auth()->id())->first(); @endphp
+							
+									@if($check)
+											  
+									  <button class="blue-btn main-btn btn my-2 mr-2" disabled="disabled">Added to Favorite</button>
+										  
+									  @else
+											  
+									  <button class="blue-btn main-btn btn my-2 mr-2 .addToFev" data-fav='{{ $product->id }}' id="myFav">Add to Favorite</button>
+									  
+	  
+									  @endif	
+								</div>
 								</div>
 							</div>
 						</div>
@@ -97,3 +112,42 @@
 </main>
 
             @endsection
+
+
+@section('scripts')
+
+<script>
+
+
+$(document).ready(function(){
+
+
+	// start Fev 
+
+
+		$('#myFav').on('click',function(){
+				var fevId = $(this).attr('data-fav');
+
+
+   				$.ajax({
+           				url: '../product/'+fevId+'/fev',
+           				method: 'GET',
+           				success:function(data){
+            			
+            			alert(data)
+        
+           			}
+   			});
+
+	});
+
+//end fev
+
+
+});
+ 
+
+
+</script>
+
+@endsection
