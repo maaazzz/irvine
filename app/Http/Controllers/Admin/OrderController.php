@@ -94,9 +94,10 @@ class OrderController extends Controller
      * @param  \App\Model\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+         $order = Order::with('inventory')->find($id);
+         return response()->json($order);
     }
 
     /**
@@ -132,4 +133,13 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function getNotes($id)
+    {
+        // echo $id;
+        // // echo "it works";
+        $notes = Order::find($id);
+         return response()->json($notes);
+    }
+    
 }

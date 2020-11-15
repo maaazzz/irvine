@@ -38,15 +38,13 @@ class User extends Authenticatable
     ];
 
 
-    public function inventories()
-    {
-
+    
+    public function inventories(){
         return $this->hasMany('App\Model\Inventory');
     }
 
-    // relation with favourite
-    public function favourites()
-    {
-        return $this->hasMany('App\Model\Favourite');
+    public function myFavorites(){
+        return $this->hasMany('App\Favorite');
     }
-}
+
+} 

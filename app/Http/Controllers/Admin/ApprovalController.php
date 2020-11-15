@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use App\Model\Order;
 use App\Model\Location;
+use App\Model\AccountNumber;
+use App\Model\ProjectNumber;
 use App\Mail\ApprovalMail;
 use Illuminate\Http\Request;
 use App\Mail\WarehouseMailMail;
@@ -16,11 +18,11 @@ class ApprovalController extends Controller
     public function index()
     {
         $approver_id = auth()->user()->id;
-        // dd($approver_id);
-        $approvals = Order::where('approver_id', $approver_id)
-            ->paginate(10);
-        // dd($approvals);
-        return view('admin.approvals-mgt.approvals', compact('approvals'));
+        $approvals = Order::where('approver_id', $approver_id)->get();
+        $users = User::all();
+        $acc_numbers = AccountNumber::all();
+        $project_nums = ProjectNumber::all();
+        return view('admin.approvals-mgt.approvals', compact('approvals','users','acc_numbers','project_nums'));
     }
 
     public function approved(Request $request, $id)
