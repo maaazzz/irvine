@@ -48,9 +48,9 @@ class ApprovalController extends Controller
         $order->update();
 
         // // mail to shopper
-        // Mail::to($shopper_email)
-        //     ->send(new
-        //         ApprovalMail($user));
+        Mail::to($shopper_email)
+            ->send(new
+                ApprovalMail($user));
 
         // mail to warehouse
         Mail::to($warehouse_email)

@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\Orders;
 
-use App\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ApprovalMail extends Mailable
+class ShopperMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $user;
@@ -17,7 +16,7 @@ class ApprovalMail extends Mailable
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($user)
     {
         $this->user = $user;
     }
@@ -29,6 +28,6 @@ class ApprovalMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.orders.approval')->with('approver', $this->user);
+        return $this->markdown('emails/orders/shopperEmail');
     }
 }
