@@ -123,7 +123,6 @@
                     <th>Project</th>
                     <th>Shopper</th>
                     <th>Justification</th>
-
                     <th>Delivered</th>
                     <th>Approved</th>
                     <th>View Order</th>
