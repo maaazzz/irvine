@@ -202,6 +202,7 @@
     </table>
 </div>
 
+
 <!-- Sort by Date Modal -->
 <div class="sort-date-modal modal fade" id="sortDateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
