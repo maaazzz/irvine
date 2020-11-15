@@ -140,6 +140,7 @@
                     <th>Account #</th>
                     <th>Project</th>
                     <th>Approver</th>
+                    <th>Shopper</th>
                     <th>Justification</th>
                     <th>Delivered</th>
                     <th>View Order</th>
@@ -156,6 +157,7 @@
                     <td>{{ $transaction->accountNumber->account_no }}</td>
                     <td>{{ $transaction->projectNumber->project_number }}</td>
                     <td>{{$transaction->approver->name}}</td>
+                    <td>{{$transaction->shopper->name}}</td>
                     <td>{{ $transaction->justification->justification }}</td>
                     <td>{{ $transaction->delivery_type }}</td>
 
