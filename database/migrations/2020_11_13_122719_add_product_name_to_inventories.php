@@ -26,7 +26,7 @@ class AddProductNameToInventories extends Migration
     public function down()
     {
         Schema::table('inventories', function (Blueprint $table) {
-            $this->dropColumn('product_name');
+            $table->dropColumn('product_name');
         });
     }
 }

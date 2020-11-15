@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsFeaturedToInventories extends Migration
+class CreateFavouritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddIsFeaturedToInventories extends Migration
      */
     public function up()
     {
-        Schema::table('inventories', function (Blueprint $table) {
-            $table->integer('is_featured')->after('description')->nullbale()->default(0);
+        Schema::create('favourites', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('inventory_id');
+            $table->unsignedBigInteger('user_id');
+            $table->boolean('is_like');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddIsFeaturedToInventories extends Migration
      */
     public function down()
     {
-        Schema::table('inventories', function (Blueprint $table) {
-            $table->dropColumn('is_featured');
-        });
+        Schema::dropIfExists('favourites');
     }
 }
