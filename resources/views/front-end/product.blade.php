@@ -27,7 +27,7 @@
 							@foreach(explode(',', $product->images) as $p)
 							<div class="list-img square-box" style="padding:10px;">
 								<div class="img-box">
-								<img class="img-fluid" src="../images/{{ $p }}" alt="" />
+								<img class="img-fluid" src="{{asset('images/').$p}}" alt="" />
 								</div>
 							</div>
 							@endforeach	
