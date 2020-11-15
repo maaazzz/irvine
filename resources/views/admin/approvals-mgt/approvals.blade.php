@@ -190,7 +190,7 @@
                 <td>{{ $approval->location->loc_name }}</td>
                 <td>{{ $approval->accountNumber->account_no }}</td>
                 <td>{{ $approval->projectNumber->project_number }}</td>
-                <td>{{ $approval->approver->name }}</td>
+                <td>{{ $approval->shopper->name }}</td>
                 <td>{{ $approval->justification->justification }}</td>
                 <td>{{ $approval->delivery_type == 0 ? "Warehouse Pickup" : 'Deliver to Me' }}</td>
 
