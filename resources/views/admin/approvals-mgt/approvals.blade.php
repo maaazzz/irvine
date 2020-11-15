@@ -63,7 +63,7 @@
     </div>
     <div class="mr-2">
         <select class="custom-select" id="filter-by-shopper">
-            <option selected hidden>Filter by Shopper Name</option>
+            <option selected hiddenq>Filter by Shopper Name</option>
             @forelse ($users as $user)
             @if ($user->role == 1)
             <option value="{{ $user->name }}">{{ $user->name }}</option>
