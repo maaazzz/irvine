@@ -37,6 +37,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     
     public function inventories(){
         return $this->hasMany('App\Model\Inventory');
@@ -46,5 +47,4 @@ class User extends Authenticatable
         return $this->hasMany('App\Favorite');
     }
 
-
-}
+} 

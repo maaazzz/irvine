@@ -38,4 +38,10 @@ class Inventory extends Model
     {
         return $this->hasMany('App\Model\Order');
     }
+
+    // relation with favourite
+    public function favourites()
+    {
+        return $this->hasMany('App\Model\Favourite');
+    }
 }

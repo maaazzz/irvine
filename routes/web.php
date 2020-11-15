@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcom');
 // });
 
-Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     Route::get('/', function () {
         return view('admin.dashboard-mgt.dashboard');
-    });
+    })->name('admin.index');
 
     // transaction
     Route::resource('transactions', 'Admin\TransactionController');
@@ -64,12 +64,14 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
     // Account number Routes
     Route::resource('justifications', 'Admin\JustificationController');
     // End Account number Routes
-  
+
 
     // approval routes
     Route::get('approvals', 'Admin\ApprovalController@index')->name('approvals');
     Route::put('approvals/approved/{id}', 'Admin\ApprovalController@approved')->name('approval.approved');
     // end of approval routes
+
+
 });
 
 
@@ -81,14 +83,25 @@ Route::group(['middleware' => ['auth', 'warehouse'], 'prefix' => 'admin'], funct
 Auth::routes();
 
 
+Route::get('/cart/add/{id}', 'CartController@addToCart')->name('cart.add');
+Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
+Route::get('/cart/clear', 'CartController@clearCart')->name('cart.clear');
+Route::get('/cart/increase/{id}', 'CartController@inc')->name('cart.inc');
+Route::get('/cart/decrease/{id}', 'CartController@dec')->name('cart.dec');
+
+Route::get('get-categories-products/{id}', 'FrontendController@get_categories_products')->name('get-categories-products');
+Route::get('get-location-products/{id}', 'FrontendController@get_location_products')->name('get-location-products');
 Route::get('/home', 'HomeController@index')->name('home');
 // front end routes
 Route::group(['middleware' => ['auth']], function () {
+
     Route::get('/', 'FrontendController@index');
     Route::get('/cart', 'FrontendController@cart');
+    Route::get('/product/{id}', 'FrontendController@product')->name('single.product');
     Route::get('/order-history', 'FrontendController@orders');
-    Route::get('/product/{id}', 'FrontendController@product');
+
     Route::get('/product/{id}/fev', 'FrontendController@addToFev');
+
     Route::get('/cart/add/{id}', 'CartController@addToCart')->name('cart.add');
     Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
     Route::get('/cart/clear', 'CartController@clearCart')->name('cart.clear');
@@ -98,6 +111,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     // locations Routes
     Route::resource('order', 'Admin\OrderController');
+    // end of location route
+
+    // favorite
+    Route::post('favourite', 'CartController@fvrt')->name('favourite');
+    // end of favorite
     Route::get('/order/{id}/notes', 'Admin\OrderController@getNotes');
-  // end of location route
+    // end of location route
 });
