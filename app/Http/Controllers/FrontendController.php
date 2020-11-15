@@ -88,7 +88,12 @@ class FrontendController extends Controller
         return response()->json('Product Is Into Fevorites');
 
     }
-
+    public function orders()
+    {
+        $shopperId =  auth()->user()->id;
+       $orders = Order::where('shopper_id', $shopperId)->with('location', 'projectNumber', 'accountNumber', 'approver', 'justification')->get();
+        return view('front-end.orderHistory', compact('orders'));
+    }
 
 
 }
