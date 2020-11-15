@@ -70,6 +70,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('approvals', 'Admin\ApprovalController@index')->name('approvals');
     Route::put('approvals/approved/{id}', 'Admin\ApprovalController@approved')->name('approval.approved');
     // end of approval routes
+
+
 });
 
 
@@ -92,9 +94,12 @@ Route::get('get-location-products/{id}', 'FrontendController@get_location_produc
 Route::get('/home', 'HomeController@index')->name('home');
 // front end routes
 Route::group(['middleware' => ['auth']], function () {
+
     Route::get('/', 'FrontendController@index');
     Route::get('/cart', 'FrontendController@cart');
     Route::get('/product/{id}', 'FrontendController@product')->name('single.product');
+    Route::get('/order-history', 'FrontendController@orders');
+    // Route::get('/product/{id}', 'FrontendController@product');
     Route::get('/cart/add/{id}', 'CartController@addToCart')->name('cart.add');
     Route::get('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
     Route::get('/cart/clear', 'CartController@clearCart')->name('cart.clear');
@@ -104,5 +109,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     // locations Routes
     Route::resource('order', 'Admin\OrderController');
+    // end of location route
+
+    // favorite
+    Route::post('favourite', 'CartController@fvrt')->name('favourite');
+    // end of favorite
+    Route::get('/order/{id}/notes', 'Admin\OrderController@getNotes');
     // end of location route
 });

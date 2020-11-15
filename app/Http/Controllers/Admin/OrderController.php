@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Model\Order;
-use Illuminate\Http\Request;
 use Auth;
 use Cart;
+use App\User;
+use App\Model\Order;
+use Illuminate\Http\Request;
+use App\Mail\Orders\OrderMail;
+use App\Http\Controllers\Controller;
+use App\Mail\Orders\ShopperMail;
+use Illuminate\Support\Facades\Mail;
+
 class OrderController extends Controller
 {
     /**
@@ -39,9 +44,9 @@ class OrderController extends Controller
     {
         $input = $request->all();
 
-       foreach (Cart::getContent() as $order) {
-                
-        $input = [
+        foreach (Cart::getContent() as $order) {
+
+            $input = [
                 'inventory_id' => $order->id,
                 'location_id' => $request->location_id,
                 'account_number_id' => $request->account_number_id,
@@ -55,19 +60,32 @@ class OrderController extends Controller
                 'delivery_type' => $request->delivery_type,
                 'pickup_notes' => $request->pickup_notes,
                 'status' => 0,
-                'approver_notes' =>""
-                
-    ];
-    
-       $order = Order::create($input);
-}
+                'approver_notes' => ""
 
-    Cart::clear();
-    return redirect('/')->with('success', 'Order Place Successfully');
- 
+            ];
 
+            // get approver email address
+            $a_email = User::where('id', $request->approver_id)->first();
+            // get approver email address
+            $shopper_email = auth()->user()->email;
 
-       
+            $approver_email = $a_email->email;
+
+            $order = Order::create($input);
+
+            // // mail to approver
+            Mail::to($approver_email)
+                ->send(new
+                    OrderMail($order));
+
+            // // mail to shopper
+            Mail::to($shopper_email)
+                ->send(new
+                    ShopperMail($order));
+        }
+
+        Cart::clear();
+        return redirect('/')->with('success', 'Order Place Successfully');
     }
 
     /**

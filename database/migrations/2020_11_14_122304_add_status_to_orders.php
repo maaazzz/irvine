@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsFeaturedToInventories extends Migration
+class AddStatusToOrders extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddIsFeaturedToInventories extends Migration
      */
     public function up()
     {
-        Schema::table('inventories', function (Blueprint $table) {
-            $table->integer('is_featured')->after('description')->nullbale()->default(0);
+        Schema::table('orders', function (Blueprint $table) {
+            $table->integer('status')->default(0)->after('pickup_notes');
         });
     }
 
@@ -25,8 +25,8 @@ class AddIsFeaturedToInventories extends Migration
      */
     public function down()
     {
-        Schema::table('inventories', function (Blueprint $table) {
-            $table->dropColumn('is_featured');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 }

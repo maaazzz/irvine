@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Favourite;
 use Illuminate\Http\Request;
 use Cart;
 use App\Model\Inventory;
+
 class CartController extends Controller
 {
     //
@@ -15,21 +17,20 @@ class CartController extends Controller
         $product = Inventory::find($id);
 
         $add = Cart::add([
-    		'id' => $product->id,
-    		'name' => $product->product_name,
-    		'price' => $product->price,
- 			'quantity' => 1,
- 			'attributes' => [
-                        'description'=> $product->description,
-                        'available_quantity'=> $product->quantity_oh,
-			            'img'=> $product->image,
-                        
-			            
+            'id' => $product->id,
+            'name' => $product->product_name,
+            'price' => $product->price,
+            'quantity' => 1,
+            'attributes' => [
+                'description' => $product->description,
+                'available_quantity' => $product->quantity_oh,
+                'img' => $product->image,
+
+
             ]
         ]);
 
         return back()->with('success', "Item Added Into Cart");
-
     }
 
     public function clearCart()
@@ -46,21 +47,27 @@ class CartController extends Controller
 
     public function inc($id)
     {
-    	Cart::update($id, array(
-  			'quantity' => +1, 
-		));
-		return back()->with('success', "Item Quantity Updated");
+        Cart::update($id, array(
+            'quantity' => +1,
+        ));
+        return back()->with('success', "Item Quantity Updated");
     }
 
-	public function dec($id)
+    public function dec($id)
     {
-    	Cart::update($id, array(
-  			'quantity' => -1, 
-		));
-		return back()->with('success', "Item Quantity Updated");
+        Cart::update($id, array(
+            'quantity' => -1,
+        ));
+        return back()->with('success', "Item Quantity Updated");
     }
 
+    public function fvrt(Request $request)
+    {
+        // dd($request->all());
+        $like =  Favourite::create([
+            'inventory_id' => $request->inventory_id,
+        ]);
+
+        return response()->json('success');
+    }
 }
-
-
-

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStatusToOrders extends Migration
+class CreateFavouritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddStatusToOrders extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->integer('status')->default(0)->after('pickup_notes');
+        Schema::create('favourites', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('inventory_id');
+            $table->unsignedBigInteger('user_id');
+            $table->boolean('is_like');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddStatusToOrders extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('favourites');
     }
 }

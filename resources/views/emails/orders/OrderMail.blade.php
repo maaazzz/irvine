@@ -6,12 +6,12 @@
 <p> <strong> Purchase Quantity </strong> {{$order->purchase_qty}}</p>
 <p> <strong> Purchase Total</strong> {{ $order->purchase_total }}</p>
 <p> <strong> Shopper Name </strong> {{$order->shopper->name}}</p>
-<p> <strong> Approver Name</strong> {{$order->approver->name}}</p>
 <p> <strong> Date Needed </strong> {{$order->date_needed}}</p>
 
-
-
+@component('mail::button', ['url' => route('approvals')])
+Click To See
+@endcomponent
 
 Thanks,<br>
-<h4>Irvine Store</h4>
+<h4>Irvince Store</h4>
 @endcomponent

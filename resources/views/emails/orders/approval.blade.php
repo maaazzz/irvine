@@ -1,12 +1,12 @@
 @component('mail::message')
-# Introduction
+# Hey You Have a new Order please check it out !!
 
-This is test from {{auth()->user()->name}}
 
-@component('mail::button', ['url' => ''])
-Button Text
+
+@component('mail::button', ['url' => route('approvals')])
+Click To See
 @endcomponent
 
 Thanks,<br>
-{{ config('app.name') }}
+Irvince Store
 @endcomponent

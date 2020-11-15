@@ -55,7 +55,7 @@
 
 							<div class="product-data">
 							<p class="product-cost">Cost: {{ $product->price }}</p>
-								<p class="product-qty">Available Qty: {{ $product->price }} </p>
+								<p class="product-qty">Available Qty: {{ $product->quantity_oh }} </p>
 							</div>
 
 							<div class="product-info">

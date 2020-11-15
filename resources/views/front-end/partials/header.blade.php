@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav flex-md-grow-1">
                     <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">Online Store</a></li>
-                    <li class="nav-item"><a href="history.html" class="nav-link">Order History</a></li>
+                    <li class="nav-item"><a href="{{url('/order-history')}}" class="nav-link">Order History</a></li>
                     <li class="nav-item"><a href="favorite.html" class="nav-link">Favorite Items</a></li>
                     <li class="nav-item"><a href="approvals.html" class="nav-link">Approvals</a></li>
                     <li class="nav-item"><a href="warehouse.html" class="nav-link">Warehouse</a></li>

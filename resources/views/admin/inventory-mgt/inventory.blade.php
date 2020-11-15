@@ -223,7 +223,7 @@
                             <label>QTY OH</label>
                             <input class="form-control" type="text" name="quantity_oh" required />
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>Choose Status</label>
                             <select class="custom-select" name="status">
 
@@ -232,11 +232,13 @@
                                 <option value="Delivered">Delivered</option>
 
                             </select>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
+                            New
+                            <input class="mx-1" name="is_featured" type="radio" value="1" />
                             <label>Featured</label>
-                            <input class="" name="is_featured" type="checkbox" required value="1" />
+                            <input class="mx-1 mr-2" name="is_featured" type="radio" value="2" />
                         </div>
                     </div>
 
@@ -299,4 +301,3 @@
 </script>
 
 @endsection
-
