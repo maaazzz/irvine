@@ -19883,4 +19883,4 @@ esources\\views/admin/approvals-mgt/approvals.blade.php:146)
 #45 /var/www/html/IrvineStore/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #46 /var/www/html/IrvineStore/server.php(21): require_once('/var/www/html/I...')
 #47 {main}
-"} 
+"}
