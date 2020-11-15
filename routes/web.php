@@ -97,5 +97,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     // locations Routes
     Route::resource('order', 'Admin\OrderController');
+    Route::get('/order/{id}/notes', 'Admin\OrderController@getNotes');
   // end of location route
 });
