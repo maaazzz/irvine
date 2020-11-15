@@ -74,12 +74,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
 });
 
-
-
-
-
-
-
 Auth::routes();
 
 

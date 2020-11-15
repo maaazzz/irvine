@@ -65,10 +65,13 @@
         </select>
     </div>
     <div class="mr-2">
-        <select class="custom-select">
+        <select class="custom-select" id="filter-by-shopper">
             <option selected hidden>Filter by Shopper Name</option>
-            <option value="">Shopper Name 1</option>
-            <option value="">Shopper Name 2</option>
+            @forelse ($users as $user)
+            @if ($user->role == 1)
+            <option value="{{ $user->name }}">{{ $user->name }}</option>
+            @endif
+            @endforeach
         </select>
     </div>
     <div class="mr-2">
@@ -278,6 +281,10 @@
     });
 
     $('#filter-by-approver').on('change', function(){
+        table.search(this.value).draw();
+    });
+
+    $('#filter-by-shopper').on('change', function(){
         table.search(this.value).draw();
     });
 
