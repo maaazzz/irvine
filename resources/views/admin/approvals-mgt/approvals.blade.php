@@ -63,7 +63,7 @@
     </div>
     <div class="mr-2">
         <select class="custom-select" id="filter-by-shopper">
-            <option selected hidden>Filter by Shopper Name</option>
+            <option selected hiddenq>Filter by Shopper Name</option>
             @forelse ($users as $user)
             @if ($user->role == 1)
             <option value="{{ $user->name }}">{{ $user->name }}</option>
@@ -190,7 +190,7 @@
                 <td>{{ $approval->location->loc_name }}</td>
                 <td>{{ $approval->accountNumber->account_no }}</td>
                 <td>{{ $approval->projectNumber->project_number }}</td>
-                <td>{{ $approval->approver->name }}</td>
+                <td>{{ $approval->shopper->name }}</td>
                 <td>{{ $approval->justification->justification }}</td>
                 <td>{{ $approval->delivery_type == 0 ? "Warehouse Pickup" : 'Deliver to Me' }}</td>
 
