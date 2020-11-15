@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.dataTables.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <style>
     button.dt-button,
@@ -127,7 +128,6 @@
     </div>
 </div>
 
-<div class="">
     <table class="table table-bordered table-striped table-sm text-center" id="example">
         <thead class="thead-dark">
             <tr>
@@ -138,6 +138,7 @@
                 <th>Account #</th>
                 <th>Project</th>
                 <th>Approver</th>
+                <th>Shopper</th>
                 <th>Justification</th>
                 <th>Delivered</th>
                 <th>View Order</th>
@@ -148,38 +149,38 @@
             @forelse ($transactions as $transaction)
             <tr>
                 @if($transaction->status == 0)
-                <td>
-                    <span class="stat-dot stat-red"></span>
-                    Submitted
-                </td>
+                    <td>
+                        <span class="stat-dot stat-red"></span>
+                        Submitted
+                    </td>
                 @elseif($transaction->status == 1)
-                <td>
-                    <span class="stat-dot stat-orange"></span>
-                    Approved
-                </td>
+                    <td>
+                        <span class="stat-dot stat-orange"></span>
+                        Approved
+                    </td>
                 @else
-                <td>
-                    <span class="stat-dot stat-green"></span>
-                    Deliverd
-                </td>
+                    <td>
+                        <span class="stat-dot stat-green"></span>
+                        Deliverd
+                    </td>
                 @endif
-                <td>{{ date('Y-m-d', strtotime($transaction->created_at))}}</td>
-                <td>{{ $transaction->date_needed }}</td>
-                <td>{{ $transaction->location->loc_name }}</td>
-                <td>{{ $transaction->accountNumber->account_no }}</td>
-                <td>{{ $transaction->projectNumber->project_number }}</td>
-                <td>{{$transaction->approver->name}}</td>
-                <td>{{ $transaction->justification->justification }}</td>
+                    <td>{{ date('Y/m/d', strtotime($transaction->created_at))}}</td>
+                    <td>{{ date('Y/m/d', strtotime($transaction->date_needed)) }}</td>
+                    <td>{{ $transaction->location->loc_name }}</td>
+                    <td>{{ $transaction->accountNumber->account_no }}</td>
+                    <td>{{ $transaction->projectNumber->project_number }}</td>
+                    <td>{{$transaction->approver->name}}</td>
+                    <td>{{$transaction->shopper->name}}</td>
+                    <td>{{ $transaction->justification->justification }}</td>
                 @if ($transaction->delivery_type == 0)
-                <td>
-                    Warehouse Pickup
-                </td>
+                    <td>
+                        Warehouse Pickup
+                    </td>
                 @else
-                <td>
-                    Deliver to Me
-                </td>
+                    <td>
+                        Deliver to Me
+                    </td>
                 @endif
-
                 <td class="table-links">
                     <a href="#" class="table-link view-btn" data-toggle="modal" data-target="#orderModal"><i
                             class="fas fa-shopping-cart"></i></a>
@@ -215,16 +216,16 @@
                 <div class="modal-form">
                     <div class="form-group">
                         <label>From</label>
-                        <input class="form-control" type="date" />
+                        <input class="form-control" name="min" id="min" type="text" />
                     </div>
                     <div class="form-group">
                         <label>To</label>
-                        <input class="form-control" type="date" />
+                        <input class="form-control" name="max" id="max" type="text" />
                     </div>
                 </div>
 
                 <div class="modal-btns d-flex justify-content-end pt-3">
-                    <button type="button" class="main-btn blue-btn btn ml-2" data-dismiss="modal">Sort</button>
+                    {{-- <button type="button" class="main-btn blue-btn btn ml-2 sort">Sort</button> --}}
                 </div>
             </div>
         </div>
@@ -245,6 +246,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -287,6 +289,31 @@
     $('#filter-by-deliver').on('change', function(){
         table.search(this.value).draw();
     });
+
+    $(document).ready(function(){
+        $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var min = $('#min').datepicker("getDate");
+            var max = $('#max').datepicker("getDate");
+            var startDate = new Date(data[1]);
+            if (min == null && max == null) { return true; }
+            if (min == null && startDate <= max) { return true;}
+            if(max == null && startDate >= min) {return true;}
+            if (startDate <= max && startDate >= min) { return true; }
+            return false;
+        }
+        );
+
+       
+            $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+            var table = $('#example').DataTable();
+
+            // Event listener to the two range filtering inputs to redraw on input
+            $('#min, #max').change(function () {
+                table.draw();
+            });
+        });
 });
 </script>
 
