@@ -20,11 +20,11 @@ class CreateInventoriesTable extends Migration
             $table->unsignedBigInteger('location_id');
             $table->string('product_id');
             $table->string('description');
-            $table->float('price');
+            $table->money('price');
             $table->string('umd');
             $table->string('quantity_oh');
             $table->string('images');
-            $table->string('status');
+            $table->string('status')->default(1)->nullable();
             $table->timestamps();
         });
     }

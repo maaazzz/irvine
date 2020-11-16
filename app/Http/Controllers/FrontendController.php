@@ -13,7 +13,7 @@ use App\Model\Justification;
 use App\Model\ProjectNumber;
 use App\Model\Order;
 use App\Favorite;
-
+use App\RelatedInventories;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -74,8 +74,15 @@ class FrontendController extends Controller
             $quantity = $cartItem->quantity;
         }
 
+         $relateds = RelatedInventories::where('inventory_id', $id)->get();
+        //  $related->inventories;
+        // // return $product->relatedInventories;
+        // foreach($related as $related){
+        //     echo $related->inventories;
+        // }
 
-        return view('front-end.product', compact('product', 'quantity'));
+
+        return view('front-end.product', compact('product', 'quantity', 'relateds'));
     }
 
     public function addToFev($id)
@@ -101,7 +108,7 @@ class FrontendController extends Controller
     public function favorite()
     {
         $favorites = Favorite::where('user_id', auth()->user()->id)->paginate(4);
-        // dd($favorites);
+        
         return view('front-end.favorite', compact('favorites'));
     }
 

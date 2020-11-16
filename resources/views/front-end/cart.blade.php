@@ -35,7 +35,7 @@
                                         <div class="col-sm-12">
                                             <div class="cart-item d-flex flex-column flex-md-row">
                                                 <div class="item-img" style="margin: 30px;">
-                                                    <img src="./images/{{ $item->attributes->img }}" alt="" />
+                                                    <img src="{{asset('./images/'.$item->attributes->img) }}" alt="" />
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-8">

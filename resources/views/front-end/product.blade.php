@@ -27,21 +27,21 @@
                             @foreach(explode(',', $product->images) as $p=>$image)
                             <div class="list-img square-box" style="padding:10px;">
                                 <div class="img-box">
-                                    <img class="img-fluid images-showing" src="{{asset('images/'.$image)}}" alt="" />
+                                    <img class="img-fluid images-showing" src="{{ asset('/images/'.$image) }}" alt="" />
                                 </div>
                             </div>
                             @endforeach
 
-
+						
 
 
 
 
                         </div>
-                        @php $images_ = explode(',', $product->images); @endphp
+                        {{-- @php $images_ = explode(',', $product->images); @endphp --}}
                         <div class="main-img square-box">
                             <div class="img-box">
-                                <img class="img-fluid" id="show-image" src="{{asset('images/'.$images_[0])}}" alt="" />
+                                <img class="img-fluid" id="show-image" src="{{asset('/images/'.$product->image)}}" alt="" />
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                             </div>
 
                             <div class="product-data">
-                                <p class="product-cost">Cost: {{ $product->price }}</p>
+                                <p class="product-cost">Cost: ${{ $product->price }}</p>
                                 <p class="product-qty">Available Qty: {{ $product->quantity_oh }} </p>
                             </div>
 
@@ -63,11 +63,7 @@
                                 <div class="d-flex flex-wrap align-items-center">
                                     <div class="qty-input">
                                         <label style="padding: 10px;" for="">Qty: {{ $quantity }}</label>
-                                        {{-- <select class="custom-select">
-											<option value="">1</option>
-											<option value="">2</option>
-											<option value="">3</option>
-										</select> --}}
+                                   
 										
 
 									</div>
@@ -111,6 +107,45 @@
 		</div>
 	</div>
 </main>
+
+
+
+
+
+@if(count($relateds) != 0)
+<main class="main" style="margin-top: 50px">
+    <div class="container-fluid">
+		<h3 class="heading">Related Product</h3>
+		<br>
+		<div class="row">
+		@foreach($relateds as $related)
+		<div class="col-md-3" style="margin-bottom:20px">
+			<div class="fav-item d-flex row">
+		
+				<div class="item-img col-sm-4">
+				<a href="{{route('single.product', $related->inventories->id)}}">
+				<img class="img-fluid" src="{{ asset('/images/'.$related->inventories->image) }}" alt="" />
+				</a>
+				</div>
+				<div class="item-info col-sm-8">
+					<a class="item-title" href="{{route('single.product', $related->inventories->id)}}">{{$related->inventories->product_name}}</a>
+					<p class="item-details mb-2">{{$related->inventories->description}}</p>
+					<p class="item-cost m-0">Cost: ${{$related->inventories->price}}</p>
+					<p class="item-qty mb-2">Available Qty: {{$related->inventories->quantity_oh}}</p>
+				
+				</div>
+			</div>
+		</div>
+		
+	@endforeach
+</div>
+		
+  
+	</div>
+</main>
+
+@endif
+
 
             @endsection
 

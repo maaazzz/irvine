@@ -48,6 +48,6 @@ class Inventory extends Model
     // relation with related inventories
     public function relatedInventories()
     {
-        return $this->hasMany('App\Model\RelatedInventories');
+        return $this->hasMany('App\RelatedInventories');
     }
 }

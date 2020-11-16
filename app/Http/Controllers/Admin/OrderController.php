@@ -21,10 +21,6 @@ class OrderController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        //
-=======
->>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
     }
 
     /**
@@ -99,13 +95,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-<<<<<<< HEAD
-         $order = Order::with('inventory')->find($id);
-         return response()->json($order);
-=======
         $order = Order::with('inventory')->find($id);
         return response()->json($order);
->>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
     }
 
     /**
@@ -144,16 +135,8 @@ class OrderController extends Controller
 
     public function getNotes($id)
     {
-        // echo $id;
-        // // echo "it works";
-        $notes = Order::find($id);
-<<<<<<< HEAD
-         return response()->json($notes);
-    }
     
-}
-=======
+        $notes = Order::find($id);
         return response()->json($notes);
     }
 }
->>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5

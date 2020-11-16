@@ -117,7 +117,7 @@ Route::group(['middleware' => ['auth']], function () {
     // end of location route
 
     // favorite
-    Route::post('favourite', 'CartController@fvrt')->name('favourite');
+  
     // end of favorite
     Route::get('/order/{id}/notes', 'Admin\OrderController@getNotes');
     // end of location route

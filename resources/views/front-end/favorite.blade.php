@@ -34,7 +34,7 @@
 								<div class="fav-item d-flex row">
 
 									<div class="item-img col-sm-4">
-                                    <img class="img-fluid" src="./images/{{$favorite->inventory->image}}" alt="" />
+                                    <img class="img-fluid" src="{{ asset('images/'.$favorite->inventory->image)}}" alt="" />
 									</div>
 									<div class="item-info col-sm-8">
 										<a class="item-title" href="#">{{$favorite->inventory->product_name}}</a>

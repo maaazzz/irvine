@@ -10,6 +10,8 @@ class RelatedInventories extends Model
 
     public function inventories()
     {
-        return $this->belongsTo('App\Model\Inventory');
+        return $this->belongsTo('App\Model\Inventory', 'related_product_id');
     }
+
+
 }
