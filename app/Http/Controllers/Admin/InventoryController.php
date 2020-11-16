@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Model\Inventory;
-use Illuminate\Http\Request;
 use App\Model\Category;
 use App\Model\Location;
+use App\Model\Inventory;
+use App\RelatedInventories;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 
 class InventoryController extends Controller
@@ -44,7 +45,9 @@ class InventoryController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $input = $request->all();
+
+        $input =  $request->except(['related_inventories']);
+
         // dd($input);
         $images = array();
 
@@ -64,7 +67,15 @@ class InventoryController extends Controller
 
         //  dd(implode(',',$images));
 
-        Inventory::create($input);
+        $inventory = Inventory::create($input);
+        $related_inventories = $request->related_inventories;
+        // dd($related_inventories);
+        for ($i = 0; $i < count($related_inventories); $i++) {
+            RelatedInventories::create([
+                'inventory_id' => $inventory->id,
+                'related_product_id' => $related_inventories[$i],
+            ]);
+        }
         return back()->with('success', 'Inventory added Succesfully');
     }
 

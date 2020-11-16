@@ -42,17 +42,15 @@ class LoginController extends Controller
     {
         return view('front-end.partials.login');
     }
-    public function redirectTo(){
-        if(auth()->user()->role==1){
+    public function redirectTo()
+    {
+        if (auth()->user()->role == 1) {
             return redirect('/');
-        }
-        elseif(auth()->user()->role==2){
+        } elseif (auth()->user()->role == 2) {
             return route('approvals');
-        }
-        elseif(auth()->user()->role==3){
+        } elseif (auth()->user()->role == 3) {
             return redirect('/');
-        }
-        else{
+        } else {
             return route('admin.index');
         }
     }
