@@ -17,13 +17,8 @@
                 <ul class="navbar-nav flex-md-grow-1">
                     <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">Online Store</a></li>
                     <li class="nav-item"><a href="{{url('/order-history')}}" class="nav-link">Order History</a></li>
-<<<<<<< HEAD
                     <li class="nav-item"><a href="{{url('/favorite')}}" class="nav-link">Favorite Items</a></li>
                     <li class="nav-item"><a href="settings.html" class="nav-link">Account Settings</a></li>
-=======
-                    <li class="nav-item"><a href="favorite.html" class="nav-link">Favorite Items</a></li>
-                    <li class="nav-item"><a href="{{url('/account-setting')}}" class="nav-link">Account Settings</a></li>
->>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
 
 
                     @guest
