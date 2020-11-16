@@ -11,23 +11,48 @@
                 <ul class="nav-middle navbar-nav flex-md-grow-1">
 
                     {{-- dashboard --}}
+<<<<<<< HEAD
                     @if(auth()->user()->role == 1 || auth()->user()->role == 4)
                     <li class="nav-item {{request()->is('/admin') ? 'active' : ''}}"><a href="{{ url('/admin') }}"
                             class="nav-link">Dashboard</a></li>
 
+=======
+                    @if(auth()->user()->role == 4)
+                    <li class="nav-item {{request()->is('/admin') ? 'active' : ''}}"><a href="{{ url('/admin') }}"
+                            class="nav-link">Dashboard</a></li>
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
                     {{-- inventory --}}
                     <li class="nav-item  {{request()->is('admin/inventory') ? 'active' : ''}}"><a
                             href="{{ url('admin/inventory') }}" class="nav-link">Inventory</a></li>
                     @endif
+<<<<<<< HEAD
                     {{-- approvals --}}
                     @if (auth()->user()->role == 2 || auth()->user()->role == 4)
+=======
+
+
+                    @if (auth()->user()->role == 1)
+                    {{-- Orders for warehouse --}}
+                    <li class="nav-item {{request()->is('admin/all-orders') ? 'active' : ''}}"><a
+                            href="{{ url('admin/all-orders') }}" class="nav-link">Orders</a>
+                    </li>
+                    @endif
+
+
+                    {{-- approvals --}}
+                    @if (auth()->user()->role == 2)
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
                     <li class="nav-item {{request()->is('admin/approvals') ? 'active' : ''}}"><a
                             href="{{ url('admin/approvals') }}" class="nav-link">Approvals</a></li>
                     @endif
                     {{--end  approvals --}}
 
 
+<<<<<<< HEAD
                     @if(auth()->user()->role == 1|| auth()->user()->role == 4)
+=======
+                    @if(auth()->user()->role == 4)
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
 
                     {{-- transactions --}}
                     <li class="nav-item {{request()->is('admin/transactions') ? 'active' : ''}}"><a
@@ -51,6 +76,13 @@
                             href="{{ url('admin/account-setting') }}" class="nav-link">Account
                             Settings</a></li>
                     @endif
+<<<<<<< HEAD
+=======
+
+                    <li class="nav-item {{request()->is('admin/account-setting') ? 'active' : ''}}"><a
+                            href="{{ url('admin/account-setting') }}" class="nav-link">Account
+                            Settings</a></li>
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
                 </ul>
 
                 <ul class="navbar-nav">

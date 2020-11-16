@@ -4,6 +4,7 @@
 <!-- Main -->
 <main class="main">
     <div class="container-fluid">
+<<<<<<< HEAD
 
 @if(session()->get('success'))
 <div class="alert alert-success alert-dismissible">
@@ -14,6 +15,8 @@
 
 @endif
 
+=======
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
         <div class="all-products d-md-flex position-relative">
             <div class="product-filter">
                 <div class="filter-part">
@@ -106,9 +109,15 @@
                             <p class="badge m-0"></p>
                         </div>
                         @endif
+<<<<<<< HEAD
 
                         <a class="product-img" href="{{route('single.product',$product->id)}}">
                             <img src="./images/{{$product->image}}" alt="" />
+=======
+                        @php $images = explode(',', $product->images); @endphp
+                        <a class="product-img" href="{{route('single.product',$product->id)}}">
+                            <img src="{{ asset('images/'.$images[0]) }}" alt="" />
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
                         </a>
                         <div class="text-center"><a class="product-title"
                                 href="{{route('single.product',$product->id)}}">{{ $product->product_name }}</a></div>
@@ -120,12 +129,53 @@
                             <p class="product-qty product-info">Available Qty: {{ $product->quantity_oh }}</p>
 
                             <a class="add-product btn" href="{{ route('cart.add', $product->id) }}">Add to Cart</a>
+<<<<<<< HEAD
                             
+=======
+                            <form class="fvrt">
+                                {{-- <input type="hidden" value="{{ $product->id}}"> --}}
+                                <button type="button" class="btn btn-link like">Add to
+                                    Favorite</button>
+                            </form>
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
                         </div>
                     </div>
                     @endforeach
 
+<<<<<<< HEAD
                    
+=======
+                    {{-- <div class="product-card">
+									<div class="badge-bar">
+										<p class="badge badge-featured m-0">Featured</p>
+									</div>
+									<a class="product-img" href="#">
+										<img src="{{ asset('./shop-assets/img/product120.jpg') }}" alt="" />
+                    </a>
+                    <div class="text-center"><a class="product-title" href="product.html">Magic Eraser</a></div>
+                    <p class="product-details">Mr. Clean Magic Eraser Multi-Surface Cleaning Sheets, 16 ct</p>
+                    <div class="text-center">
+                        <p class="product-cost product-info">Cost: $13.50</p>
+                        <p class="product-qty product-info">Available Qty: 13</p>
+                        <button class="add-product btn" type="button">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="badge-bar"></div>
+                    <a class="product-img" href="#">
+                        <img src="{{ asset('./shop-assets/img/product130.jpg') }}" alt="" />
+                    </a>
+                    <div class="text-center"><a class="product-title" href="product.html">All-Purpose Cleaner</a></div>
+                    <p class="product-details">Simple Green All-Purpose Cleaner, 32 fl oz</p>
+                    <div class="text-center">
+                        <p class="product-cost product-info">Cost: $13.50</p>
+                        <p class="product-qty product-info">Available Qty: 13</p>
+                        <button class="add-product btn" type="button">Add to Cart</button>
+                    </div>
+                </div> --}}
+
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
             </div>
         </div>
     </div>

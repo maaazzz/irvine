@@ -5,6 +5,7 @@
 
 <main class="main">
     <div class="container-fluid">
+<<<<<<< HEAD
 
         @if(session()->get('success'))
         <div class="alert alert-success alert-dismissible">
@@ -13,6 +14,8 @@
              {{ session()->get('success') }}
         </div>
         @endif
+=======
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
         <div class="cart-step">
             <div id="step-progress" class="step-progress d-flex justify-content-between">
                 <span class="on">Step One</span>
@@ -52,6 +55,15 @@
 
                                                                 <div class="qty-input row">
 
+<<<<<<< HEAD
+=======
+                                                                    {{-- <label for="">Qty:</label>
+												<select class="custom-select">
+													<option value="">1</option>
+													<option value="">2</option>
+													<option value="">3</option>
+												</select> --}}
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
 
                                                                     <p class="item-cost">{{ $item->quantity }}</p>
                                                                 </div>
@@ -129,8 +141,11 @@
                             </div>
 
                             <div class="step-btns text-right">
+<<<<<<< HEAD
                                 <a class="gray-btn main-btn btn" style="margin: 10px" href="{{ route('cart.clear') }}">Clear Cart</a>
 												
+=======
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
                                 <button class="gray-btn main-btn btn" type="button">Continue Shopping</button>
                                 <button class="next-step main-btn btn" type="button">Next <i
                                         class="fas fa-arrow-right"></i></button>

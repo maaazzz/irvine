@@ -61,5 +61,17 @@ class CartController extends Controller
         return back()->with('success', "Item Quantity Updated");
     }
 
+<<<<<<< HEAD
 
+=======
+    public function fvrt(Request $request)
+    {
+        // dd($request->all());
+        $like =  Favourite::create([
+            'inventory_id' => $request->inventory_id,
+        ]);
+
+        return response()->json('success');
+    }
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
 }

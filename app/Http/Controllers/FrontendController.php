@@ -40,9 +40,12 @@ class FrontendController extends Controller
         $cart = Cart::getContent()->sort();
         return view('front-end.cart', compact('cart', 'locations', 'acc_numbers', 'project_numbers', 'approvers', 'justifications'));
     }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
     public function get_categories_products($id)
     {
 
@@ -54,8 +57,11 @@ class FrontendController extends Controller
 
         return view('front-end.filters-products.get-products-by-cat', compact('products'));
     }
+<<<<<<< HEAD
 
     
+=======
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
     public function get_location_products($id)
     {
         if ($id == 'all') {
@@ -85,18 +91,23 @@ class FrontendController extends Controller
 
     public function addToFev($id)
     {
+<<<<<<< HEAD
         $favorite = Favorite::where('user_id', auth()->user()->id)->where('inventory_id', $id)->first();
         if($favorite != null){
             return response()->json('Product already in favorites');
 
         }else{
                    Favorite::create([
+=======
+        Favorite::create([
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
             'inventory_id'=>$id,
             'user_id' => auth()->user()->id
         ]);
 
         return response()->json('Product Is Into Fevorites');
 
+<<<<<<< HEAD
                    }        
         
  
@@ -117,10 +128,18 @@ class FrontendController extends Controller
         
     }
 
+=======
+    }
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
     public function orders()
     {
         $shopperId =  auth()->user()->id;
        $orders = Order::where('shopper_id', $shopperId)->with('location', 'projectNumber', 'accountNumber', 'approver', 'justification')->get();
         return view('front-end.orderHistory', compact('orders'));
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
 }

@@ -1,6 +1,12 @@
 @extends('admin.layouts.app')
 
 @section('content')
+<<<<<<< HEAD
+=======
+@if(Session::has('danger'))
+<div class="alert alert-danger">{{Session::get('danger')}}</div>
+@endif
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
 <div class="page-title">
     <h5>Dashboard</h5>
 </div>

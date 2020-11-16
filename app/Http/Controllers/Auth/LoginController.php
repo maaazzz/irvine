@@ -42,6 +42,7 @@ class LoginController extends Controller
     {
         return view('front-end.partials.login');
     }
+<<<<<<< HEAD
     public function redirectTo(){
         if(auth()->user()->role==1){
             return redirect('/');
@@ -53,6 +54,17 @@ class LoginController extends Controller
             return redirect('/');
         }
         else{
+=======
+    public function redirectTo()
+    {
+        if (auth()->user()->role == 1) {
+            return redirect('/');
+        } elseif (auth()->user()->role == 2) {
+            return route('approvals');
+        } elseif (auth()->user()->role == 3) {
+            return redirect('/');
+        } else {
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
             return route('admin.index');
         }
     }

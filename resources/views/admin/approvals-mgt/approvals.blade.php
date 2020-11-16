@@ -49,7 +49,13 @@
 @if (Session::has('success'))
 <div class="alert alert-success">{{ Session::get('success') }}</div>
 @endif
+<<<<<<< HEAD
 
+=======
+@if(Session::has('danger'))
+<div class="alert alert-danger">{{Session::get('danger')}}</div>
+@endif
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
 <h5 class="page-title">Approvals</h5>
 
 <div class="filter-box d-flex flex-wrap align-items-center mb-4">
@@ -63,7 +69,11 @@
     </div>
     <div class="mr-2">
         <select class="custom-select" id="filter-by-shopper">
+<<<<<<< HEAD
             <option selected hidden>Filter by Shopper Name</option>
+=======
+            <option selected hiddenq>Filter by Shopper Name</option>
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
             @forelse ($users as $user)
             @if ($user->role == 1)
             <option value="{{ $user->name }}">{{ $user->name }}</option>
@@ -190,7 +200,11 @@
                 <td>{{ $approval->location->loc_name }}</td>
                 <td>{{ $approval->accountNumber->account_no }}</td>
                 <td>{{ $approval->projectNumber->project_number }}</td>
+<<<<<<< HEAD
                 <td>{{ $approval->approver->name }}</td>
+=======
+                <td>{{ $approval->shopper->name }}</td>
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
                 <td>{{ $approval->justification->justification }}</td>
                 <td>{{ $approval->delivery_type == 0 ? "Warehouse Pickup" : 'Deliver to Me' }}</td>
 
@@ -326,7 +340,11 @@
         }
         );
 
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
             $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
             $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
             var table = $('#example').DataTable();
@@ -339,4 +357,8 @@
 });
 </script>
 
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5

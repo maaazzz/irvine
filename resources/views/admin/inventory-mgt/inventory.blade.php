@@ -6,6 +6,10 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.dataTables.min.css">
+<<<<<<< HEAD
+=======
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
 
 <style>
     button.dt-button,
@@ -44,6 +48,12 @@
 @endsection
 
 @section('content')
+<<<<<<< HEAD
+=======
+@if(Session::has('danger'))
+<div class="alert alert-danger">{{Session::get('danger')}}</div>
+@endif
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
 <div class="page-title">
     <h5>Inventory</h5>
 </div>
@@ -186,6 +196,20 @@
                             </select>
                         </div>
                         <div class="form-group">
+<<<<<<< HEAD
+=======
+                            <label for="">Select Related Products</label>
+                            <select class="js-example-basic-multiple form-control" name="related_inventories[]"
+                                multiple="multiple" style="width:450px !important">
+
+                                @foreach ($inventories as $product)
+                                <option value="{{ $product->id }}">{{ $product->product_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
                             <label>Description</label>
                             <input class="form-control" name="description" type="text" required />
                         </div>
@@ -266,9 +290,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+<<<<<<< HEAD
 
 <script>
     $(document).ready(function() {
+=======
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+    });
+    $(document).ready(function() {
+>>>>>>> 3d106469a9d1b0f4a5d7b8cb313feae21b767bc5
         var table = $('#example').DataTable( {
         dom: 'Bfrtip',
         select: true,
