@@ -96,9 +96,9 @@
                             <p class="badge m-0"></p>
                         </div>
                         @endif
-
+                        @php $images = explode(',', $product->images); @endphp
                         <a class="product-img" href="{{route('single.product',$product->id)}}">
-                            <img src="{{ asset('./shop-assets/img/product110.jpg') }}" alt="" />
+                            <img src="{{ asset('images/'.$images[0]) }}" alt="" />
                         </a>
                         <div class="text-center"><a class="product-title"
                                 href="{{route('single.product',$product->id)}}">{{ $product->product_name }}</a></div>

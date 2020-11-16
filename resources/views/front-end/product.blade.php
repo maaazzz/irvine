@@ -24,10 +24,10 @@
 
                         <div class="col-md-3 img-list d-flex flex-row flex-md-column justify-content-between">
 
-                            @foreach(explode(',', $product->images) as $p)
+                            @foreach(explode(',', $product->images) as $p=>$image)
                             <div class="list-img square-box" style="padding:10px;">
                                 <div class="img-box">
-                                    <img class="img-fluid" src="../images/{{ $p }}" alt="" />
+                                    <img class="img-fluid images-showing" src="{{asset('images/'.$image)}}" alt="" />
                                 </div>
                             </div>
                             @endforeach
@@ -38,9 +38,10 @@
 
 
                         </div>
+                        @php $images_ = explode(',', $product->images); @endphp
                         <div class="main-img square-box">
                             <div class="img-box">
-                                <img class="img-fluid" src="../images/{{ $product->image }}" alt="" />
+                                <img class="img-fluid" id="show-image" src="{{asset('images/'.$images_[0])}}" alt="" />
                             </div>
                         </div>
                     </div>
@@ -149,7 +150,11 @@
 	});
 
 //end fev
-
+$('.images-showing').on('click',function(){
+	var fetched_image = $(this).attr('src');
+	// console.log(fetched_image);
+	$('#show-image').attr('src',fetched_image);
+});
 
 });
 
